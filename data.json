@@ -1,0 +1,451 @@
+[
+  {
+    "type":"burger",
+    "id": 1,
+    "image": "./img/burger1.png",
+    "title": "BURGER BÒ TEMPURA JR",
+    "content": "+Burger Bò Tempura Jr (size vừa): bò nướng lửa hồng cùng tempura rau củ",
+    "price": "67.500 VND"
+  },
+  {
+    "type":"burger",
+    "id": 2,
+    "image": "./img/burger2.png",
+    "title": "BURGER BÒ TEMPURA",
+    "content": "Burger Bò Tempura (size lớn): bò nướng lửa hồng và tempura rau củ",
+    "price": "126.500 VND"
+  },
+  {
+    "type":"burger",
+    "id": 3,
+    "image": "./img/burger3.jpg",
+    "title": "BURGER BÒ NƯỚNG WHOPPER JR",
+    "content": "BURGER BÒ NƯỚNG WHOPPER JR",
+    "price": "54.000 VND"
+  },
+  {
+    "type":"burger",
+    "id": 4,
+    "image": "./img/burger4.jpg",
+    "title": "BURGER CÁ",
+    "content": "BURGER CÁ",
+    "price": "46.000 VND"
+  },
+  {
+    "type":"burger",
+    "id": 5,
+    "image": "./img/burger5.jpg",
+    "title": "Burger Bò Nướng Hành Chiên",
+    "content": "Burger Bò Nướng Hành Chiên",
+    "price": "50.000 VND"
+  },
+  {
+    "type":"burger",
+    "id": 6,
+    "image": "./img/burger6.jpg",
+    "title": "BURGER GÀ GIÒN CAY",
+    "content": "BURGER GÀ GIÒN CAY",
+    "price": "77.500 VND"
+  },
+  {
+    "type":"burger",
+    "id": 7,
+    "image": "./img/burger7.jpg",
+    "title": "BURGER GÀ NƯỚNG",
+    "content": "BURGER GÀ NƯỚNG",
+    "price": "67.500 VND"
+  },
+  {
+    "type":"burger",
+    "id": 8,
+    "image": "./img/burger8.jpg",
+    "title": "Burger Bò Phô Mai",
+    "content": "Burger Bò Phô Mai",
+    "price": "63.500 VND"
+  },
+  {
+    "type":"burger",
+    "id": 9,
+    "image": "./img/burger9.jpg",
+    "title": "BURGER BÒ THỊT HEO XÔNG KHÓI",
+    "content": "BURGER BÒ THỊT HEO XÔNG KHÓI",
+    "price": "68.000 VND"
+  },
+  {
+    "type":"burger",
+    "id": 10,
+    "image": "./img/burger10.jpg",
+    "title": "BURGER 2 MIẾNG BÒ NƯỚNG",
+    "content": "BURGER 2 MIẾNG BÒ NƯỚNG",
+    "price": "165.000 VND"
+  },
+  {
+    "type":"burger",
+    "id": 11,
+    "image": "./img/burger11.jpg",
+    "title": "WHOPPER BÒ NƯỚNG",
+    "content": "BURGER BÒ NƯỚNG WHOPPER",
+    "price": "162.000 VND"
+  },
+  {
+    "type":"burger",
+    "id": 12,
+    "image": "./img/burger12.jpg",
+    "title": "BURGER 2 MIẾNG BÒ PHÔ MAI",
+    "content": "BURGER 2 MIẾNG BÒ PHÔ MAI",
+    "price": "162.000 VND"
+  },
+  {
+    "type":"combo",
+    "id": 1,
+    "image": "./img/chicken1.png",
+    "title": "COMBO CHIC'N LOVER 1P",
+    "content": " 2 Miếng Gà Giòn (cay/ không cay) hoặc 2 Cánh Gà BBQ + 1 Nước ngọt",
+    "price": "93.000 VND"
+  },
+  {
+    "type":"combo",
+    "id": 2,
+    "image": "./img/chicken2.jpg",
+    "title": "COMBO CHIC'N LOVER 1P",
+    "content": "2 Miếng Gà Giòn (cay/ không cay) hoặc 2 Cánh Gà BBQ + 1 Burger Bò Phô Mai + 2 Nước ngọt",
+    "price": "142.000 VND"
+  },
+  
+  {
+    "type":"combo",
+    "id": 3,
+    "image": "./img/combo1.png",
+    "title": "COMBO BURGER BÒ TEMPURA JR(M)",
+    "content": "1 Burger Bò Tempura Jr (size vừa) + 1 Khoai Tây Chiên (M)",
+    "price": "87.000 VND"
+  },
+  {
+    "type":"garan",
+    "id": 4,
+    "image": "./img/chicken4.jpg",
+    "title": "GÀ GIÒN CRISPY",
+    "content": "1 Miếng Gà Giòn Crispy (không cay)",
+    "price": "44.000 VND"
+  },
+  {
+    "type":"garan",
+    "id": 5,
+    "image": "./img/chicken5.jpg",
+    "title": "COMBO GÀ BBQ(3 MIẾNG)",
+    "content": "Combo Gồm : 1 Nước (M) + 1 Khoai Tây Chiên (M) + 3 miếng gà BBQ",
+    "price": "136.000 VND"
+  },
+  {
+    "type":"garan",
+    "id": 6,
+    "image": "./img/chicken6.jpg",
+    "title": "COMBO GÀ RÁN GIÒN CAY(3 MIẾNG)",
+    "content": "Combo Gồm : 1 Nước (M) + 1 Khoai Tây Chiên (M) + 3 miếng gà rán giòn cay",
+    "price": "136.000 VND"
+  },
+  {
+    "type":"garan",
+    "id": 7,
+    "image": "./img/chicken7.jpg",
+    "title": "COMBO GÀ BBQ(2 MIẾNG)",
+    "content": "BURGER GÀ NƯỚNGCombo Gồm : 1 Nước (M) + 1 Khoai Tây (M) + 2 miếng gà BBQ",
+    "price": "116.500 VND"
+  },
+  {
+    "type":"garan",
+    "id": 8,
+    "image": "./img/chicken8.jpg",
+    "title": "COMBO GÀ GIÒN KHONG CAY(2 MIẾNG)",
+    "content": "MAIN COURSE : 1 Nước + 2 miếng Gà Giòn không cay + 1 Khoai Tây Chiên (M)",
+    "price": "116.500 VND"
+  },
+  {
+    "type":"garan",
+    "id": 9,
+    "image": "./img/chicken9.jpg",
+    "title": "COMBO GÀ GIÒN CAY(2 MIẾNG)",
+    "content": "Combo Gồm : 1 Nước (M) + 1 Khoai Tây (M) + 2 miếng gà rán giòn cay",
+    "price": "116.500 VND"
+  },
+  {
+    "type":"garan",
+    "id": 10,
+    "image": "./img/chicken10.jpg",
+    "title": "COMBO GÀ GIÒN KHÔNG CAY(3 MIẾNG)",
+    "content": "MAIN COURSE : 1 Nước + 3 miếng Gà Giòn không cay + 1 Khoai Tây Chiên (M)",
+    "price": "136.000 VND"
+  },
+  {
+    "type":"garan",
+    "id": 11,
+    "image": "./img/chicken11.jpg",
+    "title": "Mix Wing 4pcs",
+    "content": "Mix Wing 4pcs",
+    "price": "87.000 VND"
+  },
+  {
+    "type":"garan",
+    "id": 12,
+    "image": "./img/chicken12.jpg",
+    "title": "Mix Wing 6pcs",
+    "content": "Mix Wing 6pcs",
+    "price": "130.000 VND"
+  },
+  {
+    "type":"garan",
+    "id": 1,
+    "image": "./img/chicken3.jpg",
+    "title": "COMBO FAMILY CHIC'N LOVERS",
+    "content": "3 Miếng Gà Giòn (cay/ không cay) + 3 Cánh Gà BBQ + 2 Khoai Tây Chiên (L) + 3 Nước ngọt",
+    "price": "289.000 VND"
+  },
+  {
+    "type":"garan",
+    "id": 2,
+    "image": "./img/combo2.jpg",
+    "title": "COMBO GÀ RÁN(M)",
+    "content": "3 Miếng Gà + 1 Burger Zinger/Burger Tôm/Burger Phi-lê Gà Quay + 2 Lon Pepsi",
+    "price": "172.000 VND"
+  },
+  {
+    "type":"garan",
+    "id": 3,
+    "image": "./img/combo3.jpg",
+    "title": "COMBO GÀ RÁN (L)",
+    "content": "4 Miếng Gà + 1 Khoai tây chiên lớn / 2 Thanh Bí Phô-mai + 2 Pepsi Lon",
+    "price": "191.000 VND"
+  },
+  {
+    "type":"combo",
+    "id": 4,
+    "image": "./img/combo4.jpg",
+    "title": "COMBO BURGER BÒ NƯỚNG HÀNH CHIÊNCHIÊN",
+    "content": "1 Burger Bò Nướng Hành Chiên + 1 Khoai Tây Chiên (M) + 1 Nước ngọt",
+    "price": "76.000 VND"
+  },
+  {
+    "type":"combo",
+    "id": 5,
+    "image": "./img/combo5.jpg",
+    "title": "COMBO BURGER BÒ PHÔ MAI(M)",
+    "content": "1 Burger Bò Phô Mai (cỡ vừa) + Khoai Tây Chiên (M) + Nước ngọt",
+    "price": "93.000 VND"
+  },
+  {
+    "type":"combo",
+    "id": 6,
+    "image": "./img/combo6.jpg",
+    "title": "COMBO BURGER GÀ GIÒN CAY",
+    "content": "1 Burger Gà Giòn Cay + 1 Khoai Tây Chiên (M) + 1 Nước ngọt",
+    "price": "97.000 VND"
+  },
+  {
+    "type":"combo",
+    "id": 7,
+    "image": "./img/combo7.jpg",
+    "title": "COMBO BURGER GÀ NƯỚNG",
+    "content": "1 Burger Gà Nướng + 1 Khoai Tây Chiên (M) + 1 Nước ngọt",
+    "price": "97.000 VND"
+  },
+  {
+    "type":"combo",
+    "id": 8,
+    "image": "./img/combo8.jpg",
+    "title": "COMBO BURGER BÒ THỊT HEO XÔNG KHÓI WHOPPER",
+    "content": "1 Burger Bò Thịt Heo Xông Khói Sốt BBQ + 1 Khoai Tây Chiên (M) + 1 Nước ngọt",
+    "price": "175.000 VND"
+  },
+  {
+    "type":"combo",
+    "id": 9,
+    "image": "./img/combo9.jpg",
+    "title": "COMBO BURGER 2 MIẾNG BÒ PHÔ MAI",
+    "content": "1 Burger 2 Miếng Bò Phô Mai + 1 Khoai Tây Chiên (L) + 1 Nước ngọt",
+    "price": "107.000 VND"
+  },
+  {
+    "type":"combo",
+    "id": 10,
+    "image": "./img/combo10.png",
+    "title": "COMBO BURGER BÒ TEMPURA (L)",
+    "content": "1 Burger Bò Tempura (size lớn) + 1 Khoai Tây Chiên (M)",
+    "price": "146.000 VND"
+  },
+  {
+    "type":"combo",
+    "id": 11,
+    "image": "./img/combo11.jpg",
+    "title": "COMBO BURGER BÒ TẮM PHÔ MAI(CỠ LỚN)",
+    "content": "1 Burger Bò Tắm Phô Mai (cỡ lớn) + Khoai Tây Chiên (M) + Nước ngọt",
+    "price": "150.000 VND"
+  },
+  {
+    "type":"combo",
+    "id": 12,
+    "image": "./img/combo12.jpg",
+    "title": "COMBO BURGER 2 MIẾNG BÒ + THỊT XÔNG KHÓI WHOPPER",
+    "content": "1 Burger 2 Miếng Bò Phô Mai Thịt Xông Khói WHOPPER + 1 Khoai Tây Chiên (M) + 1 Nước ngọt",
+    "price": "244.000 VND"
+  },
+  {
+    "type":"monankem",
+    "id": 1,
+    "image": "./img/food1.jpg",
+    "title": "GÀ CUỘN RONG BIỂN 4PCS",
+    "content": "SEAWEED CHICKEN ROLL 4PCS",
+    "price": "45.000 VND"
+  },
+  {
+    "type":"monankem",
+    "id": 2,
+    "image": "./img/food2.jpg",
+    "title": "GÀ CUỘN RONG BIỂN 6PCS",
+    "content": "SEAWEED CHICKEN ROLL 6PCS",
+    "price": "64.500 VND"
+  },
+  {
+    "type":"monankem",
+    "id": 3,
+    "image": "./img/food3.jpg",
+    "title": "KHOAI TÂY TẮM PHÔ MAI",
+    "content": "CHEESY FRIES",
+    "price": "31.000 VND"
+  },
+  {
+    "type":"monankem",
+    "id": 4,
+    "image": "./img/food4.jpg",
+    "title": "CÁ CUỘN RONG BIỂN 2PCS",
+    "content": "SEAWEED FISH STICK 2PCS",
+    "price": "24.000 VND"
+  },
+  {
+    "type":"monankem",
+    "id": 5,
+    "image": "./img/food5.jpg",
+    "title": "CÁ CUỘN RONG BIỂN 4PCS",
+    "content": "SEAWEED FISH STICK 4PCS",
+    "price": "45.000 VND"
+  },
+  {
+    "type":"monankem",
+    "id": 6,
+    "image": "./img/food6.jpg",
+    "title": "GÀ NUGGETS 3PCS",
+    "content": "CHICKEN NUGGETS 3PCS",
+    "price": "77.500 VND"
+  },
+  {
+    "type":"monankem",
+    "id": 7,
+    "image": "./img/food7.jpg",
+    "title": "GÀ NUGGETS 4PCS",
+    "content": "CHICKEN NUGGETS 4PCS",
+    "price": "34.000 VND"
+  },
+  {
+    "type":"monankem",
+    "id": 8,
+    "image": "./img/food8.jpg",
+    "title": "PHÔ MAI QUE 2PSC",
+    "content": "CHEESE STICK 2 PSC",
+    "price": "24.500 VND"
+  },
+  {
+    "type":"monankem",
+    "id": 9,
+    "image": "./img/food9.jpg",
+    "title": "PHÔ MAI QUE 8PSC",
+    "content": "CHEESE STICK 8PSC",
+    "price": "85.000 VND"
+  },
+  {
+    "type":"monankem",
+    "id": 10,
+    "image": "./img/burger10.jpg",
+    "title": "KHOAI TÂY TẮM PHÔ MAI THỊT XÔNG KHÓI",
+    "content": "CHEESY FRIES BACON",
+    "price": "44.000 VND"
+  },
+  {
+    "type":"monankem",
+    "id": 11,
+    "image": "./img/food11.jpg",
+    "title": "KHOAI TÂY CHIÊN SIZE M",
+    "content": "FRIES SIZE M",
+    "price": "28.000 VND"
+  },
+  {
+    "type":"monankem",
+    "id": 12,
+    "image": "./img/food12.jpg",
+    "title": "KHOAI TÂY CHIÊN SIZE L",
+    "content": "FRIES SIZE L",
+    "price": "38.000 VND"
+  },
+  {
+    "type":"thucuong",
+    "id": 1,
+    "image": "./img/water1.jpg",
+    "title": "NƯỚC CAM",
+    "content": "NƯỚC CAM",
+    "price": "26.000 VND"
+  },
+  {
+    "type":"thucuong",
+    "id": 2,
+    "image": "./img/water2.jpg",
+    "title": "MILO",
+    "content": "MILO",
+    "price": "26.500 VND"
+  },
+  {
+    "type":"thucuong",
+    "id": 3,
+    "image": "./img/water3.jpg",
+    "title": "DASANI",
+    "content": "DASANI",
+    "price": "24.000 VND"
+  },
+  {
+    "type":"thucuong",
+    "id": 4,
+    "image": "./img/water4.jpg",
+    "title": "TRÀ CHANH",
+    "content": "TRÀ CHANH",
+    "price": "26.500 VND"
+  },
+  {
+    "type":"thucuong",
+    "id": 5,
+    "image": "./img/water5.jpg",
+    "title": "COCA",
+    "content": "COCA",
+    "price": "24.000 VND"
+  },
+  {
+    "type":"thucuong",
+    "id": 6,
+    "image": "./img/water6.jpg",
+    "title": "FANTA",
+    "content": "FANTA",
+    "price": "24.000 VND"
+  },
+  {
+    "type":"thucuong",
+    "id": 7,
+    "image": "./img/water7.jpg",
+    "title": "SPRITE",
+    "content": "SPRITE",
+    "price": "24.000 VND"
+  },
+  {
+    "type":"thucuong",
+    "id": 8,
+    "image": "./img/water8.jpg",
+    "title": "COCA LIGHT",
+    "content": "COCA LIGHT",
+    "price": "26.000 VND"
+  }
+]

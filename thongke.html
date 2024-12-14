@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thống kê tổng quát</title>
+
+    <!-- Kết nối file CSS của Flatpickr -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.css">
+
+    <!-- Kết nối file CSS của Chart.js -->
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+    <h1>Thống kê tổng quát</h1>
+
+    <!-- Input để chọn ngày -->
+    <div class="date-picker-container">
+        <input type="text" id="stats-startDate" placeholder="Chọn ngày bắt đầu">
+        <input type="text" id="stats-endDate" placeholder="Chọn ngày kết thúc">
+        <button onclick="fetchStatistics()">Xem thống kê</button>
+    </div>
+
+    <!-- Hiển thị các số liệu thống kê -->
+    <div class="statistics-container">
+        <div class="stat-card" onclick="showChart()">
+            <h3 id="stats-totalProductsSold">0</h3>
+            <p>Sản phẩm đã bán</p>
+        </div>
+    </div>
+
+    <!-- Hiển thị trạng thái đang tải dữ liệu -->
+    <div id="stats-loading" class="loading" style="display: none;">Đang tải dữ liệu...</div>
+
+    <!-- Cửa sổ Modal để hiển thị biểu đồ -->
+    <div id="chartModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <h2>Biểu đồ sản phẩm đã bán</h2>
+            <canvas id="productChart" width="400" height="200"></canvas>
+        </div>
+    </div>
+
+    <!-- Kết nối thư viện Flatpickr -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.js"></script>
+
+    <!-- Kết nối thư viện Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        // Khởi tạo Flatpickr cho các trường ngày
+        flatpickr("#stats-startDate", { dateFormat: "Y-m-d" });
+        flatpickr("#stats-endDate", { dateFormat: "Y-m-d" });
+
+        async function fetchStatistics() {
+            const startDate = document.getElementById("stats-startDate").value;
+            const endDate = document.getElementById("stats-endDate").value;
+
+            if (!startDate || !endDate) {
+                alert("Vui lòng chọn khoảng thời gian!");
+                return;
+            }
+
+            console.log('📅 Thời gian:', startDate, 'đến', endDate);
+
+            document.getElementById("stats-loading").style.display = "block";
+
+            try {
+                const response = await fetch(`http://localhost:3000/api/statistics?startDate=${startDate}&endDate=${endDate}`);
+                const data = await response.json();
+                console.log('📊 Kết quả:', data);
+
+                document.getElementById("stats-totalProductsSold").textContent = data.total_products_sold || 0;
+                document.getElementById("stats-loading").style.display = "none";
+            } catch (error) {
+                console.error("❌ Lỗi khi lấy thống kê:", error);
+                alert("Không thể tải dữ liệu thống kê.");
+                document.getElementById("stats-loading").style.display = "none";
+            }
+        }
+
+        // Hiển thị modal và vẽ biểu đồ
+        function showChart() {
+            document.getElementById('chartModal').style.display = 'block';
+            drawChart();
+        }
+
+        // Đóng modal
+        function closeModal() {
+            document.getElementById('chartModal').style.display = 'none';
+        }
+
+        // Vẽ biểu đồ với Chart.js
+        function drawChart() {
+            const ctx = document.getElementById('productChart').getContext('2d');
+            const chartData = [12, 19, 3, 5, 2, 3]; // Thay dữ liệu giả này bằng dữ liệu từ API
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6'],
+                    datasets: [{
+                        label: 'Số sản phẩm đã bán',
+                        data: chartData,
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 50%;
+            position: relative;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+    </style>
+
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Form</title>
+  <link rel="stylesheet" href="paymentcss.css">
+  <script defer src="doan.js"></script>
+</head>
+<body>
+  <div class="payment-container">
+    <!-- Back Button -->
+    <button class="back-button" onclick="goBack()">← Trở lại</button>
+
+    <h2>Thanh toán nhanh</h2>
+    <div class="paypal-button">
+      <button>PayPal</button>
+    </div>
+    <h3>Trả bằng thẻ</h3>
+
+    <!-- Hiển thị thông tin hóa đơn từ localStorage -->
+    <div id="order-summary"></div>
+
+    <form class="payment-form" id="payment-form">
+      <div class="card-icons">
+        <img src="img/visa.svg" alt="Visa">
+        <img src="img/mastercard.png" alt="Mastercard">
+        <img src="img/amex.png" alt="Amex">
+        <img src="img/discover.png" alt="Discover">
+      </div>
+      <label for="card-number">Card number</label>
+      <input type="text" id="card-number" placeholder="Card number">
+      
+      <label for="name-on-card">Name on card</label>
+      <input type="text" id="name-on-card" placeholder="Name on card">
+      
+      <div class="expiration-cvc">
+        <div>
+          <label for="expiration-date">Expiration date</label>
+          <input type="text" id="expiration-date" placeholder="MM/YY">
+        </div>
+        <div>
+          <label for="cvc">CVC</label>
+          <input type="text" id="cvc" placeholder="CVC">
+        </div>
+      </div>
+      
+      <label for="country">Quốc gia</label>
+      <select id="country">
+        <option>Việt Nam</option>
+        <option>USA</option>
+        <option>Canada</option>
+        <option>Hàn Quốc</option>
+        <option>Đài Loan</option>
+        <option>Úc</option>
+        <option>Ukrain</option>
+        <option>Cambodia</option>
+      </select>
+      
+      <button type="submit" class="submit-button">Hoàn tất đơn hàng</button>
+    </form>
+  </div>
+
+  <script>
+    // Hiển thị thông tin hóa đơn từ localStorage
+    const pendingBill = JSON.parse(localStorage.getItem('pendingBill'));
+
+    if (!pendingBill) {
+      alert("Không tìm thấy hóa đơn để thanh toán!");
+      window.location.href = 'checkout.html'; // Quay lại trang chính nếu không có hóa đơn
+    } else {
+      const orderSummary = document.getElementById('order-summary');
+      orderSummary.innerHTML = `
+        <p><strong>Người dùng:</strong> ${pendingBill.username}</p>
+        <p><strong>Ngày lập hóa đơn:</strong> ${pendingBill.date_bill}</p>
+        <p><strong>Tổng tiền:</strong> ${pendingBill.total_money.toLocaleString()} VND</p>
+      `;
+    }
+
+    // Hàm xác nhận và lưu hóa đơn vào cơ sở dữ liệu
+    document.getElementById('payment-form').addEventListener('submit', async (event) => {
+      event.preventDefault(); // Ngăn không cho reload trang
+
+      // Lấy hóa đơn từ localStorage
+      const pendingBill = JSON.parse(localStorage.getItem('pendingBill'));
+
+      if (!pendingBill) {
+        alert("Không tìm thấy hóa đơn để lưu!");
+        return;
+      }
+
+      try {
+        const response = await fetch('http://localhost:3000/api/bills', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(pendingBill)
+        });
+
+        const result = await response.json();
+        
+        if (result.success) {
+          alert('Thanh toán thành công! Chúc bạn ngon miệng!');
+          localStorage.removeItem('pendingBill'); // Xóa hóa đơn khỏi localStorage
+          window.location.href = 'doan.html'; // Chuyển hướng đến trang thành công
+        } else {
+          alert('Thanh toán thất bại: ' + result.message);
+        }
+      } catch (error) {
+        console.error('Lỗi khi gửi yêu cầu lưu hóa đơn:', error);
+        alert("Lỗi kết nối, vui lòng thử lại!");
+      }
+    });
+
+    // Hàm quay lại trang trước
+    function goBack() {
+      window.history.back();
+    }
+  </script>
+</body>
+</html>

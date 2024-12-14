@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Information</title>
+    <style>
+        /* Bố cục chính */
+        body {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 20px;
+        }
+
+        /* Thẻ sản phẩm */
+        .product-info {
+            border: 1px solid #ccc;
+            padding: 10px;
+            width: 300px;
+            box-sizing: border-box;
+        }
+
+        .product-image img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Form nhập liệu */
+        #productForm {
+            display: flex;
+            flex-direction: column;
+            max-width: 1000px;
+            margin: 0;
+            width: 100%;
+        }
+
+        #productForm label {
+            margin-bottom: 5px;
+        }
+
+        #productForm input,
+        #productForm textarea {
+            margin-bottom: 10px;
+            padding: 5px;
+        }
+
+        #productForm button {
+            padding: 8px;
+            background-color: #4caf50;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Thêm form để nhập dữ liệu -->
+    <form id="productForm">
+        <label for="productId">ID:</label>
+        <input type="text" id="productId" name="productId">
+
+        <label for="productImage">Image URL:</label>
+        <input type="text" id="productImage" name="productImage">
+
+        <label for="productTitle">Title:</label>
+        <input type="text" id="productTitle" name="productTitle">
+
+        <label for="productContent">Content:</label>
+        <textarea id="productContent" name="productContent"></textarea>
+
+        <label for="productPrice">Price:</label>
+        <input type="text" id="productPrice" name="productPrice">
+
+        <button type="button" onclick="addProduct()">Add Product</button>
+    </form>
+
+    <script>
+        // Hàm thêm sản phẩm
+
+        function add_item() {
+            const productId = document.getElementById('productId').value;
+            const productImage = document.getElementById('productImage').value;
+            const productTitle = document.getElementById('productTitle').value;
+            const productContent = document.getElementById('productContent').value;
+            const productPrice = document.getElementById('productPrice').value;
+            const menuList = document.querySelector('.page_main_container .menu_list_ul');
+            const addcontent = document.createElement('li');
+            addcontent.classList.add('menu_list_li');
+            addcontent.innerHTML = `
+        <div class="menu_list_product" id=${productId} >
+            <a href="#" class="menu_list_img">
+                <img src="${productImage}" onclick="get_order()" alt="${productTitle}">
+            </a>
+            <h4 class="menu_list_title"><a href="#" onclick="get_order()">${productTitle.toUpperCase()}</a></h4>
+            <p class="menu_list_decrible">${productContent}</p>
+            <div class="menu_list_bottom">
+                <h3 class="menu_price">${productPrice}</h3>
+                <div class="menu_action">
+                    <button type="button" title="Đặt mua" class="menu_action_button" onclick="get_order()"></button>
+                </div>
+            </div>
+        </div>
+    `;
+            menuList.appendChild(addcontent);
+            console.log("add item")
+        }
+    </script>
+
+</body>
+
+</html>
