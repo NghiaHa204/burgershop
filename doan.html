@@ -1,832 +1,833 @@
-    <!DOCTYPE html>
-    <html>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="UTF-8">
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
 
-    <head>
+<head>
 
-        <link rel="stylesheet" href="doan.css">
-        <script src="doan.js" defer></script>
-        <title>
-            BurgerG15
-        </title>
-    </head>
+    <link rel="stylesheet" href="doan.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.css">
+    <script src="doan.js" defer></script>
+    <title>
+        BurgerG15
+    </title>
+</head>
 
-    <body>
-        <div id="page">
-            <div id="header" class="pageheader">
-                <div class="wrapper" id="noneCursor">
-                    <div class="topheader">
-                        <nav class="topmenu">
-                            <div class="container">
-                                <ul>
-                                    <div id="topleftmenu">
-                                        <li>
-                                            <a class="hiddenmenu" href="#">
-                                                <img src="./img/menu-bar.png" alt="menu">
+<body>
+    <div id="page">
+        <div id="header" class="pageheader">
+            <div class="wrapper" id="noneCursor">
+                <div class="topheader">
+                    <nav class="topmenu">
+                        <div class="container">
+                            <ul>
+                                <div id="topleftmenu">
+                                    <li>
+                                        <a class="hiddenmenu" href="#">
+                                            <img src="./img/menu-bar.png" alt="menu">
+                                        </a>
+                                    </li>
+                                    <li><a href="doan.html" class="menutop" id="logo"> <img
+                                                src="./img/logo-burger-1.png" alt="logo"> </a>
+                                    </li>
+                                </div>
+                                <div id="toprightmenu">
+                                    <span style="display: none;" id="input_span">
+                                        <li class="search"><input class="input" id="input" type="text" maxlength="25"
+                                                placeholder="tìm kiếm..." onkeyup="search()">
+                                        </li>
+                                        <button id="searchbutton"><img src="./img/search.svg" alt="" onclick="search()">
+                                        </button>
+                                    </span>
+                                    <li><a href="#" class="hid" id="thuc_don_button"
+                                            onclick="hien_thi_san_pham('all')">Thực đơn </a></li>
+                                    <div class="cart_main">
+                                        <li onclick="open_cart_tab()"><a href="#" class="menutop">
+                                                <img src="./img/shopping.svg" alt="">
+                                                <p>Giỏ hàng</p>
                                             </a>
                                         </li>
-                                        <li><a href="doan.html" class="menutop" id="logo"> <img
-                                                    src="./img/logo-burger-1.png" alt="logo"> </a>
-                                        </li>
                                     </div>
-                                    <div id="toprightmenu">
-                                        <span style="display: none;" id="input_span">
-                                            <li class="search"><input class="input" id="input" type="text" maxlength="25"
-                                                    placeholder="tìm kiếm..." onkeyup="search()">
-                                            </li>
-                                            <button id="searchbutton"><img src="./img/search.svg" alt="" onclick="search()">
-                                            </button>
-                                        </span>
-                                        <li><a href="#" class="hid" id="thuc_don_button"
-                                                onclick="hien_thi_san_pham('all')">Thực đơn </a></li>
-                                        <div class="cart_main">
-                                            <li onclick="open_cart_tab()"><a href="#" class="menutop">
-                                                    <img src="./img/shopping.svg" alt="">
-                                                    <p>Giỏ hàng</p>
-                                                </a>
-                                            </li>
-                                        </div>
-                                        <li id="user_name"><a href="#" id="login" class="hid">đăng ký | đăng nhập</a></li>
-                                    </div>
-                                </ul>
-                            </div>
-                        </nav>
-                    </div>
-                    <div class="botheader" id="menuBar">
-
-                    </div>
-                </div>
-            </div>
-            <div class="slideshow-container">
-                <div class="mySlides">
-                    <img src="./img/tempura-bannerweb-pc (1).jpg" style="width:100%">
-                </div>
-                <div class="mySlides">
-                    <img src="./img/banner-web-trang-chu-2.jpg" style="width:100%">
-                </div>
-                <div class="mySlides">
-                    <img src="./img/bogo-bannerweb-pc_1.jpg" style="width:100%">
-                </div>
-            </div>
-            <br>
-            <div style="text-align:center" class="dot_div">
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-            </div>
-            <div class="page_main" id="hoanh_chicken" style="display:none;">
-                <div class="page_main_container" style="display: block;">
-                    <div class="page_main_container_child">
-                        <section class="section_content" style="visibility: visible;">
-                            <div class="main_menu">
-                                <ul class="menu_list_ul" id="content_page">
-
-                                </ul>
-                            </div>
-                        </section>
-                    </div>
-                    <div id="pagination_deal" class="pagination">
-                        <button id="left_deal" onclick="page_back_deal()"></button>
-                        <input id="page_number_deal" value=1></input>
-                        <button id="right_deal" onclick="page_next_deal()"></button>
-                    </div>
-                </div>
-            </div>
-            <div class="page_main" id="thuc_don" style="display:none;">
-                <div class="page_main_container" style="display: block;">
-                    <div class="page_main_container_child">
-                        <section class="section_content" style="visibility: visible;">
-                            <div class="main_menu">
-                                <ul class="menu_list_ul" id="content_page">
-
-                                </ul>
-                            </div>
-                        </section>
-                    </div>
-                    <div id="pagination" class="pagination">
-                        <button id="left" onclick="page_back()"></button>
-                        <input id="page_number" value=1></input>
-                        <button id="right" onclick="page_next()"></button>
-                    </div>
-                </div>
-            </div>
-            <!-- deal deal deal deal deal deal deal deal deal deal deal deal deal deal deal deal deal deal deal deal deal deal deal deal deal deal deal deal deal deal deal deal deal deal deal deal deal deal deal-->
-            <div class="container_deal" id="img_close">
-                <div class="chicken_deal">
-                    <button class="img_close" onclick="close_tab()"><img src="./img/close.png"
-                            style="width: 20px; height:20px;" alt="close">
-                    </button>
-                    <div class="img_deal"><img src="" alt="combo1" id="img_deal"></div>
-                    <div class="content">
-                        <p class="combo_deal" id="combo_deal"></p>
-                        <P class="content_deal" id="content_deal"></P>
-                        <label>Tùy chọn đồ uống</label>
-                        <select name="choose" id="" class="choose">
-                            <option value="">Lựa chọn</option>
-                            <option value="">Cocacola</option>
-                            <option value="">Pepsi</option>
-                            <option value="">Fanta</option>
-                            <option value="">MirinDa</option>
-                            <option value="">7Up</option>
-                            <option value="">Sting</option>
-                        </select>
-                        <label>Ghi chú</label>
-                        <input type="text" class="input_deal">
-                        <p class="content_people">Số lượng phần ăn</p>
-                        <div class="money_deal">
-                            <button class="reduce" onclick="change_reduce()">
-                                <div>-</div>
-                            </button>
-                            <input type="text" class="count" id="count" value="1" onkeyup="change_input()">
-                            <button class="release" onclick="change_release()">
-                                <div>+</div>
-                            </button>
+                                    <li id="user_name"><a href="#" id="login" class="hid">đăng ký | đăng nhập</a></li>
+                                </div>
+                            </ul>
                         </div>
-                        <div class="Sum_money">
-                            <h3 id="Sum_money"></h3>
-                        </div>
-                        <button class="buy_deal" id="buy_deal" onclick="close_tab() ">
-                            <div>Thêm vào giỏ hàng</div>
-                        </button>
-                    </div>
+                    </nav>
                 </div>
-            </div>
-            <!-- cart html cart html cart html cart html cart html cart html cart html cart html cart html cart html cart html cart html cart html cart html cart html cart html cart html cart html cart html cart html cart html cart html cart html cart html cart html cart html cart html cart html -->
-            <div class="cart" id="cart">
-                <div class="cart_menu">
-                    <div class="cart_list">
-                        <ul class="cart_list_ul">
-                            <li class="cart_list_li">
-                                <div class="cart_list_div">
-                                    <table class="cart_list_table">
+                <div class="botheader" id="menuBar">
 
-                                    </table>
-                                    <div class="cart_tmp_cal">
-                                        <div class="cart_tmp_cal_title">Tạm tính:</div>
-                                        <div class="cart_tmp_cal_money">
-                                            <p id="cart_tmp_cal_money"></p>
-                                        </div>
-                                    </div>
-                                    <div class="thanh_toan">
-                                        <button id="thanh_toan" onclick="open_payment()">Thanh Toán</button>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <!-- Thanh toan Thanh toan Thanh toan Thanh toan Thanh toan Thanh toan Thanh toan Thanh toan Thanh toan Thanh toan Thanh toan Thanh toan Thanh toan Thanh toan Thanh toan Thanh toan Thanh toan Thanh toan Thanh toan Thanh toan Thanh toan-->
-            <div class="page_main_thanh_toan" id="page_main_thanh_toan" style="display: none;">
-                <div class="container" id="page_payment">
-                    <div>
-                        <form>
-                            <div>
-                                <div class="page-title">
-                                    <h2>THANH TOÁN</h2>
-                                </div>
-                                <div style="padding: 23px;">
-                                    <div class="row">
-                                        <div class="box-checkout">
-                                            <h3 class="box-title">
-                                                GHI CHÚ THÊM
-                                            </h3>
-                                            <div class="box-content" style="padding: 20px 67px;">
-                                                <label for="accress-order">Địa chỉ</label>
-                                                <span id="error" class="error"></span>
-                                                <input type="text" name="accress_order" id="accress_order"
-                                                    placeholder="Vui lòng nhập dịa chỉ" class="input-text">
-
-                                                <label>Ghi chú</label>
-                                                <div class="input-box">
-                                                    <textarea name="order_comment" id="" placeholder="Vui lòng nhập ghi chú"
-                                                        class="input-text"></textarea>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="box-checkout">
-                                            <h3 class="box-title">
-                                                XEM LẠI ĐƠN HÀNG
-                                            </h3>
-                                            <div class="box-content" style="padding: 0;">
-                                                <table class="data-table" id="">
-                                                    <colgroup>
-                                                        <col>
-                                                        <col width="1">
-                                                        <col width="1">
-                                                        <col width="1">
-                                                        <col width="1">
-                                                    </colgroup>
-                                                    <thead style="background: #f0ebe5; border: none; height: 60px;">
-                                                        <tr>
-                                                            <th rowspan="1" style="width: 40%;">Tên sản phẩm</th>
-                                                            <th colspan="1" style="width: 25%;">Đơn giá</th>
-                                                            <th rowspan="1" style="width: 10%;">Số lượng</th>
-                                                            <th colspan="1" style="width: 25%;">Thành tiền</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tfoot>
-                                                        <tr>
-                                                            <td class="a-right" colspan="3">Tạm tính</td>
-                                                            <td class="a-right" id="thanh_toan_tmp_cal_money" colspan="1">
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td style class="a-right" colspan="1">Phí vận chuyển</td>
-                                                            <td style class="a-right" colspan="1">Hình thức vận chuyển</td>
-                                                            <td colspan="1">
-                                                                <select name="choose" id="hinh_thuc_van_chuyen"
-                                                                    class="choose" onchange="van_chuyen();tong_cong();">
-                                                                    <option value=1>Thường</option>
-                                                                    <option value=2>Nhanh</option>
-                                                                    <option value=3>Hỏa tốc</option>
-                                                                </select>
-                                                            </td>
-                                                            <td colspan="1" id="phi_van_chuyen">10000 VND
-                                                            </td>
-                                                        </tr>
-                                                        <tr class="grand-total">
-                                                            <td class="a-left" colspan="3"
-                                                                style="font-size: 18px; color: black;">Tổng cộng</td>
-                                                            <td class="a-right" id="tong_cong">
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td></td>
-                                                        </tr>
-                                                    </tfoot>
-                                                    <tfoot class="no-data" id="no-data">
-                                                    </tfoot>
-                                                </table>
-                                            </div>
-                                        </div>
-                                        <div class="order-confi">
-                                            <button type="button" onclick="check_final()">XÁC NHẬN ĐƠN HÀNG</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
                 </div>
             </div>
         </div>
-        <!--page_admin-->
-        <div id="wrap_admin" style="display: none;">
-            <div id="page_admin">
-                <div id="nav_admin">
-                    <ul id="ulnav_admin">
+        <div class="slideshow-container">
+            <div class="mySlides">
+                <img src="./img/tempura-bannerweb-pc (1).jpg" style="width:100%">
+            </div>
+            <div class="mySlides">
+                <img src="./img/banner-web-trang-chu-2.jpg" style="width:100%">
+            </div>
+            <div class="mySlides">
+                <img src="./img/bogo-bannerweb-pc_1.jpg" style="width:100%">
+            </div>
+        </div>
+        <br>
+        <div style="text-align:center" class="dot_div">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+        <div class="page_main" id="hoanh_chicken" style="display:none;">
+            <div class="page_main_container" style="display: block;">
+                <div class="page_main_container_child">
+                    <section class="section_content" style="visibility: visible;">
+                        <div class="main_menu">
+                            <ul class="menu_list_ul" id="content_page">
+
+                            </ul>
+                        </div>
+                    </section>
+                </div>
+                <div id="pagination_deal" class="pagination">
+                    <button id="left_deal" onclick="page_back_deal()"></button>
+                    <input id="page_number_deal" value=1></input>
+                    <button id="right_deal" onclick="page_next_deal()"></button>
+                </div>
+            </div>
+        </div>
+        <div class="page_main" id="thuc_don" style="display:none;">
+            <div class="page_main_container" style="display: block;">
+                <div class="page_main_container_child">
+                    <section class="section_content" style="visibility: visible;">
+                        <div class="main_menu">
+                            <ul class="menu_list_ul" id="content_page">
+
+                            </ul>
+                        </div>
+                    </section>
+                </div>
+                <div id="pagination" class="pagination">
+                    <button id="left" onclick="page_back()"></button>
+                    <input id="page_number" value=1></input>
+                    <button id="right" onclick="page_next()"></button>
+                </div>
+            </div>
+        </div>
+        <!-- deal deal deal deal deal deal deal deal deal deal deal deal deal deal deal deal deal deal deal deal deal deal deal deal deal deal deal deal deal deal deal deal deal deal deal deal deal deal deal-->
+        <div class="container_deal" id="img_close">
+            <div class="chicken_deal">
+                <button class="img_close" onclick="close_tab()"><img src="./img/close.png"
+                        style="width: 20px; height:20px;" alt="close">
+                </button>
+                <div class="img_deal"><img src="" alt="combo1" id="img_deal"></div>
+                <div class="content">
+                    <p class="combo_deal" id="combo_deal"></p>
+                    <P class="content_deal" id="content_deal"></P>
+                    <label>Tùy chọn đồ uống</label>
+                    <select name="choose" id="" class="choose">
+                        <option value="">Lựa chọn</option>
+                        <option value="">Cocacola</option>
+                        <option value="">Pepsi</option>
+                        <option value="">Fanta</option>
+                        <option value="">MirinDa</option>
+                        <option value="">7Up</option>
+                        <option value="">Sting</option>
+                    </select>
+                    <label>Ghi chú</label>
+                    <input type="text" class="input_deal">
+                    <p class="content_people">Số lượng phần ăn</p>
+                    <div class="money_deal">
+                        <button class="reduce" onclick="change_reduce()">
+                            <div>-</div>
+                        </button>
+                        <input type="text" class="count" id="count" value="1" onkeyup="change_input()">
+                        <button class="release" onclick="change_release()">
+                            <div>+</div>
+                        </button>
+                    </div>
+                    <div class="Sum_money">
+                        <h3 id="Sum_money"></h3>
+                    </div>
+                    <button class="buy_deal" id="buy_deal" onclick="close_tab() ">
+                        <div>Thêm vào giỏ hàng</div>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- cart html cart html cart html cart html cart html cart html cart html cart html cart html cart html cart html cart html cart html cart html cart html cart html cart html cart html cart html cart html cart html cart html cart html cart html cart html cart html cart html cart html -->
+        <div class="cart" id="cart">
+            <div class="cart_menu">
+                <div class="cart_list">
+                    <ul class="cart_list_ul">
+                        <li class="cart_list_li">
+                            <div class="cart_list_div">
+                                <table class="cart_list_table">
+
+                                </table>
+                                <div class="cart_tmp_cal">
+                                    <div class="cart_tmp_cal_title">Tạm tính:</div>
+                                    <div class="cart_tmp_cal_money">
+                                        <p id="cart_tmp_cal_money"></p>
+                                    </div>
+                                </div>
+                                <div class="thanh_toan">
+                                    <button id="thanh_toan" onclick="open_payment()">Thanh Toán</button>
+                                </div>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
-            <div class="quan_ly_san_pham" style="display: none;" id="quan_ly_san_pham_child">
-                <div class="botheader" id="menuBar_admin"></div>
-                <div class="quan_ly_san_pham_add_item" onclick="open_add_item()">
-                    <img src="./img/bag-plus-fill.svg" alt="add_item">
-                    <button>THÊM SẢNG PHẨM</button>
-                </div>
-                <div class="quan_ly_san_pham_sap_xep_tang" onclick="sap_xep_product_price_up()">
-                    <img src="./img/arrow-up-square-fill.svg" alt="add_item">
-                    <button>Sắp xếp theo giá tiền tăng dần</button>
-                </div>
-                <div class="quan_ly_san_pham_sap_xep_giam" onclick="sap_xep_product_price_down()">
-                    <img src="./img/arrow-down-square-fill.svg" alt="add_item">
-                    <button>Sắp xếp theo giá tiền giảm dần</button>
-                </div>
-                <div class="page_product_item">
-                    <button id="left_product" onclick="page_back_product()"></button>
-                    <div class="new-cart" id="new-cart">
-                        <div class="new-cart-menu">
-                            <div class="new-cart-list">
-                                <ul class="new-cart-list-ul">
-                                    <li class="new-cart-list-li">
-                                        <div class="new-cart-list-div">
-                                            <table class="new-cart-list-table">
+        </div>
+        <!-- Thanh toan Thanh toan Thanh toan Thanh toan Thanh toan Thanh toan Thanh toan Thanh toan Thanh toan Thanh toan Thanh toan Thanh toan Thanh toan Thanh toan Thanh toan Thanh toan Thanh toan Thanh toan Thanh toan Thanh toan Thanh toan-->
+        <div class="page_main_thanh_toan" id="page_main_thanh_toan" style="display: none;">
+            <div class="container" id="page_payment">
+                <div>
+                    <form>
+                        <div>
+                            <div class="page-title">
+                                <h2>THANH TOÁN</h2>
+                            </div>
+                            <div style="padding: 23px;">
+                                <div class="row">
+                                    <div class="box-checkout">
+                                        <h3 class="box-title">
+                                            GHI CHÚ THÊM
+                                        </h3>
+                                        <div class="box-content" style="padding: 20px 67px;">
+                                            <label for="accress-order">Địa chỉ</label>
+                                            <span id="error" class="error"></span>
+                                            <input type="text" name="accress_order" id="accress_order"
+                                                placeholder="Vui lòng nhập dịa chỉ" class="input-text"></input>
 
+                                            <label>Ghi chú</label>
+                                            <div class="input-box">
+                                                <textarea name="order_comment" id="" placeholder="Vui lòng nhập ghi chú"
+                                                    class="input-text"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-checkout">
+                                        <h3 class="box-title">
+                                            XEM LẠI ĐƠN HÀNG
+                                        </h3>
+                                        <div class="box-content" style="padding: 0;">
+                                            <table class="data-table" id="">
+                                                <colgroup>
+                                                    <col>
+                                                    <col width="1">
+                                                    <col width="1">
+                                                    <col width="1">
+                                                    <col width="1">
+                                                </colgroup>
+                                                <thead style="background: #f0ebe5; border: none; height: 60px;">
+                                                    <tr>
+                                                        <th rowspan="1" style="width: 40%;">Tên sản phẩm</th>
+                                                        <th colspan="1" style="width: 25%;">Đơn giá</th>
+                                                        <th rowspan="1" style="width: 10%;">Số lượng</th>
+                                                        <th colspan="1" style="width: 25%;">Thành tiền</th>
+                                                    </tr>
+                                                </thead>
+                                                <tfoot>
+                                                    <tr>
+                                                        <td class="a-right" colspan="3">Tạm tính</td>
+                                                        <td class="a-right" id="thanh_toan_tmp_cal_money" colspan="1">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style class="a-right" colspan="1">Phí vận chuyển</td>
+                                                        <td style class="a-right" colspan="1">Hình thức vận chuyển</td>
+                                                        <td colspan="1">
+                                                            <select name="choose" id="hinh_thuc_van_chuyen"
+                                                                class="choose" onchange="van_chuyen();tong_cong();">
+                                                                <option value=1>Thường</option>
+                                                                <option value=2>Nhanh</option>
+                                                                <option value=3>Hỏa tốc</option>
+                                                            </select>
+                                                        </td>
+                                                        <td colspan="1" id="phi_van_chuyen">10000 VND
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="grand-total">
+                                                        <td class="a-left" colspan="3"
+                                                            style="font-size: 18px; color: black;">Tổng cộng</td>
+                                                        <td class="a-right" id="tong_cong">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td></td>
+                                                    </tr>
+                                                </tfoot>
+                                                <tfoot class="no-data" id="no-data">
+                                                </tfoot>
                                             </table>
                                         </div>
-                                    </li>
-                                </ul>
+                                    </div>
+                                    <div class="order-confi">
+                                        <button type="button" onclick="check_final()">XÁC NHẬN ĐƠN HÀNG</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <button id="right_product" onclick="page_next_product()"></button>
-                </div>
-                <div id="page_productForm" style="display: none;">
-                    <button class="productForm_edit_close" onclick="close_add_tab()"><img src="./img/close.png"
-                            style="width: 20px; height:20px;" alt="close">
-                    </button>
-                    <h1>THÊM SẢN PHẨM</h1>
-                    <form id="productForm">
-                        <label>Loại Sản Phẩm Cần Thêm</label>
-                        <select name="choose_product" id="choose_product" class="choose_product"
-                            onchange=" set_id_product()">
-                            <option value="burger">BurGer</option>
-                            <option value="combo">ComBo</option>
-                            <option value="garan">Gà Rán</option>
-                            <option value="monankem">Món Ăn Kèm</option>
-                            <option value="thucuong">Thức Uống</option>
-                        </select>
-                        <label for="productId">ID:</label>
-                        <input type="text" id="productId" name="productId">
-                        <small id="productId_small"></small>
-
-                        <label for="productImage">Image URL:</label>
-                        <input type="file" id="productImage" name="productImage">
-                        <small id="productImage_small"></small>
-
-                        <label for="productTitle">Title:</label>
-                        <input type="text" id="productTitle" name="productTitle">
-                        <small id="productTitle_small"></small>
-
-                        <label for="productContent">Content:</label>
-                        <textarea id="productContent" name="productContent"></textarea>
-                        <small id="productContent_small"></small>
-
-                        <label for="productPrice">Price:</label>
-                        <input type="text" id="productPrice" name="productPrice">
-                        <small id="productPrice_small"></small>
-
-                        <button type="button" onclick="add_item()" class="productForm_add_button">Add Product</button>
-                    </form>
-                </div>
-                <div id="page_productForm_edit" style="display: none;">
-                    <button class="productForm_edit_close" onclick="close_edit_tab()"><img src="./img/close.png"
-                            style="width: 20px; height:20px;" alt="close">
-                    </button>
-                    <h1>Sửa Thông tin</h1>
-                    <form id="productForm_edit">
-                        <label for="productId_edit">ID:</label>
-                        <input type="text" id="productId_edit" name="productId_edit">
-                        <small id="productId_edit_small"></small>
-
-                        <label for="productImage_edit">Image URL:</label>
-                        <input type="file" id="productImage_edit" name="productImage_edit">
-                        <small id="productImage_edit_small"></small>
-
-                        <label for="productTitle_edit">Title:</label>
-                        <input type="text" id="productTitle_edit" name="productTitle_edit">
-                        <small id="productTitle_edit_small"></small>
-
-                        <label for="productContent_edit">Content:</label>
-                        <textarea id="productContent_edit" name="productContent_edit"></textarea>
-                        <small id="productContent_edit_small"></small>
-
-                        <label for="productPrice_edit">Price:</label>
-                        <input type="text" id="productPrice_edit" name="productPrice_edit">
-                        <small id="productPrice_edit_small"></small>
-                        <button type="button" onclick="edit_item()" class="productForm_edit_button">Edit Product</button>
-                    </form>
-                </div>
-
-            </div>
-            <div id="sections" style="display: none;">
-                <div id="left_user">
-                    <h2>DANH SÁCH KHÁCH HÀNG</h2>
-                    <table id="userTable">
-                        <thead>
-                            <tr>
-                                <th class="th">STT</th>
-                                <th class="th">HỌ VÀ TÊN</th>
-                                <th class="th">TÊN ĐĂNG NHẬP</th>
-                                <th class="th">NGÀY ĐĂNG KÝ</th>
-                                <th class="th">Xóa tài khoản</th>
-                            </tr>
-                        </thead>
-                        <tbody id="UserList">
-                        </tbody>
-                    </table>
-                </div>
-                <div id="right_user">
-                    <form id="seacrchUser">
-                        <h2>TÌM KHÁCH HÀNG</h2>
-                        <div class="searchuserinput">
-                            <label for="name">Tên khách hàng</label>
-                            <input onkeypress="showUserList()" type="text" id="name_user" autocomplete="off">
-                        </div>
-                        <div class="searchuserinput">
-                            <label for="username">Tên đăng nhập</label>
-                            <input onkeypress="showUserList()" type="text" id="username" autocomplete="off">
-                        </div>
-                        <div class="searchuserinput">
-                            <label for="date">Ngày đăng ký</label>
-                            <input onkeypress="showUserList()" type="text" id="date" autocomplete="off">
-                        </div>
-                        <div>
-                            <button id="searchUserBtns" type="button" onclick="searchUser()">Tìm kiếm</button>
-                        </div>
-
-
-
                     </form>
                 </div>
             </div>
         </div>
-        <div class="page_dt" id="page_dt" style="display: none;">
-            <div id="thong_ke_buttons">
-                <!-- Button thứ nhất -->
-                <button  class="thong_ke_button" onclick="thong_ke_san_pham()">THỐNG KÊ TỔNG QUÁT</button>
-
-                <!-- Button thứ hai -->
-                <button id="thong_ke_button_2" class="thong_ke_button" onclick="thong_ke_doanh_thu()">THỐNG KÊ DOANH THU</button>
-
-                <!-- Button thứ ba -->
-                <button id="thong_ke_button_3" class="thong_ke_button"  onclick="doanh_thu_trong_ngay()">DOANH THU TRONG NGÀY</button>
-            </div>
-            <div id="thong_ke_san_pham" style="display: none;">
-                
-
-                <!-- Input để chọn ngày -->
-                <div class="date-picker-container">
-                    <input type="text" id="stats-startDate" placeholder="Chọn ngày bắt đầu">
-                    <input type="text" id="stats-endDate" placeholder="Chọn ngày kết thúc">
-                    <button onclick="fetchStatistics()">Xem thống kê</button>
-                </div>
-            
-                <!-- Hiển thị các số liệu thống kê -->
-                <div class="statistics-container">
-                    <div class="stat-card">
-                        <h3 id="stats-totalOrders">0</h3>
-                        <p>Đơn hàng</p>
-                    </div>
-                    <div class="stat-card">
-                        <h3 id="stats-totalProductsSold">0</h3>
-                        <p>Sản phẩm đã bán</p>
-                    </div>
-                    <div class="stat-card">
-                        <h3 id="stats-totalRevenue">0</h3>
-                        <p>Doanh thu</p>
-                    </div>
-                    <div class="stat-card">
-                        <h3 id="stats-newUsers">0</h3>
-                        <p>Người dùng mới</p>
-                    </div>
-                    <div id="stats-loading" class="loading" style="display: none;">Đang tải dữ liệu...</div>
-                </div>
-            </div>
-            
-               
-              
-            </div>
-                <!-- Kết nối file Flatpickr từ CDN -->
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.js"></script>
-            
-                <!-- Gọi Flatpickr và xử lý các số liệu -->
-                <script>
-                    // Khởi tạo Flatpickr cho các trường ngày
-                    flatpickr("#stats-startDate", { dateFormat: "Y-m-d" });
-                    flatpickr("#stats-endDate", { dateFormat: "Y-m-d" });
-            
-                    async function fetchStatistics() {
-                        const startDate = document.getElementById("stats-startDate").value;
-                        const endDate = document.getElementById("stats-endDate").value;
-            
-                        if (!startDate || !endDate) {
-                            alert("Vui lòng chọn khoảng thời gian!");
-                            return;
-                        }
-            
-                        console.log('📅 Thời gian:', startDate, 'đến', endDate);
-            
-                        // Hiển thị trạng thái tải dữ liệu
-                        // document.getElementById("stats-loading").style.display = "block";
-            
-                        try {
-                            const response = await fetch(`http://localhost:3000/api/statistics?startDate=${startDate}&endDate=${endDate}`);
-                            if (!response.ok) throw new Error(`Lỗi server: ${response.status} - ${response.statusText}`);
-            
-                            const data = await response.json();
-                            console.log('📊 Kết quả:', data);
-            
-                            // Cập nhật giao diện với dữ liệu từ API
-                            document.getElementById("stats-totalOrders").textContent = data.total_orders || 0;
-                            document.getElementById("stats-totalProductsSold").textContent = data.total_products_sold || 0;
-                            document.getElementById("stats-totalRevenue").textContent = (data.total_revenue || 0).toLocaleString() + " VND";
-                            document.getElementById("stats-newUsers").textContent = data.new_users || 0;
-            
-                            // Ẩn trạng thái tải dữ liệu
-                            document.getElementById("stats-loading").style.display = "none";
-                        } catch (error) {
-                            console.error("❌ Lỗi khi lấy thống kê:", error);
-                            alert("Không thể tải dữ liệu thống kê.");
-                            document.getElementById("stats-loading").style.display = "none";
-                        }
-                    }
-                </script>
-        
-            
-            <div id="thong_ke_doanh_thu" style="display: none;">
-                <h2 >THỐNG KÊ DOANH THU</h2>
-                <table class="TKDT" id="TKDT" >
-                    <thead>
-                        <tr>
-                            <th>Số sản phẩm đã bán</th>
-                            <th>Doanh thu</th>
-                        </tr>
-                    </thead>
-                    <tfoot>
-                        <tr>
-                            <td id="so_luong_san_pham_da_ban"></td>
-                            <td id="doanh_thu_san_pham_da_ban"></td>
-                        </tr>
-                    </tfoot>
-                </table>
-            </div>
-            <div id="doanh_thu_trong_ngay" style="display: none;">
-                <h2 onclick="doanh_thu_trong_ngay();">DOANH THU TRONG NGÀY</h2>
-                <table class="DTTN" id="DTTN" >
-                    <thead>
-                        <tr>
-                            <th style="width: 25%;">Ngày bán</th>
-                            <th style="width: 25%;">Số đơn trong ngày</th>
-                            <th>Doanh thu</th>
-                        </tr>
-                    </thead>
-                    <tfoot id="doanh_thu_trong_ngay">
-
-                    </tfoot>
-                </table>
+    </div>
+    <!--page_admin-->
+    <div id="wrap_admin" style="display: none;">
+        <div id="page_admin">
+            <div id="nav_admin">
+                <ul id="ulnav_admin">
+                </ul>
             </div>
         </div>
-        <div class="box_bill" id="page_bill" style="display: none;">
-            <div class="quan_ly_don_hang_sap_xep_tang" onclick="sap_xep_theo_ngay_tang()">
+        <div class="quan_ly_san_pham" style="display: none;" id="quan_ly_san_pham_child">
+            <div class="botheader" id="menuBar_admin"></div>
+            <div class="quan_ly_san_pham_add_item" onclick="open_add_item()">
+                <img src="./img/bag-plus-fill.svg" alt="add_item">
+                <button>THÊM SẢNG PHẨM</button>
+            </div>
+            <div class="quan_ly_san_pham_sap_xep_tang" onclick="sap_xep_product_price_up()">
                 <img src="./img/arrow-up-square-fill.svg" alt="add_item">
-                <button>Sắp xếp theo ngày mua tăng dần</button>
+                <button>Sắp xếp theo giá tiền tăng dần</button>
             </div>
-            <div class="quan_ly_don_hang_sap_xep_giam" onclick="sap_xep_theo_ngay_giam()">
+            <div class="quan_ly_san_pham_sap_xep_giam" onclick="sap_xep_product_price_down()">
                 <img src="./img/arrow-down-square-fill.svg" alt="add_item">
-                <button>Sắp xếp theo ngày mua giảm dần</button>
+                <button>Sắp xếp theo giá tiền giảm dần</button>
             </div>
-            <div class="tim_kiem_theo_ma"> Tìm kiếm theo mã đơn
-                <input onkeypress="checkOpenTab()" id="searchCodeInput">
-                <button onclick="SearchByCodeInPut()"><img src="./img/search.svg" id="searchCodeInputBtn"></button>
+            <div class="page_product_item">
+                <button id="left_product" onclick="page_back_product()"></button>
+                <div class="new-cart" id="new-cart">
+                    <div class="new-cart-menu">
+                        <div class="new-cart-list">
+                            <ul class="new-cart-list-ul">
+                                <li class="new-cart-list-li">
+                                    <div class="new-cart-list-div">
+                                        <table class="new-cart-list-table">
+
+                                        </table>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <button id="right_product" onclick="page_next_product()"></button>
             </div>
-            <div class="date_1">
-                <div class="date_2">
-                    <label for="startDate">Từ</label>
-                    <input type="date" id="startDate" />
-                </div>
-                <div class="date_2">
-                    <label for="endDate">Đến</label>
-                    <input type="date" id="endDate" />
-                </div>
-                <button onclick="searchByDateRange()"><img src="./img/search.svg" id="searchByDateBtn"></button>
-                <div class="reset">
-                </div>
+            <div id="page_productForm" style="display: none;">
+                <button class="productForm_edit_close" onclick="close_add_tab()"><img src="./img/close.png"
+                        style="width: 20px; height:20px;" alt="close">
+                </button>
+                <h1>THÊM SẢN PHẨM</h1>
+                <form id="productForm">
+                    <label>Loại Sản Phẩm Cần Thêm</label>
+                    <select name="choose_product" id="choose_product" class="choose_product"
+                        onchange=" set_id_product()">
+                        <option value="burger">BurGer</option>
+                        <option value="combo">ComBo</option>
+                        <option value="garan">Gà Rán</option>
+                        <option value="monankem">Món Ăn Kèm</option>
+                        <option value="thucuong">Thức Uống</option>
+                    </select>
+                    <label for="productId">ID:</label>
+                    <input type="text" id="productId" name="productId">
+                    <small id="productId_small"></small>
+
+                    <label for="productImage">Image URL:</label>
+                    <input type="file" id="productImage" name="productImage">
+                    <small id="productImage_small"></small>
+
+                    <label for="productTitle">Title:</label>
+                    <input type="text" id="productTitle" name="productTitle">
+                    <small id="productTitle_small"></small>
+
+                    <label for="productContent">Content:</label>
+                    <textarea id="productContent" name="productContent"></textarea>
+                    <small id="productContent_small"></small>
+
+                    <label for="productPrice">Price:</label>
+                    <input type="text" id="productPrice" name="productPrice">
+                    <small id="productPrice_small"></small>
+
+                    <button type="button" onclick="add_item()" class="productForm_add_button">Add Product</button>
+                </form>
+            </div>
+            <div id="page_productForm_edit" style="display: none;">
+                <button class="productForm_edit_close" onclick="close_edit_tab()"><img src="./img/close.png"
+                        style="width: 20px; height:20px;" alt="close">
+                </button>
+                <h1>Sửa Thông tin</h1>
+                <form id="productForm_edit">
+                    <label for="productId_edit">ID:</label>
+                    <input type="text" id="productId_edit" name="productId_edit">
+                    <small id="productId_edit_small"></small>
+
+                    <label for="productImage_edit">Image URL:</label>
+                    <input type="file" id="productImage_edit" name="productImage_edit">
+                    <small id="productImage_edit_small"></small>
+
+                    <label for="productTitle_edit">Title:</label>
+                    <input type="text" id="productTitle_edit" name="productTitle_edit">
+                    <small id="productTitle_edit_small"></small>
+
+                    <label for="productContent_edit">Content:</label>
+                    <textarea id="productContent_edit" name="productContent_edit"></textarea>
+                    <small id="productContent_edit_small"></small>
+
+                    <label for="productPrice_edit">Price:</label>
+                    <input type="text" id="productPrice_edit" name="productPrice_edit">
+                    <small id="productPrice_edit_small"></small>
+                    <button type="button" onclick="edit_item()" class="productForm_edit_button">Edit Product</button>
+                </form>
             </div>
 
-            <div id="isAdminBillBox"> </div>
-
-            <div class="box_name">
-                <h3 class="title_list_bill">
-                    DANH SÁCH HÓA ĐƠN
-                </h3>
-                <div class="box_list_bill">
-                    <table class="data_bill">
-                        <colgroup>
-                            <col width="1">
-                            <col width="1">
-                            <col width="1">
-                            <col width="1">
-                            <col width="1">
-                            <col width="1">
-                        </colgroup>
-                        <tr class="infor_bill">
-                            <th rowspan="1" style="width: 5%;" id="user_bill_code">Mã đơn</th>
-                            <th rowspan="1" style="width: 12.5%;">Tên khách hàng</th>
-                            <th colspan="1" style="width: 30%;">Địa chỉ</th>
-                            <th rowspan="1" style="width: 10%;">Ngày</th>
-                            <th rowspan="1" style="width: 30%;">Danh sách đã mua</th>
-                            <th colspan="1" style="width: 10%;">Tổng tiền</th>
-                            <th rowspan="1" style="width: 10%;">Tình trạng</th>
-                            <th class="box_last" rowspan="1" style="width: 7.5%;">Xóa</th>
+        </div>
+        <div id="sections" style="display: none;">
+            <div id="left_user">
+                <h2>DANH SÁCH KHÁCH HÀNG</h2>
+                <table id="userTable">
+                    <thead>
+                        <tr>
+                            <th class="th">STT</th>
+                            <th class="th">HỌ VÀ TÊN</th>
+                            <th class="th">TÊN ĐĂNG NHẬP</th>
+                            <th class="th">NGÀY ĐĂNG KÝ</th>
+                            <th class="th">Xóa tài khoản</th>
                         </tr>
-                        <tfoot></tfoot>
-                    </table>
+                    </thead>
+                    <tbody id="UserList">
+                    </tbody>
+                </table>
+            </div>
+            <div id="right_user">
+                <form id="seacrchUser">
+                    <h2>TÌM KHÁCH HÀNG</h2>
+                    <div class="searchuserinput">
+                        <label for="name">Tên khách hàng</label>
+                        <input onkeypress="showUserList()" type="text" id="name_user" autocomplete="off">
+                    </div>
+                    <div class="searchuserinput">
+                        <label for="username">Tên đăng nhập</label>
+                        <input onkeypress="showUserList()" type="text" id="username" autocomplete="off">
+                    </div>
+                    <div class="searchuserinput">
+                        <label for="date">Ngày đăng ký</label>
+                        <input onkeypress="showUserList()" type="text" id="date" autocomplete="off">
+                    </div>
+                    <div>
+                        <button id="searchUserBtns" type="button" onclick="searchUser()">Tìm kiếm</button>
+                    </div>
+
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="page_dt" id="page_dt" style="display: none;">
+        <div id="thong_ke_buttons">
+            <!-- Button thứ nhất -->
+            <button  class="thong_ke_button" onclick="thong_ke_san_pham()">THỐNG KÊ TỔNG QUÁT</button>
+
+            <!-- Button thứ hai -->
+            <button id="thong_ke_button_2" class="thong_ke_button" onclick="thong_ke_doanh_thu()">THỐNG KÊ DOANH THU</button>
+
+            <!-- Button thứ ba -->
+            <button id="thong_ke_button_3" class="thong_ke_button"  onclick="doanh_thu_trong_ngay()">DOANH THU TRONG NGÀY</button>
+        </div>
+        <div id="thong_ke_san_pham" style="display: none;">
+            
+
+            <!-- Input để chọn ngày -->
+            <div class="date-picker-container">
+                <input type="text" id="stats-startDate" placeholder="Chọn ngày bắt đầu"></input>
+                <input type="text" id="stats-endDate" placeholder="Chọn ngày kết thúc"></input>
+                <button onclick="fetchStatistics()">Xem thống kê</button>
+            </div>
+        
+            <!-- Hiển thị các số liệu thống kê -->
+            <div class="statistics-container">
+                <div class="stat-card">
+                    <h3 id="stats-totalOrders">0</h3>
+                    <p>Đơn hàng</p>
+                </div>
+                <div class="stat-card">
+                    <h3 id="stats-totalProductsSold">0</h3>
+                    <p>Sản phẩm đã bán</p>
+                </div>
+                <div class="stat-card">
+                    <h3 id="stats-totalRevenue">0</h3>
+                    <p>Doanh thu</p>
+                </div>
+                <div class="stat-card">
+                    <h3 id="stats-newUsers">0</h3>
+                    <p>Người dùng mới</p>
                 </div>
             </div>
         </div>
-        <!--Điều khoản sử dụng-->
-        <div class="CCS" id="DKSD">
-            <h1>ĐIỀU KHOẢN SỬ DỤNG</h1>
-            <p>Chào mừng bạn đến với BurgerG15 Trước khi bạn sử dụng trang web của chúng tôi, hãy đọc kỹ và hiểu rõ các điều
-                khoản sử dụng dưới đây. Bằng cách sử dụng trang web, bạn đồng ý tuân theo các điều khoản sau:</p>
-            <h2>1. Đặt Hàng và Thanh Toán</h2>
-            <p>1.1 Bằng cách đặt hàng qua trang web của chúng tôi, bạn cam kết cung cấp thông tin đặt hàng chính xác và đầy
-                đủ.</p>
-            <p>1.2 Bạn chịu trách nhiệm thanh toán đúng số tiền đã đặt hàng và đồng ý sử dụng phương thức thanh toán hợp lệ.
+  
+        
+            <!-- Hiển thị trạng thái đang tải dữ liệu -->
+            <div id="stats-loading" class="loading" style="display: none;">Đang tải dữ liệu...</div>
+        </div>
+            <!-- Kết nối file Flatpickr từ CDN -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.js"></script>
+        
+            <!-- Gọi Flatpickr và xử lý các số liệu -->
+            <script>
+                // Khởi tạo Flatpickr cho các trường ngày
+                flatpickr("#stats-startDate", { dateFormat: "Y-m-d" });
+                flatpickr("#stats-endDate", { dateFormat: "Y-m-d" });
+        
+                async function fetchStatistics() {
+                    const startDate = document.getElementById("stats-startDate").value;
+                    const endDate = document.getElementById("stats-endDate").value;
+        
+                    if (!startDate || !endDate) {
+                        alert("Vui lòng chọn khoảng thời gian!");
+                        return;
+                    }
+        
+                    console.log('📅 Thời gian:', startDate, 'đến', endDate);
+        
+                    // Hiển thị trạng thái tải dữ liệu
+                    document.getElementById("stats-loading").style.display = "block";
+        
+                    try {
+                        const response = await fetch(`http://localhost:3000/api/statistics?startDate=${startDate}&endDate=${endDate}`);
+                        if (!response.ok) throw new Error(`Lỗi server: ${response.status} - ${response.statusText}`);
+        
+                        const data = await response.json();
+                        console.log('📊 Kết quả:', data);
+        
+                        // Cập nhật giao diện với dữ liệu từ API
+                        document.getElementById("stats-totalOrders").textContent = data.total_orders || 0;
+                        document.getElementById("stats-totalProductsSold").textContent = data.total_products_sold || 0;
+                        document.getElementById("stats-totalRevenue").textContent = (data.total_revenue || 0).toLocaleString() + " VND";
+                        document.getElementById("stats-newUsers").textContent = data.new_users || 0;
+        
+                        // Ẩn trạng thái tải dữ liệu
+                        document.getElementById("stats-loading").style.display = "none";
+                    } catch (error) {
+                        console.error("❌ Lỗi khi lấy thống kê:", error);
+                        alert("Không thể tải dữ liệu thống kê.");
+                        document.getElementById("stats-loading").style.display = "none";
+                    }
+                }
+            </script>
+            
+
+        <div id="thong_ke_doanh_thu" style="display: none;">
+            <h2 >THỐNG KÊ DOANH THU</h2>
+            <table class="TKDT" id="TKDT" >
+                <thead>
+                    <tr>
+                        <th>Số sản phẩm đã bán</th>
+                        <th>Doanh thu</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <td id="so_luong_san_pham_da_ban"></td>
+                        <td id="doanh_thu_san_pham_da_ban"></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div id="doanh_thu_trong_ngay" style="display: none;">
+            <h2 onclick="doanh_thu_trong_ngay();">DOANH THU TRONG NGÀY</h2>
+            <table class="DTTN" id="DTTN" >
+                <thead>
+                    <tr>
+                        <th style="width: 25%;">Ngày bán</th>
+                        <th style="width: 25%;">Số đơn trong ngày</th>
+                        <th>Doanh thu</th>
+                    </tr>
+                </thead>
+                <tfoot id="doanh_thu_trong_ngay">
+
+                </tfoot>
+            </table>
+        </div>
+    </div>
+    <div class="box_bill" id="page_bill" style="display: none;">
+        <div class="quan_ly_don_hang_sap_xep_tang" onclick="sap_xep_theo_ngay_tang()">
+            <img src="./img/arrow-up-square-fill.svg" alt="add_item">
+            <button>Sắp xếp theo ngày mua tăng dần</button>
+        </div>
+        <div class="quan_ly_don_hang_sap_xep_giam" onclick="sap_xep_theo_ngay_giam()">
+            <img src="./img/arrow-down-square-fill.svg" alt="add_item">
+            <button>Sắp xếp theo ngày mua giảm dần</button>
+        </div>
+        <div class="tim_kiem_theo_ma"> Tìm kiếm theo mã đơn
+            <input onkeypress="checkOpenTab()" id="searchCodeInput">
+            <button onclick="SearchByCodeInPut()"><img src="./img/search.svg" id="searchCodeInputBtn"></button>
+        </div>
+        <div class="date_1">
+            <div class="date_2">
+                <label for="startDate">Từ</label>
+                <input type="date" id="startDate" />
+            </div>
+            <div class="date_2">
+                <label for="endDate">Đến</label>
+                <input type="date" id="endDate" />
+            </div>
+            <button onclick="searchByDateRange()"><img src="./img/search.svg" id="searchByDateBtn"></button>
+            <div class="reset">
+            </div>
+        </div>
+
+        <div id="isAdminBillBox"> </div>
+
+        <div class="box_name">
+            <h3 class="title_list_bill">
+                DANH SÁCH HÓA ĐƠN
+            </h3>
+            <div class="box_list_bill">
+                <table class="data_bill">
+                    <colgroup>
+                        <col width="1">
+                        <col width="1">
+                        <col width="1">
+                        <col width="1">
+                        <col width="1">
+                        <col width="1">
+                    </colgroup>
+                    <tr class="infor_bill">
+                        <th rowspan="1" style="width: 5%;" id="user_bill_code">Mã đơn</th>
+                        <th rowspan="1" style="width: 12.5%;">Tên khách hàng</th>
+                        <th colspan="1" style="width: 30%;">Địa chỉ</th>
+                        <th rowspan="1" style="width: 10%;">Ngày</th>
+                        <th rowspan="1" style="width: 30%;">Danh sách đã mua</th>
+                        <th colspan="1" style="width: 10%;">Tổng tiền</th>
+                        <th rowspan="1" style="width: 10%;">Tình trạng</th>
+                        <th class="box_last" rowspan="1" style="width: 7.5%;">Xóa</th>
+                    </tr>
+                    <tfoot></tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!--Điều khoản sử dụng-->
+    <div class="CCS" id="DKSD">
+        <h1>ĐIỀU KHOẢN SỬ DỤNG</h1>
+        <p>Chào mừng bạn đến với BurgerG15 Trước khi bạn sử dụng trang web của chúng tôi, hãy đọc kỹ và hiểu rõ các điều
+            khoản sử dụng dưới đây. Bằng cách sử dụng trang web, bạn đồng ý tuân theo các điều khoản sau:</p>
+        <h2>1. Đặt Hàng và Thanh Toán</h2>
+        <p>1.1 Bằng cách đặt hàng qua trang web của chúng tôi, bạn cam kết cung cấp thông tin đặt hàng chính xác và đầy
+            đủ.</p>
+        <p>1.2 Bạn chịu trách nhiệm thanh toán đúng số tiền đã đặt hàng và đồng ý sử dụng phương thức thanh toán hợp lệ.
+        </p>
+        <h2>2. Giao Hàng và Trả Hàng</h2>
+        <p>2.1 Chúng tôi sẽ cung cấp thông tin về thời gian giao hàng ước tính. Tuy nhiên, chúng tôi không chịu trách
+            nhiệm cho bất kỳ trễ truyền thông hoặc vấn đề giao hàng nào do bên thứ ba gây ra.</p>
+        <p>2.2 Trong trường hợp sản phẩm nhận được không đúng chất lượng hoặc không đúng với đặt hàng, vui lòng liên hệ
+            với chúng tôi trong vòng 48 giờ để được hỗ trợ và xử lý.</p>
+        <h2>3. Quyền Sở Hữu và Sử Dụng Nội Dung</h2>
+        <p>3.1 Tất cả nội dung trên trang web, bao gồm hình ảnh, văn bản và thiết kế, là tài sản của chúng tôi và được
+            bảo vệ bởi quyền sở hữu trí tuệ.</p>
+        <p>3.2 Bạn không được sao chép, phân phối hoặc sử dụng bất kỳ phần nào của nội dung trang web mà không có sự cho
+            phép của chúng tôi.</p>
+        <h2>4. Quyền Hủy và Chấm Dứt</h2>
+        <p>Chúng tôi giữ quyền hủy đơn hàng hoặc chấm dứt tài khoản của bạn nếu chúng tôi phát hiện bất kỳ vi phạm nào
+            của các điều khoản sử dụng này.</p>
+        <h2>5. Bảo Mật Thông Tin</h2>
+        <p>Chúng tôi cam kết bảo vệ thông tin cá nhân của bạn và sử dụng nó chỉ cho mục đích giao dịch và liên lạc liên
+            quan đến dịch vụ của chúng tôi.</p>
+        <h2>6. Thay Đổi Điều Khoản</h2>
+        <p>Chúng tôi có quyền thay đổi các điều khoản sử dụng này vào bất kỳ lúc nào. Bạn sẽ được thông báo về bất kỳ
+            thay đổi nào qua email hoặc thông báo trên trang web.</p>
+        <h2>7. Liên Hệ</h2>
+        <p>Nếu bạn có bất kỳ câu hỏi hoặc ý kiến nào về các điều khoản sử dụng này, vui lòng liên hệ với chúng tôi qua
+            burgerg15@gmail.com.</p>
+        <p>Cảm ơn bạn đã sử dụng dịch vụ của BurgerG15</p>
+    </div>
+    <!--Chính sách bảo mật-->
+    <div class="CCS" id="CSBM">
+        <h1>CHÍNH SÁCH BẢO MẬT</h1>
+        <p>Chào mừng bạn đến với BurgerG15 Chính sách bảo mật này mô tả cách chúng tôi thu thập, sử dụng và bảo vệ thông
+            tin cá nhân của bạn khi bạn sử dụng trang web của chúng tôi.</p>
+        <h2>1. Thông Tin Thu Thập</h2>
+        <p>1.1 Thông Tin Cung Cấp Tự Nguyện: Chúng tôi có thể thu thập thông tin cá nhân từ bạn khi bạn đăng ký tài
+            khoản, đặt hàng hoặc điền vào mẫu trên trang web.</p>
+        <p>1.2 Thông Tin Tự Động: Chúng tôi có thể thu thập thông tin không định danh, bao gồm địa chỉ IP, loại trình
+            duyệt, ngôn ngữ sử dụng và thời gian truy cập, để hiểu rõ hơn về cách bạn tương tác với trang web của chúng
+            tôi.</p>
+        <h2>2. Sử Dụng Thông Tin</h2>
+        <p>Chúng tôi sử dụng thông tin cá nhân của bạn để:</p>
+        <p>2.1 Xác nhận và xử lý đơn hàng: Để xác nhận và xử lý đơn hàng của bạn, bao gồm việc liên lạc để thông báo về
+            trạng thái đơn hàng.</p>
+        <p>2.2 Cung cấp Dịch vụ: Để cung cấp các dịch vụ và thông tin mà bạn yêu cầu.</p>
+        <p>2.3 Tùy chỉnh Trải nghiệm Người Dùng: Để cá nhân hóa trải nghiệm của bạn và cung cấp nội dung và quảng cáo
+            phù hợp.</p>
+        <h2>3. Bảo Vệ Thông Tin Cá Nhân</h2>
+        <p>Chúng tôi cam kết bảo vệ thông tin cá nhân của bạn và không chia sẻ hoặc bán thông tin cá nhân với bên thứ ba
+            không có sự cho phép của bạn.</p>
+        <h2>4. Quyền Lựa Chọn và Cập Nhật Thông Tin</h2>
+        <p>Bạn có quyền từ chối nhận thông báo quảng cáo từ chúng tôi và có quyền cập nhật hoặc xóa thông tin cá nhân
+            của mình bất kỳ lúc nào.</p>
+        <h2>5. Bảo Mật Thông Tin</h2>
+        <p>Chúng tôi áp dụng biện pháp an ninh để bảo vệ thông tin cá nhân của bạn. Tuy nhiên, chúng tôi không thể đảm
+            bảo an toàn tuyệt đối của dữ liệu truyền qua internet.</p>
+        <h2>6. Thay Đổi Chính Sách</h2>
+        <p>Chúng tôi có thể cập nhật chính sách bảo mật này từ thời gian này sang thời gian khác và sẽ thông báo về bất
+            kỳ thay đổi nào.</p>
+        <h2>7. Liên Hệ</h2>
+        <p>Nếu bạn có bất kỳ câu hỏi hoặc ý kiến nào về chính sách bảo mật này, vui lòng liên hệ với chúng tôi qua
+            burgerg15@gmail.com.</p>
+        <p>Cảm ơn bạn đã tin tưởng và sử dụng dịch vụ của BurgerG15</p>
+    </div>
+    <!--Chính sách vận chuyển-->
+    <div class="CCS" id="CSVC">
+        <h1>CHÍNH SÁCH VẬN CHUYỂN</h1>
+        <p>Chào mừng bạn đến với BurgerG15 Chính sách vận chuyển này mô tả các quy định và điều kiện liên quan đến quá
+            trình vận chuyển sản phẩm của bạn.</p>
+        <h2>1. Phạm Vi Vận Chuyển</h2>
+        <p>1.1 Khu Vực Vận Chuyển: Chúng tôi hiện đang cung cấp dịch vụ vận chuyển trong Thành phố Hồ Chí Minh (tùy
+            thuộc vào phạm vi cung ứng của chúng tôi).</p>
+        <p>1.2 Cước Phí Vận Chuyển: Cước phí vận chuyển sẽ được hiển thị rõ ràng trong quá trình thanh toán và có thể
+            thay đổi tùy thuộc vào địa điểm giao hàng và loại sản phẩm.</p>
+        <h2>2. Xác Nhận và Theo Dõi Đơn Hàng</h2>
+        <p>2.1 Xác Nhận Đơn Hàng: Bạn sẽ nhận được xác nhận đơn hàng và thông tin vận chuyển qua email sau khi đặt hàng
+            thành công.</p>
+        <p>2.2 Theo Dõi Đơn Hàng: Chúng tôi sẽ cung cấp thông tin theo dõi để bạn có thể theo dõi tình trạng vận chuyển
+            của đơn hàng.</p>
+        <h2>3. Thời Gian Giao Hàng</h2>
+        <p>3.1 Thời Gian Ước Tính: Thời gian giao hàng ước tính sẽ được cung cấp trong quá trình đặt hàng. Tuy nhiên, có
+            thể có những trường hợp ngoại lệ dẫn đến trễ hoặc thay đổi thời gian giao hàng.</p>
+        <p>3.2 Giao Hàng Nhanh: Chúng tôi cung cấp dịch vụ giao hàng nhanh với một số khu vực. Chi phí và thời gian giao
+            hàng cụ thể sẽ được hiển thị trong quá trình thanh toán.</p>
+        <h2>4. Phương Thức Thanh Toán và Điều Kiện</h2>
+        <p>4.1 Phương Thức Thanh Toán: Chúng tôi chấp nhận nhiều phương thức thanh toán khác nhau, bao gồm thẻ tín dụng,
+            thanh toán qua cổng trực tuyến, và các phương thức thanh toán khác tùy thuộc vào quy định của chúng tôi.</p>
+        <p>4.2 Chấp Nhận Thanh Toán Khi Nhận Hàng (COD): Chúng tôi cung cấp dịch vụ thanh toán khi nhận hàng đối với một
+            số khu vực (nếu có). Chi tiết cụ thể sẽ được hiển thị trong quá trình thanh toán.</p>
+        <h2>5. Trách Nhiệm và Trả Hàng</h2>
+        <p>5.1 Kiểm Tra Hàng Hóa: Bạn được khuyến khích kiểm tra hàng hóa ngay sau khi nhận để đảm bảo chúng đúng với
+            đơn đặt hàng và không bị hư hại.</p>
+        <p>5.2 Trả Hàng: Trong trường hợp hàng hóa bị hỏng hoặc không đúng với đơn đặt hàng, vui lòng liên hệ với chúng
+            tôi trong vòng 48 giờ để được hỗ trợ và xử lý trả hàng.</p>
+        <h2>6. Liên Hệ</h2>
+        <p>Nếu bạn có bất kỳ câu hỏi hoặc ý kiến nào về chính sách vận chuyển này, vui lòng liên hệ với chúng tôi qua
+            burgerg15@gmail.com.</p>
+        <p>Cảm ơn bạn đã tin tưởng và sử dụng BurgerG15</p>
+    </div>
+    <div class="footer">
+        <div class="information">
+            <strong>BurgerG15</strong>
+            <p>Địa chỉ: 273 Đường An Dương Vương, phường 3, Quận 5, Thành phố Hồ Chí Minh</p>
+            <p>Số điện thoại:</p>
+        </div>
+        <div class="information">
+            <strong class="mb_6">Liên hệ</strong>
+            <p>
+                burgerg15@gmail.com
             </p>
-            <h2>2. Giao Hàng và Trả Hàng</h2>
-            <p>2.1 Chúng tôi sẽ cung cấp thông tin về thời gian giao hàng ước tính. Tuy nhiên, chúng tôi không chịu trách
-                nhiệm cho bất kỳ trễ truyền thông hoặc vấn đề giao hàng nào do bên thứ ba gây ra.</p>
-            <p>2.2 Trong trường hợp sản phẩm nhận được không đúng chất lượng hoặc không đúng với đặt hàng, vui lòng liên hệ
-                với chúng tôi trong vòng 48 giờ để được hỗ trợ và xử lý.</p>
-            <h2>3. Quyền Sở Hữu và Sử Dụng Nội Dung</h2>
-            <p>3.1 Tất cả nội dung trên trang web, bao gồm hình ảnh, văn bản và thiết kế, là tài sản của chúng tôi và được
-                bảo vệ bởi quyền sở hữu trí tuệ.</p>
-            <p>3.2 Bạn không được sao chép, phân phối hoặc sử dụng bất kỳ phần nào của nội dung trang web mà không có sự cho
-                phép của chúng tôi.</p>
-            <h2>4. Quyền Hủy và Chấm Dứt</h2>
-            <p>Chúng tôi giữ quyền hủy đơn hàng hoặc chấm dứt tài khoản của bạn nếu chúng tôi phát hiện bất kỳ vi phạm nào
-                của các điều khoản sử dụng này.</p>
-            <h2>5. Bảo Mật Thông Tin</h2>
-            <p>Chúng tôi cam kết bảo vệ thông tin cá nhân của bạn và sử dụng nó chỉ cho mục đích giao dịch và liên lạc liên
-                quan đến dịch vụ của chúng tôi.</p>
-            <h2>6. Thay Đổi Điều Khoản</h2>
-            <p>Chúng tôi có quyền thay đổi các điều khoản sử dụng này vào bất kỳ lúc nào. Bạn sẽ được thông báo về bất kỳ
-                thay đổi nào qua email hoặc thông báo trên trang web.</p>
-            <h2>7. Liên Hệ</h2>
-            <p>Nếu bạn có bất kỳ câu hỏi hoặc ý kiến nào về các điều khoản sử dụng này, vui lòng liên hệ với chúng tôi qua
-                burgerg15@gmail.com.</p>
-            <p>Cảm ơn bạn đã sử dụng dịch vụ của BurgerG15</p>
         </div>
-        <!--Chính sách bảo mật-->
-        <div class="CCS" id="CSBM">
-            <h1>CHÍNH SÁCH BẢO MẬT</h1>
-            <p>Chào mừng bạn đến với BurgerG15 Chính sách bảo mật này mô tả cách chúng tôi thu thập, sử dụng và bảo vệ thông
-                tin cá nhân của bạn khi bạn sử dụng trang web của chúng tôi.</p>
-            <h2>1. Thông Tin Thu Thập</h2>
-            <p>1.1 Thông Tin Cung Cấp Tự Nguyện: Chúng tôi có thể thu thập thông tin cá nhân từ bạn khi bạn đăng ký tài
-                khoản, đặt hàng hoặc điền vào mẫu trên trang web.</p>
-            <p>1.2 Thông Tin Tự Động: Chúng tôi có thể thu thập thông tin không định danh, bao gồm địa chỉ IP, loại trình
-                duyệt, ngôn ngữ sử dụng và thời gian truy cập, để hiểu rõ hơn về cách bạn tương tác với trang web của chúng
-                tôi.</p>
-            <h2>2. Sử Dụng Thông Tin</h2>
-            <p>Chúng tôi sử dụng thông tin cá nhân của bạn để:</p>
-            <p>2.1 Xác nhận và xử lý đơn hàng: Để xác nhận và xử lý đơn hàng của bạn, bao gồm việc liên lạc để thông báo về
-                trạng thái đơn hàng.</p>
-            <p>2.2 Cung cấp Dịch vụ: Để cung cấp các dịch vụ và thông tin mà bạn yêu cầu.</p>
-            <p>2.3 Tùy chỉnh Trải nghiệm Người Dùng: Để cá nhân hóa trải nghiệm của bạn và cung cấp nội dung và quảng cáo
-                phù hợp.</p>
-            <h2>3. Bảo Vệ Thông Tin Cá Nhân</h2>
-            <p>Chúng tôi cam kết bảo vệ thông tin cá nhân của bạn và không chia sẻ hoặc bán thông tin cá nhân với bên thứ ba
-                không có sự cho phép của bạn.</p>
-            <h2>4. Quyền Lựa Chọn và Cập Nhật Thông Tin</h2>
-            <p>Bạn có quyền từ chối nhận thông báo quảng cáo từ chúng tôi và có quyền cập nhật hoặc xóa thông tin cá nhân
-                của mình bất kỳ lúc nào.</p>
-            <h2>5. Bảo Mật Thông Tin</h2>
-            <p>Chúng tôi áp dụng biện pháp an ninh để bảo vệ thông tin cá nhân của bạn. Tuy nhiên, chúng tôi không thể đảm
-                bảo an toàn tuyệt đối của dữ liệu truyền qua internet.</p>
-            <h2>6. Thay Đổi Chính Sách</h2>
-            <p>Chúng tôi có thể cập nhật chính sách bảo mật này từ thời gian này sang thời gian khác và sẽ thông báo về bất
-                kỳ thay đổi nào.</p>
-            <h2>7. Liên Hệ</h2>
-            <p>Nếu bạn có bất kỳ câu hỏi hoặc ý kiến nào về chính sách bảo mật này, vui lòng liên hệ với chúng tôi qua
-                burgerg15@gmail.com.</p>
-            <p>Cảm ơn bạn đã tin tưởng và sử dụng dịch vụ của BurgerG15</p>
+        <div class="information">
+            <strong class="mb_6">Các chính sách</strong>
+            <a href="#" onclick="open_DKSD()">
+                <p>Điều khoản sử dụng</p>
+            </a>
+            <a href="#" onclick="open_CSBM()">
+                <p>Chính sách bảo mật</p>
+            </a>
+            <a href="#" onclick="open_CSVC()">
+                <p>Chính sách vận chuyển</p>
+            </a>
         </div>
-        <!--Chính sách vận chuyển-->
-        <div class="CCS" id="CSVC">
-            <h1>CHÍNH SÁCH VẬN CHUYỂN</h1>
-            <p>Chào mừng bạn đến với BurgerG15 Chính sách vận chuyển này mô tả các quy định và điều kiện liên quan đến quá
-                trình vận chuyển sản phẩm của bạn.</p>
-            <h2>1. Phạm Vi Vận Chuyển</h2>
-            <p>1.1 Khu Vực Vận Chuyển: Chúng tôi hiện đang cung cấp dịch vụ vận chuyển trong Thành phố Hồ Chí Minh (tùy
-                thuộc vào phạm vi cung ứng của chúng tôi).</p>
-            <p>1.2 Cước Phí Vận Chuyển: Cước phí vận chuyển sẽ được hiển thị rõ ràng trong quá trình thanh toán và có thể
-                thay đổi tùy thuộc vào địa điểm giao hàng và loại sản phẩm.</p>
-            <h2>2. Xác Nhận và Theo Dõi Đơn Hàng</h2>
-            <p>2.1 Xác Nhận Đơn Hàng: Bạn sẽ nhận được xác nhận đơn hàng và thông tin vận chuyển qua email sau khi đặt hàng
-                thành công.</p>
-            <p>2.2 Theo Dõi Đơn Hàng: Chúng tôi sẽ cung cấp thông tin theo dõi để bạn có thể theo dõi tình trạng vận chuyển
-                của đơn hàng.</p>
-            <h2>3. Thời Gian Giao Hàng</h2>
-            <p>3.1 Thời Gian Ước Tính: Thời gian giao hàng ước tính sẽ được cung cấp trong quá trình đặt hàng. Tuy nhiên, có
-                thể có những trường hợp ngoại lệ dẫn đến trễ hoặc thay đổi thời gian giao hàng.</p>
-            <p>3.2 Giao Hàng Nhanh: Chúng tôi cung cấp dịch vụ giao hàng nhanh với một số khu vực. Chi phí và thời gian giao
-                hàng cụ thể sẽ được hiển thị trong quá trình thanh toán.</p>
-            <h2>4. Phương Thức Thanh Toán và Điều Kiện</h2>
-            <p>4.1 Phương Thức Thanh Toán: Chúng tôi chấp nhận nhiều phương thức thanh toán khác nhau, bao gồm thẻ tín dụng,
-                thanh toán qua cổng trực tuyến, và các phương thức thanh toán khác tùy thuộc vào quy định của chúng tôi.</p>
-            <p>4.2 Chấp Nhận Thanh Toán Khi Nhận Hàng (COD): Chúng tôi cung cấp dịch vụ thanh toán khi nhận hàng đối với một
-                số khu vực (nếu có). Chi tiết cụ thể sẽ được hiển thị trong quá trình thanh toán.</p>
-            <h2>5. Trách Nhiệm và Trả Hàng</h2>
-            <p>5.1 Kiểm Tra Hàng Hóa: Bạn được khuyến khích kiểm tra hàng hóa ngay sau khi nhận để đảm bảo chúng đúng với
-                đơn đặt hàng và không bị hư hại.</p>
-            <p>5.2 Trả Hàng: Trong trường hợp hàng hóa bị hỏng hoặc không đúng với đơn đặt hàng, vui lòng liên hệ với chúng
-                tôi trong vòng 48 giờ để được hỗ trợ và xử lý trả hàng.</p>
-            <h2>6. Liên Hệ</h2>
-            <p>Nếu bạn có bất kỳ câu hỏi hoặc ý kiến nào về chính sách vận chuyển này, vui lòng liên hệ với chúng tôi qua
-                burgerg15@gmail.com.</p>
-            <p>Cảm ơn bạn đã tin tưởng và sử dụng BurgerG15</p>
-        </div>
-        <div class="footer">
-            <div class="information">
-                <strong>BurgerG15</strong>
-                <p>Địa chỉ: 273 Đường An Dương Vương, phường 3, Quận 5, Thành phố Hồ Chí Minh</p>
-                <p>Số điện thoại:</p>
-            </div>
-            <div class="information">
-                <strong class="mb_6">Liên hệ</strong>
-                <p>
-                    burgerg15@gmail.com
-                </p>
-            </div>
-            <div class="information">
-                <strong class="mb_6">Các chính sách</strong>
-                <a href="#" onclick="open_DKSD()">
-                    <p>Điều khoản sử dụng</p>
-                </a>
-                <a href="#" onclick="open_CSBM()">
-                    <p>Chính sách bảo mật</p>
-                </a>
-                <a href="#" onclick="open_CSVC()">
-                    <p>Chính sách vận chuyển</p>
-                </a>
+    </div>
+    <section id="login_form" class="hide">
+        <div class="form-box">
+            <div class="form-value">
+                <form action="">
+                    <h2>ĐĂNG NHẬP</h2>
+                    <div id="iconX">
+                        <img src="./img/x-lg.svg" style="position: absolute;top: 0;right: 0;">
+                    </div>
+                    <div class="inputbox">
+                        <input id="loginName" class="input" type="name" autocomplete="off" required>
+                        <label for="loginName">Tên đăng nhập</label>
+
+                    </div>
+                    <small id="errorUsername"></small>
+                    <div class="inputbox">
+                        <input id="loginPass" class="input" type="password" autocomplete="off" required>
+                        <label for="loginPass">Mật khẩu</label>
+
+                    </div>
+                    <small id="errorPassword"></small>
+                    <button class="xacnhan" id="loginbtn" type="submit" onclick="checkuser(event)">xác nhận</button>
+                    <div class="register">
+                        <p>Chưa có tài khoản? <a href="#" id="register">Đăng ký</a></p>
+                    </div>
+                </form>
             </div>
         </div>
-        <section id="login_form" class="hide">
-            <div class="form-box">
-                <div class="form-value">
-                    <form action="">
-                        <h2>ĐĂNG NHẬP</h2>
-                        <div id="iconX">
-                            <img src="./img/x-lg.svg" style="position: absolute;top: 0;right: 0;">
-                        </div>
-                        <div class="inputbox">
-                            <input id="loginName" class="input" type="name" autocomplete="off" required>
-                            <label for="loginName">Tên đăng nhập</label>
+    </section>
+    <section id="register-form" class="hide">
+        <div class="form-box-register">
+            <div class="form-value">
+                <form>
+                    <h2>ĐĂNG KÝ</h2>
+                    <div id="iconX2">
+                        <img src="./img/x-lg.svg" style="position: absolute;top: 0;right: 0;">
+                    </div>
+                    <div class="inputbox">
+                        <input id="name" class="input" onkeypress="document.getElementById('check-name').innerText=''"
+                            autocomplete="off" required>
+                        <label for="">Họ Tên</label>
 
-                        </div>
-                        <small id="errorUsername"></small>
-                        <div class="inputbox">
-                            <input id="loginPass" class="input" type="password" autocomplete="off" required>
-                            <label for="loginPass">Mật khẩu</label>
+                    </div>
+                    <small id="check-name"></small>
+                    <div class="inputbox">
 
-                        </div>
-                        <small id="errorPassword"></small>
-                        <button class="xacnhan" id="loginbtn" type="submit" onclick="checkuser(event)">xác nhận</button>
-                        <div class="register">
-                            <p>Chưa có tài khoản? <a href="#" id="register">Đăng ký</a></p>
-                        </div>
-                    </form>
-                </div>
+                        <input id="email" class="input" autocomplete="off" required>
+                        <label for="">Email</label>
+
+                    </div>
+                    <small id="check-email"></small>
+                    <div class="inputbox">
+
+                        <input id="phonenumb" class="input" autocomplete="off" required>
+                        <label for="">Số điện thoại</label>
+
+                    </div>
+                    <small id="check-phone-num"></small>
+                    <div class="inputbox">
+
+                        <input id="id_register" autocomplete="off" class="input"
+                            onkeypress="document.getElementById('check-id-register').innerText=''" required>
+                        <label for="">Tên đăng nhập</label>
+
+                    </div>
+                    <small id="check-id-register"></small>
+                    <div class="inputbox">
+
+                        <input id="pass_register" class="input" autocomplete="off"
+                            onkeypress="document.getElementById('check-pass-register').innerText=''" type="password"
+                            required>
+                        <label for="">Mật khẩu</label>
+
+                    </div>
+                    <small id="check-pass-register"></small>
+                    <div class="inputbox">
+
+                        <input id="retype_pass" autocomplete="off" class="input"
+                            onkeypress="document.getElementById('check_retype').innerText=''" type="password" required>
+                        <label for="">Nhập lại mật khẩu</label>
+
+                    </div>
+                    <small id="check_retype"></small>
+                    <button class="xacnhan" id="dangky" type="submit">đăng ký</button>
+                    <div class="register">
+                        <p>Đã có tài khoản? <a href="#" id="return_login">Đăng nhập</a></p>
+                    </div>
+                </form>
             </div>
-        </section>
-        <section id="register-form" class="hide">
-            <div class="form-box-register">
-                <div class="form-value">
-                    <form>
-                        <h2>ĐĂNG KÝ</h2>
-                        <div id="iconX2">
-                            <img src="./img/x-lg.svg" style="position: absolute;top: 0;right: 0;">
-                        </div>
-                        <div class="inputbox">
-                            <input id="name" class="input" onkeypress="document.getElementById('check-name').innerText=''"
-                                autocomplete="off" required>
-                            <label for="">Họ Tên</label>
+        </div>
+    </section>
 
-                        </div>
-                        <small id="check-name"></small>
-                        <div class="inputbox">
+</body>
 
-                            <input id="email" class="input" autocomplete="off" required>
-                            <label for="">Email</label>
-
-                        </div>
-                        <small id="check-email"></small>
-                        <div class="inputbox">
-
-                            <input id="phonenumb" class="input" autocomplete="off" required>
-                            <label for="">Số điện thoại</label>
-
-                        </div>
-                        <small id="check-phone-num"></small>
-                        <div class="inputbox">
-
-                            <input id="id_register" autocomplete="off" class="input"
-                                onkeypress="document.getElementById('check-id-register').innerText=''" required>
-                            <label for="">Tên đăng nhập</label>
-
-                        </div>
-                        <small id="check-id-register"></small>
-                        <div class="inputbox">
-
-                            <input id="pass_register" class="input" autocomplete="off"
-                                onkeypress="document.getElementById('check-pass-register').innerText=''" type="password"
-                                required>
-                            <label for="">Mật khẩu</label>
-
-                        </div>
-                        <small id="check-pass-register"></small>
-                        <div class="inputbox">
-
-                            <input id="retype_pass" autocomplete="off" class="input"
-                                onkeypress="document.getElementById('check_retype').innerText=''" type="password" required>
-                            <label for="">Nhập lại mật khẩu</label>
-
-                        </div>
-                        <small id="check_retype"></small>
-                        <button class="xacnhan" id="dangky" type="submit">đăng ký</button>
-                        <div class="register">
-                            <p>Đã có tài khoản? <a href="#" id="return_login">Đăng nhập</a></p>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </section>
-
-    </body>
-
-    </html>
+</html>
