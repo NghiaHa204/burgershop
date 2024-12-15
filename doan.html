@@ -462,11 +462,13 @@
                         <h3 id="stats-newUsers">0</h3>
                         <p>Người dùng mới</p>
                     </div>
+                    <div id="stats-loading" class="loading" style="display: none;">Đang tải dữ liệu...</div>
                 </div>
+            </div>
             
-                <!-- Hiển thị trạng thái đang tải dữ liệu -->
-                <div id="stats-loading" class="loading" style="display: none;">Đang tải dữ liệu...</div>
-            
+               
+              
+            </div>
                 <!-- Kết nối file Flatpickr từ CDN -->
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.js"></script>
             
@@ -488,7 +490,7 @@
                         console.log('📅 Thời gian:', startDate, 'đến', endDate);
             
                         // Hiển thị trạng thái tải dữ liệu
-                        document.getElementById("stats-loading").style.display = "block";
+                        // document.getElementById("stats-loading").style.display = "block";
             
                         try {
                             const response = await fetch(`http://localhost:3000/api/statistics?startDate=${startDate}&endDate=${endDate}`);
@@ -512,8 +514,8 @@
                         }
                     }
                 </script>
-        </div>
-            </div>
+        
+            
             <div id="thong_ke_doanh_thu" style="display: none;">
                 <h2 >THỐNG KÊ DOANH THU</h2>
                 <table class="TKDT" id="TKDT" >
