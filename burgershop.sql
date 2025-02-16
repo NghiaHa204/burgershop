@@ -81,6 +81,20 @@ CREATE TABLE IF NOT EXISTS `menu_items` (
   PRIMARY KEY (`item_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- Dumping structure for table burgershop.users
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `phone_number` varchar(20) DEFAULT NULL,
+  `username` varchar(50) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `dateSignup` date DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 -- Dumping data for table burgershop.menu_items: ~56 rows (approximately)
 INSERT INTO `menu_items` (`id`, `type`, `image`, `title`, `content`, `price`, `item_id`) VALUES
 	(1, 'burger', './img/burger1.png', 'BURGER BÒ TEMPURA JR', '+Burger Bò Tempura Jr (size vừa): bò nướng lửa hồng cùng tempura rau củ', '67.500 VND', 1),
@@ -139,20 +153,6 @@ INSERT INTO `menu_items` (`id`, `type`, `image`, `title`, `content`, `price`, `i
 	(6, 'thucuong', './img/water6.jpg', 'FANTA', 'FANTA', '24.000 VND', 54),
 	(7, 'thucuong', './img/water7.jpg', 'SPRITE', 'SPRITE', '24.000 VND', 55),
 	(8, 'thucuong', './img/water8.jpg', 'COCA LIGHT', 'COCA LIGHT', '26.000 VND', 56);
-
--- Dumping structure for table burgershop.users
-CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) DEFAULT NULL,
-  `email` varchar(100) DEFAULT NULL,
-  `phone_number` varchar(20) DEFAULT NULL,
-  `username` varchar(50) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
-  `dateSignup` date DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `email` (`email`),
-  UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table burgershop.users: ~3 rows (approximately)
 INSERT INTO `users` (`id`, `name`, `email`, `phone_number`, `username`, `password`, `dateSignup`) VALUES

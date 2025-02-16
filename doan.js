@@ -12,6 +12,7 @@ function open_DKSD() {
         DKSD.style.display = 'none'
         return;
     }
+    nhap_kho_close()
     quan_ly_user_close()
     close_tab()
     close_cart_tab()
@@ -39,6 +40,7 @@ function open_CSBM() {
         CSBM.style.display = 'none'
         return;
     }
+    nhap_kho_close()
     quan_ly_user_close()
     close_tab()
     close_cart_tab()
@@ -60,6 +62,7 @@ function open_CSVC() {
         CSVC.style.display = 'none'
         return;
     }
+    nhap_kho_close()
     quan_ly_user_close()
     close_tab()
     close_cart_tab()
@@ -449,6 +452,7 @@ function nameNlogout() {
         `<li class="nav_admin_li" onclick="quan_ly_san_pham('all')" id="quan_ly_san_pham"><a href="#">Quản lý sản phẩm</a></li>` +
         `<li class="nav_admin_li"><a href="#" onclick="open_bill_tab()" id="quan_ly_don_hang" >Quản lý đơn hàng</a></li>` +
         `<li class="nav_admin_li"><a href="#" onclick="open_user_tab()" id="quan_ly_user" >Quản lý khách hàng</a></li>` +
+        `<li class="nav_admin_li"><a href="#" onclick="nhap_kho_open()" id="nhap_kho" >Nhập kho</a></li>` +
         `<li class="nav_admin_li"><a href="#" onclick="thong_ke_open()" id="thong_ke" >Thống Kê</a></li>` +
         `<li class="nav_admin_li" id="nameUser" onclick="nameNlogout()">${user.name}<button id="btnLogout" onclick="logOut()">Đăng xuất</button></li>`;
 
@@ -1392,6 +1396,8 @@ async function quan_ly_san_pham(type) {
     close_add_tab();
     showMenu_admin();
     close_DKSD_CSBM_CSVC();
+    close_footer();
+    nhap_kho_close()
 
     // Đảm bảo chuyển đổi type sang chuỗi và so sánh
     if (currentType !== type.toString()) {
@@ -1872,6 +1878,8 @@ function open_user_tab() {
     quan_ly_san_pham_close();
     thong_ke_close();
     close_bill_tab();
+    close_footer();
+    nhap_kho_close()
 }
 //xem thông tin người dùng
 async function showUserList() {
@@ -2128,6 +2136,7 @@ async function open_bill_tab() {
     quan_ly_user_close();
     quan_ly_san_pham_close();
     thong_ke_close();
+    nhap_kho_close()
 
     document.getElementById("page_bill").style.display = "block";
 
@@ -2462,12 +2471,37 @@ function checkOpenTab() {
 // function close_bill_tab() {
 //     document.getElementById("page_bill").style.display = "none";
 // }
-//thống kê 
-function thong_ke_open() {
-    close_DKSD_CSBM_CSVC()
+//Nhập kho
+function nhap_kho_close(){
+    nhap_kho_edit_close();
+    document.getElementById("active_nhapkho").style.display = "none";
+}
+function nhap_kho_edit_close(){
+    document.getElementById("active_add_nhapkho").style.display = "none";
+}
+function nhap_kho_edit(){
+    document.getElementById("active_nhapkho").style.display = "none";
+    document.getElementById("active_add_nhapkho").style.display = "grid";
+}
+
+function nhap_kho_open(){
+    close_footer();
+    close_DKSD_CSBM_CSVC();
     close_bill_tab();
     quan_ly_san_pham_close();
     quan_ly_user_close();
+    thong_ke_close();
+    document.getElementById("active_nhapkho").style.display = "block";
+}
+
+//thống kê 
+function thong_ke_open() {
+    close_footer();
+    close_DKSD_CSBM_CSVC();
+    close_bill_tab();
+    quan_ly_san_pham_close();
+    quan_ly_user_close();
+    nhap_kho_close();
     document.getElementById("page_dt").style.display = "block";
 
 }

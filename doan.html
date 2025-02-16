@@ -424,6 +424,151 @@
             </div>
         </div>
     </div>
+    <div class="page-nhaphang">
+        <div id="active_nhapkho" style="display: none;">
+            <div class="toolbar-kho">
+                <div class="searchitem">
+                    <input type="text" placeholder="Tìm theo tên or mã">
+                    <select>
+                        <option>Tất cả</option>
+                    </select>
+                    <button class="reset-button">Reset</button>
+                </div>
+                <div class="actions">
+                    <button id="add-button" onclick="nhap_kho_edit()">Thêm phiếu</button>
+                    <button id="view-button">Xem phiếu</button>
+                    <button id="delete-button">Hủy phiếu</button>
+                    <button id="export-button">Xuất</button>
+                </div>
+            </div>
+    
+            <div class="mainitem">
+                <div class="filters">
+                    <div class="filter-group">
+                        <label>Nhà cung cấp</label>
+                        <select>
+                            <option>Tất cả</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Từ ngày</label>
+                        <input type="date">
+                    </div>
+                    <div class="filter-group">
+                        <label>Đến ngày</label>
+                        <input type="date">
+                    </div>
+                    <div class="filter-group">
+                        <label>Từ số tiền (VND)</label>
+                        <input type="number" value="0">
+                    </div>
+                    <div class="filter-group">
+                        <label>Đến số tiền (VND)</label>
+                        <input type="number" value="1000000000">
+                    </div>
+                </div>
+        
+                <div class="table-container-kho">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Mã phiếu nhập</th>
+                                <th>Thời gian tạo</th>
+                                <th>Nhà cung cấp</th>
+                                <th>Tổng tiền</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+        </div>
+        <div id="active_add_nhapkho" style="display: none;">
+            <button class="kho_Form_edit_close" onclick="nhap_kho_edit_close()"><img src="./img/close.png"
+                style="width: 20px; height:20px;" alt="close">
+            </button>
+            <div id="left-panel">
+                <div class="search-box">
+                    <input type="text" placeholder="Tìm theo tên or mã">
+                    <button class="search-button">Tìm cơ bản</button>
+                </div>
+                <div class="kho-list">
+                    <table class="kho-table">
+                        <thead>
+                            <tr>
+                                <th>Mã nguyên liệu</th>
+                                <th>Tên nguyên liệu</th>
+                                <th>Tổng số lượng</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                    
+                </div>
+                <div class="button_actions">
+                    <button id="button-edit-kho">Sửa</button>
+                    <button id="button-delete-kho">Xóa</button>
+                </div>
+            </div>
+    
+            <div class="right-panel">
+                <div class="form-group">
+                    <label>Mã nguyên liệu đã chọn:</label>
+                    <input type="text">
+                </div>
+                <div class="form-group">
+                    <label>Tên nguyên liệu đã chọn:</label>
+                    <input type="text">
+                </div>
+                <div class="form-group">
+                    <label>Hiện có trong kho:</label>
+                    <input type="text">
+                </div>
+                <div class="form-group">
+                    <label>Nhập số lượng thêm:</label>
+                    <input type="text">
+                </div>
+                <div class="form-group">
+                    <label>Nhập đơn giá:</label>
+                    <input type="text">
+                </div>
+                <button class="add-button">Thêm</button>
+    
+                <div class="supplier-employee">
+                    <div class="form-group">
+                        <label>Chọn nhà cung cấp:</label>
+                        <select>
+                        </select>
+                    </div>
+                </div>
+    
+                <div class="total">
+                    <span>TỔNG TIỀN:</span>
+                </div>
+                <button class="import-button">NHẬP HÀNG</button>
+            </div>
+    
+            <div class="bottom-panel">
+                <h3>Thông tin nguyên liệu đã được chọn, để thêm vào phiếu nhập:</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Mã nguyên liêu</th>
+                            <th>Tên nguyên liệu</th>
+                            <th>Đơn giá nhập</th>
+                            <th>Số lượng nhập</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
     <div class="page_dt" id="page_dt" style="display: none;">
         <div id="thong_ke_buttons">
             <!-- Button thứ nhất -->
@@ -550,6 +695,7 @@
             </table>
         </div>
     </div>
+
     <div class="box_bill" id="page_bill" style="display: none;">
         <div class="quan_ly_don_hang_sap_xep_tang" onclick="sap_xep_theo_ngay_tang()">
             <img src="./img/arrow-up-square-fill.svg" alt="add_item">

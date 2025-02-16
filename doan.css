@@ -2056,3 +2056,273 @@ select {
 #stats-totalProductsSold {
     width: 150px;
 }
+/*Nhập kho*/
+.active_nhapkho {
+    max-width: 1200px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Thanh công cụ */
+.toolbar-kho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #ddd;
+}
+
+/* Ô tìm kiếm */
+.searchitem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.searchitem input, .searchitem select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.reset-button {
+    padding: 8px 12px;
+    border: none;
+    background: #ff9966;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.reset-button:hover {
+    background: #c82333;
+    color: #ff9966;
+}
+
+/* Các nút hành động */
+.actions {
+    display: flex;
+    gap: 10px;
+}
+
+.actions button {
+    width: 100px;
+    height: 40px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    background-color: #ff9966;
+}
+
+.actions button:hover {
+    opacity: 0.8;
+}
+
+/* Bộ lọc */
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 20px 0;
+    border-bottom: 2px solid #ddd;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.filter-group input, .filter-group select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Bảng */
+.table-container-kho {
+    margin-top: 20px;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background: #ff9966;
+    color: white;
+}
+
+tbody tr:nth-child(even) {
+    background: #f2f2f2;
+}
+
+tbody tr:hover {
+    background: #ddd;
+}
+/* Form them nguyen lieu */
+#active_add_nhapkho {
+    position: relative;
+    grid-template-columns: 1fr 1fr; /* Chia thành 2 cột chính */
+    grid-template-rows: auto auto; /* Hàng tự động theo nội dung */
+    gap: 20px;
+    padding: 20px;
+}
+.kho_Form_edit_close {
+    border: none;
+    background-color: white;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+#left-panel {
+    grid-column: 1; /* Nằm ở cột đầu tiên */
+    background-color: #eee;
+    padding: 10px;
+    position: relative;
+}
+
+#right-panel {
+    grid-column: 2; /* Nằm ở cột thứ hai */
+    background-color: #eee;
+    padding: 10px;
+}
+
+.bottom-panel {
+    grid-column: 1 / span 2; /* Kéo dài qua cả 2 cột */
+    background-color: #eee;
+    padding: 10px;
+}
+
+/* Thêm các quy tắc CSS cụ thể cho từng phần tử */
+.search-box {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.search-box input {
+    flex-grow: 1;
+    padding: 5px;
+}
+
+.search-button {
+    background-color: #ff9966;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.kho-list {
+    margin-bottom: 10px;
+    overflow-y: auto;
+}
+
+.kho-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.kho-table th, .kho-table td {
+    padding: 8px;
+    text-align: left;
+}
+
+.kho-table th {
+    background-color: #ff9966;
+    font-weight: bold;
+}
+
+.kho-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.kho-table tr:hover {
+    background-color: #ddd;
+}
+
+.button_actions {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    left: 50%;
+    transform: translateX(-50%);
+    gap: 10px;
+    bottom: 10px;
+}
+
+.button_actions button {
+    padding: 5px 10px;
+    background-color: #ff9966;
+    width: 400px;
+    height: 50px;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 5px;
+}
+
+.supplier-employee {
+    margin-top: 20px;
+}
+
+.total {
+    margin-top: 20px;
+    font-weight: bold;
+    text-align: right;
+}
+
+.add-button, .import-button {
+    background-color: #ff9966;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+/* CSS cho bảng */
+.bottom-panel table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.bottom-panel th, .bottom-panel td {
+    padding: 8px;
+    text-align: left;
+}
+
+.bottom-panel th {
+    background-color: #ff9966;
+}
