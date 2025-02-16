@@ -2056,12 +2056,16 @@ select {
 #stats-totalProductsSold {
     width: 150px;
 }
+
+
 /*Nhập kho*/
-.active_nhapkho {
+#active_nhapkho {
     max-width: 1200px;
     margin: auto;
     background: white;
     padding: 20px;
+    height: 800px;
+    overflow-y: auto;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -2154,34 +2158,35 @@ select {
     overflow-x: auto;
 }
 
-table {
+.table-container-kho table {
     width: 100%;
     border-collapse: collapse;
     background: white;
 }
 
-th, td {
+.table-container-kho th, td {
     padding: 10px;
     text-align: left;
 }
 
-th {
+.table-container-kho th {
     background: #ff9966;
     color: white;
 }
 
-tbody tr:nth-child(even) {
+.table-container-kho tbody tr:nth-child(even) {
     background: #f2f2f2;
 }
 
-tbody tr:hover {
+.table-container-kho tbody tr:hover {
     background: #ddd;
 }
+/*====================================================================================================================================================*/
 /* Form them nguyen lieu */
 #active_add_nhapkho {
     position: relative;
-    grid-template-columns: 1fr 1fr; /* Chia thành 2 cột chính */
-    grid-template-rows: auto auto; /* Hàng tự động theo nội dung */
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
     gap: 20px;
     padding: 20px;
 }
@@ -2232,10 +2237,12 @@ tbody tr:hover {
 }
 
 .kho-list {
-    margin-bottom: 10px;
+    max-height: 300px; /* Hoặc điều chỉnh theo nhu cầu */
     overflow-y: auto;
+    border: 1px solid #ccc; /* Tùy chọn để hiển thị khung bảng */
 }
 
+/* Đảm bảo bảng không mở rộng ra ngoài div */
 .kho-table {
     width: 100%;
     border-collapse: collapse;
@@ -2244,6 +2251,7 @@ tbody tr:hover {
 .kho-table th, .kho-table td {
     padding: 8px;
     text-align: left;
+    white-space: nowrap; /* Ngăn chặn xuống dòng */
 }
 
 .kho-table th {
@@ -2313,6 +2321,13 @@ tbody tr:hover {
 }
 
 /* CSS cho bảng */
+.bottom-panel {
+    max-height: 300px; /* Điều chỉnh chiều cao theo nhu cầu */
+    overflow-y: auto; /* Thêm thanh cuộn dọc khi nội dung vượt quá chiều cao */
+    background-color: #eee;
+    padding: 10px;
+}
+
 .bottom-panel table {
     width: 100%;
     border-collapse: collapse;
@@ -2321,6 +2336,7 @@ tbody tr:hover {
 .bottom-panel th, .bottom-panel td {
     padding: 8px;
     text-align: left;
+    white-space: nowrap; /* Tránh xuống dòng trong ô */
 }
 
 .bottom-panel th {
