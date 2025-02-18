@@ -320,36 +320,47 @@
                 </button>
                 <h1>THÊM SẢN PHẨM</h1>
                 <form id="productForm">
-                    <label>Loại Sản Phẩm Cần Thêm</label>
-                    <select name="choose_product" id="choose_product" class="choose_product"
-                        onchange=" set_id_product()">
-                        <option value="burger">BurGer</option>
-                        <option value="combo">ComBo</option>
-                        <option value="garan">Gà Rán</option>
-                        <option value="monankem">Món Ăn Kèm</option>
-                        <option value="thucuong">Thức Uống</option>
-                    </select>
-                    <label for="productId">ID:</label>
-                    <input type="text" id="productId" name="productId">
-                    <small id="productId_small"></small>
-
-                    <label for="productImage">Image URL:</label>
+                    <div id="productForm_imgDiv">
+                        <label for="productImage">Image URL:</label>
                     <input type="file" id="productImage" name="productImage">
                     <small id="productImage_small"></small>
+                    </div>
 
-                    <label for="productTitle">Title:</label>
-                    <input type="text" id="productTitle" name="productTitle">
-                    <small id="productTitle_small"></small>
+                    <div id="productForm_productDiv">
+                        <label>Loại Sản Phẩm Cần Thêm</label>
+                        <select name="choose_product" id="choose_product" class="choose_product"
+                            onchange=" set_id_product()">
+                            <option value="burger">BurGer</option>
+                            <option value="combo">ComBo</option>
+                            <option value="garan">Gà Rán</option>
+                            <option value="monankem">Món Ăn Kèm</option>
+                            <option value="thucuong">Thức Uống</option>
+                        </select>
+                        <label for="productId">ID:</label>
+                        <input type="text" id="productId" name="productId">
+                        <small id="productId_small"></small>
+                        
+                        <label for="productTitle">Title:</label>
+                        <input type="text" id="productTitle" name="productTitle">
+                        <small id="productTitle_small"></small>
 
-                    <label for="productContent">Content:</label>
-                    <textarea id="productContent" name="productContent"></textarea>
-                    <small id="productContent_small"></small>
+                        <label for="productContent">Content:</label>
+                        <textarea id="productContent" name="productContent"></textarea>
+                        <small id="productContent_small"></small>
+                        
+                        <label for="productRecipe">Recipe:</label>
+                        <div style="display: flex">
+                            <textarea style="width: 100%;" id="productRecipe" name="productRecipe"></textarea>
+                            <button style="width: 50px; border: 1px solid black;"></button>
+                            <button style="width: 50px; border: 1px solid black;"></button>
+                        </div>
 
-                    <label for="productPrice">Price:</label>
-                    <input type="text" id="productPrice" name="productPrice">
-                    <small id="productPrice_small"></small>
+                        <label for="productPrice">Price:</label>
+                        <input type="text" id="productPrice" name="productPrice">
+                        <small id="productPrice_small"></small>
 
-                    <button type="button" onclick="add_item()" class="productForm_add_button">Add Product</button>
+                        <button type="button" onclick="add_item()" class="productForm_add_button">Add Product</button>
+                    </div>
                 </form>
             </div>
             <div id="page_productForm_edit" style="display: none;">
