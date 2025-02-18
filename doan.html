@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="doan.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.css">
     <script src="doan.js" defer></script>
+    <script src="test1.js" defer></script>
     <title>
         BurgerG15
     </title>
@@ -315,42 +316,106 @@
                 <button id="right_product" onclick="page_next_product()"></button>
             </div>
             <div id="page_productForm" style="display: none;">
-                <button class="productForm_edit_close" onclick="close_add_tab()"><img src="./img/close.png"
+                <div class="modal-content">
+                    <h2>THÊM MỚI SẢN PHẨM</h2>
+                    <button class="productForm_edit_close" onclick="close_add_tab()"><img src="./img/close.png"
                         style="width: 20px; height:20px;" alt="close">
-                </button>
-                <h1>THÊM SẢN PHẨM</h1>
-                <form id="productForm">
-                    <label>Loại Sản Phẩm Cần Thêm</label>
-                    <select name="choose_product" id="choose_product" class="choose_product"
-                        onchange=" set_id_product()">
-                        <option value="burger">BurGer</option>
-                        <option value="combo">ComBo</option>
-                        <option value="garan">Gà Rán</option>
-                        <option value="monankem">Món Ăn Kèm</option>
-                        <option value="thucuong">Thức Uống</option>
-                    </select>
-                    <label for="productId">ID:</label>
-                    <input type="text" id="productId" name="productId">
-                    <small id="productId_small"></small>
-
-                    <label for="productImage">Image URL:</label>
-                    <input type="file" id="productImage" name="productImage">
-                    <small id="productImage_small"></small>
-
-                    <label for="productTitle">Title:</label>
-                    <input type="text" id="productTitle" name="productTitle">
-                    <small id="productTitle_small"></small>
-
-                    <label for="productContent">Content:</label>
-                    <textarea id="productContent" name="productContent"></textarea>
-                    <small id="productContent_small"></small>
-
-                    <label for="productPrice">Price:</label>
-                    <input type="text" id="productPrice" name="productPrice">
-                    <small id="productPrice_small"></small>
-
-                    <button type="button" onclick="add_item()" class="productForm_add_button">Add Product</button>
-                </form>
+                    </button>
+                    <div class="form-container">
+                        <div class="image-upload">
+                            <div class="image-preview">
+                                <img src="./img/burger11.jpg" alt="Hình ảnh sản phẩm">
+                            </div>
+                            <div class="upload-container">
+                                <input type="file" id="productImage" name="productImage" class="hidden-file-input">
+                                <label for="productImage" class="custom-upload-btn">Chọn Ảnh</label>
+                            </div>                    
+                        </div>
+                        <div class="form-inputs">
+                            <label for="productId">Mã món ăn</label>
+                            <input type="text" id="productId" placeholder="Nhập mã món ăn">
+                            <small id="productId_small"></small>
+        
+                            <label for="productTitle">Tên món ăn</label>
+                            <input type="text" id="productTitle" placeholder="Nhập tên món ăn">
+                            <small id="productTitle_small"></small>
+                            
+                            <label for="choose_product">Chọn món</label>
+                            <div class="choose_product">
+                                <select id="choose_product">
+                                    <option value="burger">Burger</option>
+                                    <option value="garan">Gà rán</option>
+                                    <option value="combo">Combo</option>
+                                    <option value="monankem">Món ăn kèm</option>
+                                    <option value="thucuong">Thức uống</option>
+                                </select>
+                                <button class="recipe-btn">📜 Công thức</button>
+                            </div>                    
+        
+                            <label for="productPrice">Giá bán</label>
+                            <input type="text" id="productPrice" placeholder="Nhập giá bán" name="productPrice">
+                            <small id="productPrice_small"></small>
+        
+                            <label for="productContent">Mô tả</label>
+                            <textarea id="productContent" placeholder="Nhập mô tả món ăn..." name="productPrice"></textarea>
+                            <small id="productPrice_small"></small>
+        
+                            <button class="add-btn">➕ THÊM MÓN</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="container-recipe" style="display: none;">
+                <!-- Danh sách nguyên liệu -->
+                <div class="list-modal">
+                    <h3>📜 Nguyên liệu</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Hình ảnh</th>
+                                <th>Tên nguyên liệu</th>
+                                <th>Số lượng</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><img src="./img/burger.jpg" alt="Nguyên liệu 20"></td>
+                                <td>Gà</td>
+                                <td>500g</td>
+                            </tr>
+                        </tbody>
+                    </table>        
+                </div>
+            
+                <!-- Giỏ hàng -->
+                <div class="recipe-modal">
+                    <div class="recipe-header">
+                        <h2>📜 Công thức</h2>
+                        <button class="close-recipe">✖</button>
+                    </div>
+            
+                    <div class="recipe-items">
+                        <div class="recipe-item">
+                            <div class="item-info">
+                                <p class="item-name">Đậu que</p>
+                            </div>
+                            <div class="recipe-actions">
+                                <button class="remove-btn">🗑️ Xóa</button>
+                                <div class="quantity">
+                                    <button class="qty-btn">-</button>
+                                    <span class="qty-number">1</span>
+                                    <button class="qty-btn">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="recipe-footer">
+                        <div class="recipe-buttons">
+                            <button class="confirm">Xác nhận</button>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div id="page_productForm_edit" style="display: none;">
                 <button class="productForm_edit_close" onclick="close_edit_tab()"><img src="./img/close.png"

@@ -2478,6 +2478,7 @@ function nhap_kho_close(){
 }
 function nhap_kho_edit_close(){
     document.getElementById("active_add_nhapkho").style.display = "none";
+    document.getElementById("active_nhapkho").style.display = "block";
 }
 function nhap_kho_edit(){
     document.getElementById("active_nhapkho").style.display = "none";
