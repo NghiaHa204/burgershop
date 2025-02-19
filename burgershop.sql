@@ -15,150 +15,333 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
--- Dumping database structure for burgershop
-CREATE DATABASE IF NOT EXISTS `burgershop` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
-USE `burgershop`;
+-- Dumping database structure for burgershop2
+CREATE DATABASE IF NOT EXISTS `burgershop2` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
+USE `burgershop2`;
 
--- Dumping structure for table burgershop.bills
+-- Dumping structure for table burgershop2.bills
 CREATE TABLE IF NOT EXISTS `bills` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL,
-  `date_bill` date NOT NULL,
-  `timeid` varchar(50) NOT NULL,
-  `address` varchar(255) NOT NULL,
-  `van_chuyen` varchar(50) NOT NULL,
-  `total_money` varchar(20) NOT NULL,
-  `trang_thai` varchar(20) DEFAULT 'Vừa đặt',
-  `username` varchar(50) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `date_bill` datetime DEFAULT current_timestamp(),
+  `timeid` varchar(255) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `van_chuyen` varchar(255) DEFAULT NULL,
+  `total_money` varchar(255) DEFAULT NULL,
+  `trang_thai` varchar(50) DEFAULT NULL,
+  `username` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `unique_timeid` (`timeid`),
-  KEY `fk_user_id` (`user_id`),
-  CONSTRAINT `fk_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  UNIQUE KEY `Index 3` (`timeid`),
+  KEY `user_id` (`user_id`),
+  CONSTRAINT `bills_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `khachhang` (`maKhachHang`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table burgershop.bills: ~6 rows (approximately)
-INSERT INTO `bills` (`id`, `user_id`, `date_bill`, `timeid`, `address`, `van_chuyen`, `total_money`, `trang_thai`, `username`) VALUES
-	(6, 7, '2024-12-11', '201615', 'áhd', '1', '126500', '5', 'admin234'),
-	(7, 7, '2024-12-12', '16015', 'kksks', '1', '272000', 'Vừa đặt', 'admin234'),
-	(8, 1, '2024-12-12', '16133', 'kdkd', '1', '126500', 'Vừa đặt', 'admin'),
-	(9, 1, '2024-12-12', '165225', 'f', '1', '31000', 'Vừa đặt', 'admin'),
-	(10, 1, '2024-12-12', '165854', 'dsd', '3', '48000', 'Vừa đặt', 'admin'),
-	(11, 1, '2024-12-14', '17257', 'ạksnldsa', '1', '129000', 'Vừa đặt', 'admin');
+-- Dumping data for table burgershop2.bills: ~0 rows (approximately)
 
--- Dumping structure for table burgershop.bill_items
+-- Dumping structure for table burgershop2.bill_items
 CREATE TABLE IF NOT EXISTS `bill_items` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `bill_timeid` varchar(50) NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `count` int(11) NOT NULL,
-  `price` varchar(50) NOT NULL,
+  `bill_timeid` varchar(255) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `count` int(11) DEFAULT NULL,
+  `price` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `bill_timeid` (`bill_timeid`),
-  CONSTRAINT `bill_items_ibfk_1` FOREIGN KEY (`bill_timeid`) REFERENCES `bills` (`timeid`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  CONSTRAINT `bill_items_ibfk_1` FOREIGN KEY (`bill_timeid`) REFERENCES `bills` (`timeid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table burgershop.bill_items: ~9 rows (approximately)
-INSERT INTO `bill_items` (`id`, `bill_timeid`, `title`, `count`, `price`) VALUES
-	(7, '201615', 'BURGER BÒ TEMPURA', 1, '126.5'),
-	(8, '16015', 'COMBO GÀ BBQ(3 MIẾNG)', 1, '136'),
-	(9, '16015', 'COMBO GÀ RÁN GIÒN CAY(3 MIẾNG)', 1, '136'),
-	(10, '16133', 'BURGER BÒ TEMPURA', 1, '126.5'),
-	(11, '165225', 'KHOAI TÂY TẮM PHÔ MAI', 1, '31'),
-	(12, '165854', 'DASANI', 1, '24'),
-	(13, '165854', 'COCA', 1, '24'),
-	(14, '17257', 'GÀ CUỘN RONG BIỂN 6PCS', 1, '64.5'),
-	(15, '17257', 'GÀ CUỘN RONG BIỂN 6PCS', 1, '64.5');
+-- Dumping data for table burgershop2.bill_items: ~0 rows (approximately)
 
--- Dumping structure for table burgershop.menu_items
-CREATE TABLE IF NOT EXISTS `menu_items` (
-  `id` int(11) NOT NULL,
-  `type` varchar(50) DEFAULT NULL,
-  `image` varchar(255) DEFAULT NULL,
-  `title` varchar(255) DEFAULT NULL,
-  `content` text DEFAULT NULL,
-  `price` varchar(50) DEFAULT NULL,
-  `item_id` int(11) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`item_id`)
+-- Dumping structure for table burgershop2.chitietcongthuc
+CREATE TABLE IF NOT EXISTS `chitietcongthuc` (
+  `maCongThuc` int(11) NOT NULL,
+  `maNguyenLieu` int(11) NOT NULL,
+  `soLuong` int(11) DEFAULT NULL,
+  PRIMARY KEY (`maCongThuc`,`maNguyenLieu`),
+  KEY `maNguyenLieu` (`maNguyenLieu`),
+  CONSTRAINT `chitietcongthuc_ibfk_1` FOREIGN KEY (`maCongThuc`) REFERENCES `congthuc` (`maCongThuc`),
+  CONSTRAINT `chitietcongthuc_ibfk_2` FOREIGN KEY (`maNguyenLieu`) REFERENCES `nguyenlieu` (`maNguyenLieu`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping data for table burgershop2.chitietcongthuc: ~0 rows (approximately)
+
+-- Dumping structure for table burgershop2.chitietphieunhap
+CREATE TABLE IF NOT EXISTS `chitietphieunhap` (
+  `maPhieuNhap` int(11) NOT NULL,
+  `maNguyenLieu` int(11) NOT NULL,
+  `soLuong` int(11) DEFAULT NULL,
+  `donGia` float DEFAULT NULL,
+  PRIMARY KEY (`maPhieuNhap`,`maNguyenLieu`),
+  KEY `maNguyenLieu` (`maNguyenLieu`),
+  CONSTRAINT `chitietphieunhap_ibfk_1` FOREIGN KEY (`maPhieuNhap`) REFERENCES `phieunhap` (`maPhieuNhap`),
+  CONSTRAINT `chitietphieunhap_ibfk_2` FOREIGN KEY (`maNguyenLieu`) REFERENCES `nguyenlieu` (`maNguyenLieu`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping data for table burgershop2.chitietphieunhap: ~0 rows (approximately)
+
+-- Dumping structure for table burgershop2.congthuc
+CREATE TABLE IF NOT EXISTS `congthuc` (
+  `maCongThuc` int(11) NOT NULL AUTO_INCREMENT,
+  `tenCongThuc` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`maCongThuc`)
 ) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table burgershop.menu_items: ~56 rows (approximately)
-INSERT INTO `menu_items` (`id`, `type`, `image`, `title`, `content`, `price`, `item_id`) VALUES
-	(1, 'burger', './img/burger1.png', 'BURGER BÒ TEMPURA JR', '+Burger Bò Tempura Jr (size vừa): bò nướng lửa hồng cùng tempura rau củ', '67.500 VND', 1),
-	(2, 'burger', './img/burger2.png', 'BURGER BÒ TEMPURA', 'Burger Bò Tempura (size lớn): bò nướng lửa hồng và tempura rau củ', '126.500 VND', 2),
-	(3, 'burger', './img/burger3.jpg', 'BURGER BÒ NƯỚNG WHOPPER JR', 'BURGER BÒ NƯỚNG WHOPPER JR', '54.000 VND', 3),
-	(4, 'burger', './img/burger4.jpg', 'BURGER CÁ', 'BURGER CÁ', '46.000 VND', 4),
-	(5, 'burger', './img/burger5.jpg', 'Burger Bò Nướng Hành Chiên', 'Burger Bò Nướng Hành Chiên', '50.000 VND', 5),
-	(6, 'burger', './img/burger6.jpg', 'BURGER GÀ GIÒN CAY', 'BURGER GÀ GIÒN CAY', '77.500 VND', 6),
-	(7, 'burger', './img/burger7.jpg', 'BURGER GÀ NƯỚNG', 'BURGER GÀ NƯỚNG', '67.500 VND', 7),
-	(8, 'burger', './img/burger8.jpg', 'Burger Bò Phô Mai', 'Burger Bò Phô Mai', '63.500 VND', 8),
-	(9, 'burger', './img/burger9.jpg', 'BURGER BÒ THỊT HEO XÔNG KHÓI', 'BURGER BÒ THỊT HEO XÔNG KHÓI', '68.000 VND', 9),
-	(10, 'burger', './img/burger10.jpg', 'BURGER 2 MIẾNG BÒ NƯỚNG', 'BURGER 2 MIẾNG BÒ NƯỚNG', '165.000 VND', 10),
-	(11, 'burger', './img/burger11.jpg', 'WHOPPER BÒ NƯỚNG', 'BURGER BÒ NƯỚNG WHOPPER', '162.000 VND', 11),
-	(12, 'burger', './img/burger12.jpg', 'BURGER 2 MIẾNG BÒ PHÔ MAI', 'BURGER 2 MIẾNG BÒ PHÔ MAI', '162.000 VND', 12),
-	(1, 'combo', './img/chicken1.png', 'COMBO CHIC\'N LOVER 1P', ' 2 Miếng Gà Giòn (cay/ không cay) hoặc 2 Cánh Gà BBQ + 1 Nước ngọt', '93.000 VND', 13),
-	(2, 'combo', './img/chicken2.jpg', 'COMBO CHIC\'N LOVER 1P', '2 Miếng Gà Giòn (cay/ không cay) hoặc 2 Cánh Gà BBQ + 1 Burger Bò Phô Mai + 2 Nước ngọt', '142.000 VND', 14),
-	(3, 'combo', './img/combo1.png', 'COMBO BURGER BÒ TEMPURA JR(M)', '1 Burger Bò Tempura Jr (size vừa) + 1 Khoai Tây Chiên (M)', '87.000 VND', 15),
-	(1, 'garan', './img/chicken4.jpg', 'GÀ GIÒN CRISPY', '1 Miếng Gà Giòn Crispy (không cay)', '44.000 VND', 16),
-	(2, 'garan', './img/chicken5.jpg', 'COMBO GÀ BBQ(3 MIẾNG)', 'Combo Gồm : 1 Nước (M) + 1 Khoai Tây Chiên (M) + 3 miếng gà BBQ', '136.000 VND', 17),
-	(3, 'garan', './img/chicken6.jpg', 'COMBO GÀ RÁN GIÒN CAY(3 MIẾNG)', 'Combo Gồm : 1 Nước (M) + 1 Khoai Tây Chiên (M) + 3 miếng gà rán giòn cay', '136.000 VND', 18),
-	(4, 'garan', './img/chicken7.jpg', 'COMBO GÀ BBQ(2 MIẾNG)', 'BURGER GÀ NƯỚNGCombo Gồm : 1 Nước (M) + 1 Khoai Tây (M) + 2 miếng gà BBQ', '116.500 VND', 19),
-	(5, 'garan', './img/chicken8.jpg', 'COMBO GÀ GIÒN KHONG CAY(2 MIẾNG)', 'MAIN COURSE : 1 Nước + 2 miếng Gà Giòn không cay + 1 Khoai Tây Chiên (M)', '116.500 VND', 20),
-	(6, 'garan', './img/chicken9.jpg', 'COMBO GÀ GIÒN CAY(2 MIẾNG)', 'Combo Gồm : 1 Nước (M) + 1 Khoai Tây (M) + 2 miếng gà rán giòn cay', '116.500 VND', 21),
-	(7, 'garan', './img/chicken10.jpg', 'COMBO GÀ GIÒN KHÔNG CAY(3 MIẾNG)', 'MAIN COURSE : 1 Nước + 3 miếng Gà Giòn không cay + 1 Khoai Tây Chiên (M)', '136.000 VND', 22),
-	(8, 'garan', './img/chicken11.jpg', 'Mix Wing 4pcs', 'Mix Wing 4pcs', '87.000 VND', 23),
-	(9, 'garan', './img/chicken12.jpg', 'Mix Wing 6pcs', 'Mix Wing 6pcs', '130.000 VND', 24),
-	(10, 'garan', './img/chicken3.jpg', 'COMBO FAMILY CHIC\'N LOVERS', '3 Miếng Gà Giòn (cay/ không cay) + 3 Cánh Gà BBQ + 2 Khoai Tây Chiên (L) + 3 Nước ngọt', '289.000 VND', 25),
-	(11, 'garan', './img/combo2.jpg', 'COMBO GÀ RÁN(M)', '3 Miếng Gà + 1 Burger Zinger/Burger Tôm/Burger Phi-lê Gà Quay + 2 Lon Pepsi', '172.000 VND', 26),
-	(12, 'garan', './img/combo3.jpg', 'COMBO GÀ RÁN (L)', '4 Miếng Gà + 1 Khoai tây chiên lớn / 2 Thanh Bí Phô-mai + 2 Pepsi Lon', '191.000 VND', 27),
-	(4, 'combo', './img/combo4.jpg', 'COMBO BURGER BÒ NƯỚNG HÀNH CHIÊNCHIÊN', '1 Burger Bò Nướng Hành Chiên + 1 Khoai Tây Chiên (M) + 1 Nước ngọt', '76.000 VND', 28),
-	(5, 'combo', './img/combo5.jpg', 'COMBO BURGER BÒ PHÔ MAI(M)', '1 Burger Bò Phô Mai (cỡ vừa) + Khoai Tây Chiên (M) + Nước ngọt', '93.000 VND', 29),
-	(6, 'combo', './img/combo6.jpg', 'COMBO BURGER GÀ GIÒN CAY', '1 Burger Gà Giòn Cay + 1 Khoai Tây Chiên (M) + 1 Nước ngọt', '97.000 VND', 30),
-	(7, 'combo', './img/combo7.jpg', 'COMBO BURGER GÀ NƯỚNG', '1 Burger Gà Nướng + 1 Khoai Tây Chiên (M) + 1 Nước ngọt', '97.000 VND', 31),
-	(8, 'combo', './img/combo8.jpg', 'COMBO BURGER BÒ THỊT HEO XÔNG KHÓI WHOPPER', '1 Burger Bò Thịt Heo Xông Khói Sốt BBQ + 1 Khoai Tây Chiên (M) + 1 Nước ngọt', '175.000 VND', 32),
-	(9, 'combo', './img/combo9.jpg', 'COMBO BURGER 2 MIẾNG BÒ PHÔ MAI', '1 Burger 2 Miếng Bò Phô Mai + 1 Khoai Tây Chiên (L) + 1 Nước ngọt', '107.000 VND', 33),
-	(10, 'combo', './img/combo10.png', 'COMBO BURGER BÒ TEMPURA (L)', '1 Burger Bò Tempura (size lớn) + 1 Khoai Tây Chiên (M)', '146.000 VND', 34),
-	(11, 'combo', './img/combo11.jpg', 'COMBO BURGER BÒ TẮM PHÔ MAI(CỠ LỚN)', '1 Burger Bò Tắm Phô Mai (cỡ lớn) + Khoai Tây Chiên (M) + Nước ngọt', '150.000 VND', 35),
-	(12, 'combo', './img/combo12.jpg', 'COMBO BURGER 2 MIẾNG BÒ + THỊT XÔNG KHÓI WHOPPER', '1 Burger 2 Miếng Bò Phô Mai Thịt Xông Khói WHOPPER + 1 Khoai Tây Chiên (M) + 1 Nước ngọt', '244.000 VND', 36),
-	(1, 'monankem', './img/food1.jpg', 'GÀ CUỘN RONG BIỂN 4PCS', 'SEAWEED CHICKEN ROLL 4PCS', '45.000 VND', 37),
-	(2, 'monankem', './img/food2.jpg', 'GÀ CUỘN RONG BIỂN 6PCS', 'SEAWEED CHICKEN ROLL 6PCS', '64.500 VND', 38),
-	(3, 'monankem', './img/food3.jpg', 'KHOAI TÂY TẮM PHÔ MAI', 'CHEESY FRIES', '31.000 VND', 39),
-	(4, 'monankem', './img/food4.jpg', 'CÁ CUỘN RONG BIỂN 2PCS', 'SEAWEED FISH STICK 2PCS', '24.000 VND', 40),
-	(5, 'monankem', './img/food5.jpg', 'CÁ CUỘN RONG BIỂN 4PCS', 'SEAWEED FISH STICK 4PCS', '45.000 VND', 41),
-	(6, 'monankem', './img/food6.jpg', 'GÀ NUGGETS 3PCS', 'CHICKEN NUGGETS 3PCS', '77.500 VND', 42),
-	(7, 'monankem', './img/food7.jpg', 'GÀ NUGGETS 4PCS', 'CHICKEN NUGGETS 4PCS', '34.000 VND', 43),
-	(8, 'monankem', './img/food8.jpg', 'PHÔ MAI QUE 2PSC', 'CHEESE STICK 2 PSC', '24.500 VND', 44),
-	(9, 'monankem', './img/food9.jpg', 'PHÔ MAI QUE 8PSC', 'CHEESE STICK 8PSC', '85.000 VND', 45),
-	(10, 'monankem', './img/burger10.jpg', 'KHOAI TÂY TẮM PHÔ MAI THỊT XÔNG KHÓI', 'CHEESY FRIES BACON', '44.000 VND', 46),
-	(11, 'monankem', './img/food11.jpg', 'KHOAI TÂY CHIÊN SIZE M', 'FRIES SIZE M', '28.000 VND', 47),
-	(12, 'monankem', './img/food12.jpg', 'KHOAI TÂY CHIÊN SIZE L', 'FRIES SIZE L', '38.000 VND', 48),
-	(1, 'thucuong', './img/water1.jpg', 'NƯỚC CAM', 'NƯỚC CAM', '26.000 VND', 49),
-	(2, 'thucuong', './img/water2.jpg', 'MILO', 'MILO', '26.500 VND', 50),
-	(3, 'thucuong', './img/water3.jpg', 'DASANI', 'DASANI', '24.000 VND', 51),
-	(4, 'thucuong', './img/water4.jpg', 'TRÀ CHANH', 'TRÀ CHANH', '26.500 VND', 52),
-	(5, 'thucuong', './img/water5.jpg', 'COCA', 'COCA', '24.000 VND', 53),
-	(6, 'thucuong', './img/water6.jpg', 'FANTA', 'FANTA', '24.000 VND', 54),
-	(7, 'thucuong', './img/water7.jpg', 'SPRITE', 'SPRITE', '24.000 VND', 55),
-	(8, 'thucuong', './img/water8.jpg', 'COCA LIGHT', 'COCA LIGHT', '26.000 VND', 56);
+-- Dumping data for table burgershop2.congthuc: ~52 rows (approximately)
+INSERT INTO `congthuc` (`maCongThuc`, `tenCongThuc`) VALUES
+	(1, 'ga1'),
+	(2, 'ga2'),
+	(3, 'ga3'),
+	(4, 'ga4'),
+	(5, 'ga5'),
+	(17, 'ga6'),
+	(18, 'ga7'),
+	(19, 'ga8'),
+	(20, 'ga9'),
+	(21, 'ga10'),
+	(22, 'ga11'),
+	(26, 'burger1'),
+	(27, 'burger2'),
+	(28, 'burger3'),
+	(29, 'burger4'),
+	(30, 'burger5'),
+	(31, 'burger6'),
+	(32, 'burger7'),
+	(33, 'burger8'),
+	(34, 'burger9'),
+	(35, 'burger10'),
+	(36, 'burger11'),
+	(37, 'burger12'),
+	(38, 'combo1'),
+	(39, 'combo2'),
+	(40, 'combo3'),
+	(41, 'combo4'),
+	(42, 'combo5'),
+	(43, 'combo6'),
+	(44, 'combo7'),
+	(45, 'combo8'),
+	(46, 'combo9'),
+	(47, 'combo10'),
+	(48, 'monankem1'),
+	(49, 'monankem2'),
+	(50, 'monankem3'),
+	(51, 'monankem4'),
+	(52, 'monankem5'),
+	(53, 'monankem6'),
+	(54, 'monankem7'),
+	(55, 'monankem8'),
+	(56, 'monankem9'),
+	(57, 'monankem10'),
+	(58, 'monankem11'),
+	(59, 'monankem12'),
+	(60, 'thucuong1'),
+	(61, 'thucuong2'),
+	(62, 'thucuong3'),
+	(63, 'thucuong4'),
+	(64, 'thucuong5'),
+	(65, 'thucuong6'),
+	(66, 'thucuong7'),
+	(67, 'thucuong8');
 
--- Dumping structure for table burgershop.users
-CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) DEFAULT NULL,
-  `email` varchar(100) DEFAULT NULL,
-  `phone_number` varchar(20) DEFAULT NULL,
-  `username` varchar(50) DEFAULT NULL,
+-- Dumping structure for procedure burgershop2.InsertGa
+DELIMITER //
+CREATE PROCEDURE `InsertGa`()
+BEGIN
+    DECLARE i INT DEFAULT 1;
+    WHILE i <= 8 DO
+        INSERT INTO CongThuc (tenCongThuc) VALUES (CONCAT('thucuong', i));
+        SET i = i + 1;
+    END WHILE;
+END//
+DELIMITER ;
+
+-- Dumping structure for table burgershop2.khachhang
+CREATE TABLE IF NOT EXISTS `khachhang` (
+  `maKhachHang` int(11) NOT NULL AUTO_INCREMENT,
+  `tenKhachHang` varchar(255) DEFAULT NULL,
+  `soDienThoai` varchar(20) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `tenDangNhap` varchar(255) DEFAULT NULL,
+  `matKhau` varchar(255) DEFAULT NULL,
+  `ngayDangKy` datetime DEFAULT current_timestamp(),
+  PRIMARY KEY (`maKhachHang`),
+  UNIQUE KEY `tenDangNhap` (`tenDangNhap`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping data for table burgershop2.khachhang: ~0 rows (approximately)
+
+-- Dumping structure for table burgershop2.kho
+CREATE TABLE IF NOT EXISTS `kho` (
+  `maNguyenLieu` int(11) NOT NULL,
+  `tenNguyenLieu` varchar(255) DEFAULT NULL,
+  `soLuong` int(11) DEFAULT NULL,
+  PRIMARY KEY (`maNguyenLieu`),
+  CONSTRAINT `kho_ibfk_1` FOREIGN KEY (`maNguyenLieu`) REFERENCES `nguyenlieu` (`maNguyenLieu`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping data for table burgershop2.kho: ~0 rows (approximately)
+
+-- Dumping structure for table burgershop2.lo
+CREATE TABLE IF NOT EXISTS `lo` (
+  `maLo` int(11) NOT NULL AUTO_INCREMENT,
+  `maPhieuNhap` int(11) DEFAULT NULL,
+  `soLuong` int(11) DEFAULT NULL,
+  `gia` float DEFAULT NULL,
+  PRIMARY KEY (`maLo`),
+  KEY `maPhieuNhap` (`maPhieuNhap`),
+  CONSTRAINT `lo_ibfk_1` FOREIGN KEY (`maPhieuNhap`) REFERENCES `phieunhap` (`maPhieuNhap`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping data for table burgershop2.lo: ~0 rows (approximately)
+
+-- Dumping structure for table burgershop2.loai
+CREATE TABLE IF NOT EXISTS `loai` (
+  `maLoai` int(11) NOT NULL AUTO_INCREMENT,
+  `tenLoai` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`maLoai`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping data for table burgershop2.loai: ~5 rows (approximately)
+INSERT INTO `loai` (`maLoai`, `tenLoai`) VALUES
+	(1, 'burger'),
+	(2, 'combo'),
+	(3, 'garan'),
+	(4, 'monankem'),
+	(5, 'thucuong');
+
+-- Dumping structure for table burgershop2.nguyenlieu
+CREATE TABLE IF NOT EXISTS `nguyenlieu` (
+  `maNguyenLieu` int(11) NOT NULL AUTO_INCREMENT,
+  `tenNguyenLieu` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`maNguyenLieu`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping data for table burgershop2.nguyenlieu: ~16 rows (approximately)
+INSERT INTO `nguyenlieu` (`maNguyenLieu`, `tenNguyenLieu`) VALUES
+	(1, 'bánh mì'),
+	(2, 'thịt bò'),
+	(3, 'cá'),
+	(4, 'thịt gà'),
+	(5, 'thịt heo'),
+	(6, 'phô mai'),
+	(7, 'cánh gà'),
+	(8, 'rong biển'),
+	(9, 'khoai tây'),
+	(10, 'nước cam'),
+	(11, 'nước suối'),
+	(12, 'trà chanh'),
+	(13, 'coca'),
+	(14, 'fanta'),
+	(15, 'sprite'),
+	(16, 'coca light');
+
+-- Dumping structure for table burgershop2.nhacungcap
+CREATE TABLE IF NOT EXISTS `nhacungcap` (
+  `maNCC` int(11) NOT NULL AUTO_INCREMENT,
+  `tenNCC` varchar(255) DEFAULT NULL,
+  `diaChi` varchar(255) DEFAULT NULL,
+  `soDienThoai` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`maNCC`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping data for table burgershop2.nhacungcap: ~0 rows (approximately)
+
+-- Dumping structure for table burgershop2.phieunhap
+CREATE TABLE IF NOT EXISTS `phieunhap` (
+  `maPhieuNhap` int(11) NOT NULL AUTO_INCREMENT,
+  `maNCC` int(11) DEFAULT NULL,
+  `ngayNhap` date DEFAULT NULL,
+  `tongGia` float DEFAULT NULL,
+  PRIMARY KEY (`maPhieuNhap`),
+  KEY `maNCC` (`maNCC`),
+  CONSTRAINT `phieunhap_ibfk_1` FOREIGN KEY (`maNCC`) REFERENCES `nhacungcap` (`maNCC`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping data for table burgershop2.phieunhap: ~0 rows (approximately)
+
+-- Dumping structure for table burgershop2.sanpham
+CREATE TABLE IF NOT EXISTS `sanpham` (
+  `maSanPham` int(11) NOT NULL AUTO_INCREMENT,
+  `tenSanPham` varchar(255) DEFAULT NULL,
+  `hinhAnh` varchar(255) DEFAULT NULL,
+  `moTa` varchar(255) DEFAULT NULL,
+  `maLoai` int(11) DEFAULT NULL,
+  `maCongThuc` int(11) DEFAULT NULL,
+  PRIMARY KEY (`maSanPham`),
+  KEY `maLoai` (`maLoai`),
+  KEY `maCongThuc` (`maCongThuc`),
+  CONSTRAINT `sanpham_ibfk_1` FOREIGN KEY (`maLoai`) REFERENCES `loai` (`maLoai`),
+  CONSTRAINT `sanpham_ibfk_2` FOREIGN KEY (`maCongThuc`) REFERENCES `congthuc` (`maCongThuc`)
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping data for table burgershop2.sanpham: ~56 rows (approximately)
+INSERT INTO `sanpham` (`maSanPham`, `tenSanPham`, `hinhAnh`, `moTa`, `maLoai`, `maCongThuc`) VALUES
+	(1, 'BURGER BÒ TEMPURA JR', './img/burger1.png', '+Burger Bò Tempura Jr (size vừa): bò nướng lửa hồng cùng tempura rau củ', 1, NULL),
+	(2, 'BURGER BÒ TEMPURA', './img/burger2.png', 'Burger Bò Tempura (size lớn): bò nướng lửa hồng và tempura rau củ', 1, NULL),
+	(3, 'BURGER BÒ NƯỚNG WHOPPER JR', './img/burger3.jpg', 'BURGER BÒ NƯỚNG WHOPPER JR', 1, NULL),
+	(4, 'BURGER CÁ', './img/burger4.jpg', 'BURGER CÁ', 1, NULL),
+	(5, 'Burger Bò Nướng Hành Chiên', './img/burger5.jpg', 'Burger Bò Nướng Hành Chiên', 1, NULL),
+	(6, 'BURGER GÀ GIÒN CAY', './img/burger6.jpg', 'BURGER GÀ GIÒN CAY', 1, NULL),
+	(7, 'BURGER GÀ NƯỚNG', './img/burger7.jpg', 'BURGER GÀ NƯỚNG', 1, NULL),
+	(8, 'Burger Bò Phô Mai', './img/burger8.jpg', 'Burger Bò Phô Mai', 1, NULL),
+	(9, 'BURGER BÒ THỊT HEO XÔNG KHÓI', './img/burger9.jpg', 'BURGER BÒ THỊT HEO XÔNG KHÓI', 1, NULL),
+	(10, 'BURGER 2 MIẾNG BÒ NƯỚNG', './img/burger10.jpg', 'BURGER 2 MIẾNG BÒ NƯỚNG', 1, NULL),
+	(11, 'WHOPPER BÒ NƯỚNG', './img/burger11.jpg', 'BURGER BÒ NƯỚNG WHOPPER', 1, NULL),
+	(12, 'BURGER 2 MIẾNG BÒ PHÔ MAI', './img/burger12.jpg', 'BURGER 2 MIẾNG BÒ PHÔ MAI', 1, NULL),
+	(13, 'COMBO CHIC\'N LOVER 1P', './img/chicken1.png', ' 2 Miếng Gà Giòn (cay/ không cay) hoặc 2 Cánh Gà BBQ + 1 Nước ngọt', 2, NULL),
+	(14, 'COMBO CHIC\'N LOVER 1P', './img/chicken2.jpg', '2 Miếng Gà Giòn (cay/ không cay) hoặc 2 Cánh Gà BBQ + 1 Burger Bò Phô Mai + 2 Nước ngọt', 2, NULL),
+	(15, 'COMBO BURGER BÒ TEMPURA JR(M)', './img/combo1.png', '1 Burger Bò Tempura Jr (size vừa) + 1 Khoai Tây Chiên (M)', 2, NULL),
+	(16, 'GÀ GIÒN CRISPY', './img/chicken4.jpg', '1 Miếng Gà Giòn Crispy (không cay)', 3, NULL),
+	(17, 'COMBO GÀ BBQ(3 MIẾNG)', './img/chicken5.jpg', 'Combo Gồm : 1 Nước (M) + 1 Khoai Tây Chiên (M) + 3 miếng gà BBQ', 3, NULL),
+	(18, 'COMBO GÀ RÁN GIÒN CAY(3 MIẾNG)', './img/chicken6.jpg', 'Combo Gồm : 1 Nước (M) + 1 Khoai Tây Chiên (M) + 3 miếng gà rán giòn cay', 3, NULL),
+	(19, 'COMBO GÀ BBQ(2 MIẾNG)', './img/chicken7.jpg', 'BURGER GÀ NƯỚNGCombo Gồm : 1 Nước (M) + 1 Khoai Tây (M) + 2 miếng gà BBQ', 3, NULL),
+	(20, 'COMBO GÀ GIÒN KHONG CAY(2 MIẾNG)', './img/chicken8.jpg', 'MAIN COURSE : 1 Nước + 2 miếng Gà Giòn không cay + 1 Khoai Tây Chiên (M)', 3, NULL),
+	(21, 'COMBO GÀ GIÒN CAY(2 MIẾNG)', './img/chicken9.jpg', 'Combo Gồm : 1 Nước (M) + 1 Khoai Tây (M) + 2 miếng gà rán giòn cay', 3, NULL),
+	(22, 'COMBO GÀ GIÒN KHÔNG CAY(3 MIẾNG)', './img/chicken10.jpg', 'MAIN COURSE : 1 Nước + 3 miếng Gà Giòn không cay + 1 Khoai Tây Chiên (M)', 3, NULL),
+	(23, 'Mix Wing 4pcs', './img/chicken11.jpg', 'Mix Wing 4pcs', 3, NULL),
+	(24, 'Mix Wing 6pcs', './img/chicken12.jpg', 'Mix Wing 6pcs', 3, NULL),
+	(25, 'COMBO FAMILY CHIC\'N LOVERS', './img/chicken3.jpg', '3 Miếng Gà Giòn (cay/ không cay) + 3 Cánh Gà BBQ + 2 Khoai Tây Chiên (L) + 3 Nước ngọt', 3, NULL),
+	(26, 'COMBO GÀ RÁN(M)', './img/combo2.jpg', '3 Miếng Gà + 1 Burger Zinger/Burger Tôm/Burger Phi-lê Gà Quay + 2 Lon Pepsi', 3, NULL),
+	(27, 'COMBO GÀ RÁN (L)', './img/combo3.jpg', '4 Miếng Gà + 1 Khoai tây chiên lớn / 2 Thanh Bí Phô-mai + 2 Pepsi Lon', 3, NULL),
+	(28, 'COMBO BURGER BÒ NƯỚNG HÀNH CHIÊNCHIÊN', './img/combo4.jpg', '1 Burger Bò Nướng Hành Chiên + 1 Khoai Tây Chiên (M) + 1 Nước ngọt', 2, NULL),
+	(29, 'COMBO BURGER BÒ PHÔ MAI(M)', './img/combo5.jpg', '1 Burger Bò Phô Mai (cỡ vừa) + Khoai Tây Chiên (M) + Nước ngọt', 2, NULL),
+	(30, 'COMBO BURGER GÀ GIÒN CAY', './img/combo6.jpg', '1 Burger Gà Giòn Cay + 1 Khoai Tây Chiên (M) + 1 Nước ngọt', 2, NULL),
+	(31, 'COMBO BURGER GÀ NƯỚNG', './img/combo7.jpg', '1 Burger Gà Nướng + 1 Khoai Tây Chiên (M) + 1 Nước ngọt', 2, NULL),
+	(32, 'COMBO BURGER BÒ THỊT HEO XÔNG KHÓI WHOPPER', './img/combo8.jpg', '1 Burger Bò Thịt Heo Xông Khói Sốt BBQ + 1 Khoai Tây Chiên (M) + 1 Nước ngọt', 2, NULL),
+	(33, 'COMBO BURGER 2 MIẾNG BÒ PHÔ MAI', './img/combo9.jpg', '1 Burger 2 Miếng Bò Phô Mai + 1 Khoai Tây Chiên (L) + 1 Nước ngọt', 2, NULL),
+	(34, 'COMBO BURGER BÒ TEMPURA (L)', './img/combo10.png', '1 Burger Bò Tempura (size lớn) + 1 Khoai Tây Chiên (M)', 2, NULL),
+	(35, 'COMBO BURGER BÒ TẮM PHÔ MAI(CỠ LỚN)', './img/combo11.jpg', '1 Burger Bò Tắm Phô Mai (cỡ lớn) + Khoai Tây Chiên (M) + Nước ngọt', 2, NULL),
+	(36, 'COMBO BURGER 2 MIẾNG BÒ + THỊT XÔNG KHÓI WHOPPER', './img/combo12.jpg', '1 Burger 2 Miếng Bò Phô Mai Thịt Xông Khói WHOPPER + 1 Khoai Tây Chiên (M) + 1 Nước ngọt', 2, NULL),
+	(37, 'GÀ CUỘN RONG BIỂN 4PCS', './img/food1.jpg', 'SEAWEED CHICKEN ROLL 4PCS', 4, NULL),
+	(38, 'GÀ CUỘN RONG BIỂN 6PCS', './img/food2.jpg', 'SEAWEED CHICKEN ROLL 6PCS', 4, NULL),
+	(39, 'KHOAI TÂY TẮM PHÔ MAI', './img/food3.jpg', 'CHEESY FRIES', 4, NULL),
+	(40, 'CÁ CUỘN RONG BIỂN 2PCS', './img/food4.jpg', 'SEAWEED FISH STICK 2PCS', 4, NULL),
+	(41, 'CÁ CUỘN RONG BIỂN 4PCS', './img/food5.jpg', 'SEAWEED FISH STICK 4PCS', 4, NULL),
+	(42, 'GÀ NUGGETS 3PCS', './img/food6.jpg', 'CHICKEN NUGGETS 3PCS', 4, NULL),
+	(43, 'GÀ NUGGETS 4PCS', './img/food7.jpg', 'CHICKEN NUGGETS 4PCS', 4, NULL),
+	(44, 'PHÔ MAI QUE 2PSC', './img/food8.jpg', 'CHEESE STICK 2 PSC', 4, NULL),
+	(45, 'PHÔ MAI QUE 8PSC', './img/food9.jpg', 'CHEESE STICK 8PSC', 4, NULL),
+	(46, 'KHOAI TÂY TẮM PHÔ MAI THỊT XÔNG KHÓI', './img/burger10.jpg', 'CHEESY FRIES BACON', 4, NULL),
+	(47, 'KHOAI TÂY CHIÊN SIZE M', './img/food11.jpg', 'FRIES SIZE M', 4, NULL),
+	(48, 'KHOAI TÂY CHIÊN SIZE L', './img/food12.jpg', 'FRIES SIZE L', 4, NULL),
+	(49, 'NƯỚC CAM', './img/water1.jpg', 'NƯỚC CAM', 5, NULL),
+	(50, 'MILO', './img/water2.jpg', 'MILO', 5, NULL),
+	(51, 'DASANI', './img/water3.jpg', 'DASANI', 5, NULL),
+	(52, 'TRÀ CHANH', './img/water4.jpg', 'TRÀ CHANH', 5, NULL),
+	(53, 'COCA', './img/water5.jpg', 'COCA', 5, NULL),
+	(54, 'FANTA', './img/water6.jpg', 'FANTA', 5, NULL),
+	(55, 'SPRITE', './img/water7.jpg', 'SPRITE', 5, NULL),
+	(56, 'COCA LIGHT', './img/water8.jpg', 'COCA LIGHT', 5, NULL);
+
+-- Dumping structure for table burgershop2.taikhoan
+CREATE TABLE IF NOT EXISTS `taikhoan` (
+  `maTaiKhoan` int(11) NOT NULL AUTO_INCREMENT,
+  `tenDangNhap` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
-  `dateSignup` date DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `email` (`email`),
-  UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  PRIMARY KEY (`maTaiKhoan`),
+  UNIQUE KEY `tenDangNhap` (`tenDangNhap`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table burgershop.users: ~3 rows (approximately)
-INSERT INTO `users` (`id`, `name`, `email`, `phone_number`, `username`, `password`, `dateSignup`) VALUES
-	(1, 'Hà Trọng Nghĩa', 'admin@gmail.com', '0921465660', 'admin', 'admin', '2024-11-30'),
-	(6, 'nghia haa', 'kafknj243@gmail.com', '0234134444', 'Nghiaha111', 'Nghialamgi00*', '2024-12-10'),
-	(7, 'be nhi', 'jbfns32@gmail.com', '0921543220', 'admin234', 'Nghialamgi00*', '2024-12-10');
+-- Dumping data for table burgershop2.taikhoan: ~0 rows (approximately)
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
