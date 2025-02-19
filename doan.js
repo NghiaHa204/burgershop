@@ -12,6 +12,7 @@ function open_DKSD() {
         DKSD.style.display = 'none'
         return;
     }
+    nhap_kho_close()
     quan_ly_user_close()
     close_tab()
     close_cart_tab()
@@ -39,6 +40,7 @@ function open_CSBM() {
         CSBM.style.display = 'none'
         return;
     }
+    nhap_kho_close()
     quan_ly_user_close()
     close_tab()
     close_cart_tab()
@@ -60,6 +62,7 @@ function open_CSVC() {
         CSVC.style.display = 'none'
         return;
     }
+    nhap_kho_close()
     quan_ly_user_close()
     close_tab()
     close_cart_tab()
@@ -105,11 +108,11 @@ function showSlides() {
 //menu phân loại món trên giao diện user
 function showMenu() {
     var List = [
-        '<li class="items" id="items_burger" onclick="hien_thi_san_pham(`burger`)"><a href="#"><img src="./img/burger.jpg" class="thumnail"><p>Burger</p></a></li>',
-        '<li class="items" id="items_combo" onclick="hien_thi_san_pham(`combo`)"><a href="#"><img src="./img/combo.jpg" class="thumnail"><p>Combo</p></a></li>',
-        '<li class="items" id="items_chicken" onclick="hien_thi_san_pham(`garan`)"><a href="#"><img src="./img/garan.jpg" class="thumnail"><p>Gà rán</p></a></li>',
-        '<li class="items" id="items_food" onclick="hien_thi_san_pham(`monankem`)"><a href="#"><img src="./img/monankem.jpg" class="thumnail" id="monankem"><p>Món ăn kèm</p></a></li>',
-        '<li class="items" id="items_water"onclick="hien_thi_san_pham(`thucuong`)"><a href="#"><img src="./img/thucuong.jpg" class="thumnail" ><p>Thức uống</p></a></li>',
+        '<li class="items" id="items_burger" onclick="hien_thi_san_pham(`1`)"><a href="#"><img src="./img/burger.jpg" class="thumnail"><p>Burger</p></a></li>',
+        '<li class="items" id="items_combo" onclick="hien_thi_san_pham(`2`)"><a href="#"><img src="./img/combo.jpg" class="thumnail"><p>Combo</p></a></li>',
+        '<li class="items" id="items_chicken" onclick="hien_thi_san_pham(`3`)"><a href="#"><img src="./img/garan.jpg" class="thumnail"><p>Gà rán</p></a></li>',
+        '<li class="items" id="items_food" onclick="hien_thi_san_pham(`4`)"><a href="#"><img src="./img/monankem.jpg" class="thumnail" id="monankem"><p>Món ăn kèm</p></a></li>',
+        '<li class="items" id="items_water"onclick="hien_thi_san_pham(`5`)"><a href="#"><img src="./img/thucuong.jpg" class="thumnail" ><p>Thức uống</p></a></li>',
     ];
     var content = "";
     for (var i = 0; i < List.length; i++) {
@@ -449,6 +452,7 @@ function nameNlogout() {
         `<li class="nav_admin_li" onclick="quan_ly_san_pham('all')" id="quan_ly_san_pham"><a href="#">Quản lý sản phẩm</a></li>` +
         `<li class="nav_admin_li"><a href="#" onclick="open_bill_tab()" id="quan_ly_don_hang" >Quản lý đơn hàng</a></li>` +
         `<li class="nav_admin_li"><a href="#" onclick="open_user_tab()" id="quan_ly_user" >Quản lý khách hàng</a></li>` +
+        `<li class="nav_admin_li"><a href="#" onclick="nhap_kho_open()" id="nhap_kho" >Nhập kho</a></li>` +
         `<li class="nav_admin_li"><a href="#" onclick="thong_ke_open()" id="thong_ke" >Thống Kê</a></li>` +
         `<li class="nav_admin_li" id="nameUser" onclick="nameNlogout()">${user.name}<button id="btnLogout" onclick="logOut()">Đăng xuất</button></li>`;
 
@@ -475,8 +479,11 @@ async function lay_du_lieu() {
             throw new Error('Lỗi khi lấy dữ liệu từ API');
         }
         const data = await response.json();  // Chuyển đổi phản hồi thành JSON
+        
         window.productData = data;  // Lưu dữ liệu vào biến global
+        console.log(data);
         console.log('Dữ liệu đã được lấy từ API.');
+
     } catch (error) {
         console.error('Lỗi khi đọc dữ liệu từ API:', error);
     }
@@ -566,6 +573,7 @@ async function hien_thi_san_pham(type) {
         page_number_deal = 1;
     }
 
+
     close_DKSD_CSBM_CSVC();
     sap_xep_product();
     close_tab();
@@ -593,17 +601,18 @@ async function hien_thi_san_pham(type) {
 
         // Hiển thị các sản phẩm
         item.forEach((product, i) => {
+            
             const addcontent = document.createElement('li');
             addcontent.classList.add('menu_list_li');
             addcontent.innerHTML = `
-                <div class="menu_list_product" id="${product.type + product.id}">
+                <div class="menu_list_product" id="${ product.maSanPham}">
                     <a href="#" class="menu_list_img">
-                        <img src="${product.image}" onclick="get_order()" alt="${product.title}">
+                        <img src="${product.hinhAnh}" onclick="get_order()" alt="${product.tenSanPham}">
                     </a>
-                    <h4 class="menu_list_title"><a href="#">${product.title.toUpperCase()}</a></h4>
-                    <p class="menu_list_decrible">${product.content}</p>
+                    <h4 class="menu_list_title"><a href="#">${product.tenSanPham.toUpperCase()}</a></h4>
+                    <p class="menu_list_decrible">${product.moTa}</p>
                     <div class="menu_list_bottom">
-                        <h3 class="menu_price">${product.price}</h3>
+                        <h3 class="menu_price">price</h3>
                         <div class="menu_action">
                             <button type="button" title="Đặt mua" class="menu_action_button" onclick="get_order()"></button>
                         </div>
@@ -633,24 +642,27 @@ async function hien_thi_san_pham(type) {
         var page = parseInt(page_number_deal);
         close_search_input();
         let menuList = document.querySelector('#hoanh_chicken .page_main_container .menu_list_ul');
-        item = data.filter(product => product.type === type);  // Lọc theo loại
+   
+        item = data.filter(product => product.maLoai == type);  // Lọc theo loại
+       
         number_of_each_item = item.length;
-
+        
         menuList.innerHTML = "";  // Xóa hết nội dung cũ trước khi thêm mới
 
         // Hiển thị các sản phẩm
         item.forEach((product, i) => {
+         
             const addcontent = document.createElement('li');
             addcontent.classList.add('menu_list_li');
             addcontent.innerHTML = `
-                <div class="menu_list_product" id="${product.type + product.id}">
+                <div class="menu_list_product" id="${product.maSanPham}">
                     <a href="#" class="menu_list_img">
-                        <img src="${product.image}" onclick="get_order()" alt="${product.title}">
+                        <img src="${product.hinhAnh}" onclick="get_order()" alt="${product.tenSanPham}">
                     </a>
-                    <h4 class="menu_list_title"><a href="#">${product.title.toUpperCase()}</a></h4>
-                    <p class="menu_list_decrible">${product.content}</p>
+                    <h4 class="menu_list_title"><a href="#">${product.tenSanPham.toUpperCase()}</a></h4>
+                    <p class="menu_list_decrible">${product.moTa}</p>
                     <div class="menu_list_bottom">
-                        <h3 class="menu_price">${product.price}</h3>
+                        <h3 class="menu_price">price</h3>
                         <div class="menu_action">
                             <button type="button" title="Đặt mua" class="menu_action_button" onclick="get_order()"></button>
                         </div>
@@ -1392,6 +1404,8 @@ async function quan_ly_san_pham(type) {
     close_add_tab();
     showMenu_admin();
     close_DKSD_CSBM_CSVC();
+    close_footer();
+    nhap_kho_close()
 
     // Đảm bảo chuyển đổi type sang chuỗi và so sánh
     if (currentType !== type.toString()) {
@@ -1872,6 +1886,8 @@ function open_user_tab() {
     quan_ly_san_pham_close();
     thong_ke_close();
     close_bill_tab();
+    close_footer();
+    nhap_kho_close()
 }
 //xem thông tin người dùng
 async function showUserList() {
@@ -2128,6 +2144,7 @@ async function open_bill_tab() {
     quan_ly_user_close();
     quan_ly_san_pham_close();
     thong_ke_close();
+    nhap_kho_close()
 
     document.getElementById("page_bill").style.display = "block";
 
@@ -2462,12 +2479,38 @@ function checkOpenTab() {
 // function close_bill_tab() {
 //     document.getElementById("page_bill").style.display = "none";
 // }
-//thống kê 
-function thong_ke_open() {
-    close_DKSD_CSBM_CSVC()
+//Nhập kho
+function nhap_kho_close(){
+    nhap_kho_edit_close();
+    document.getElementById("active_nhapkho").style.display = "none";
+}
+function nhap_kho_edit_close(){
+    document.getElementById("active_add_nhapkho").style.display = "none";
+    document.getElementById("active_nhapkho").style.display = "block";
+}
+function nhap_kho_edit(){
+    document.getElementById("active_nhapkho").style.display = "none";
+    document.getElementById("active_add_nhapkho").style.display = "grid";
+}
+
+function nhap_kho_open(){
+    close_footer();
+    close_DKSD_CSBM_CSVC();
     close_bill_tab();
     quan_ly_san_pham_close();
     quan_ly_user_close();
+    thong_ke_close();
+    document.getElementById("active_nhapkho").style.display = "block";
+}
+
+//thống kê 
+function thong_ke_open() {
+    close_footer();
+    close_DKSD_CSBM_CSVC();
+    close_bill_tab();
+    quan_ly_san_pham_close();
+    quan_ly_user_close();
+    nhap_kho_close();
     document.getElementById("page_dt").style.display = "block";
 
 }
@@ -2579,4 +2622,3 @@ function doanh_thu_trong_ngay() {
 function doanh_thu_trong_ngay_close() {
     document.getElementById("doanh_thu_trong_ngay").style.display = "none"
 }
-

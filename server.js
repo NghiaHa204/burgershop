@@ -6,7 +6,7 @@ const multer = require('multer');
 const path = require('path');
 const app = express();
 const port = 3000;
-
+const db2 = require('./db2');
 // Cấu hình lại giới hạn của payload
 app.use(express.json({ limit: '50mb' }));  // Tăng giới hạn lên 50MB (hoặc phù hợp với yêu cầu của bạn)
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
@@ -95,9 +95,9 @@ app.post('/api/login', (req, res) => {
 
 // API lấy dữ liệu từ bảng menu_items
 app.get('/api/menuItems', (req, res) => {
-    const query = 'SELECT * FROM menu_items';  // Câu lệnh SQL lấy tất cả món ăn từ bảng menu_items
+    const query = 'SELECT * FROM sanpham';  // Câu lệnh SQL lấy tất cả món ăn từ bảng menu_items
 
-    db.query(query, (err, results) => {  // Sửa từ 'connection.query' thành 'db.query'
+    db2.query(query, (err, results) => {  // Sửa từ 'connection.query' thành 'db.query'
         if (err) {
             return res.status(500).json({ error: 'Lỗi khi lấy dữ liệu món ăn từ MySQL' });
         }

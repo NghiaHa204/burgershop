@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="doan.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.css">
     <script src="doan.js" defer></script>
+    <script src="test1.js" defer></script>
     <title>
         BurgerG15
     </title>
@@ -315,42 +316,106 @@
                 <button id="right_product" onclick="page_next_product()"></button>
             </div>
             <div id="page_productForm" style="display: none;">
-                <button class="productForm_edit_close" onclick="close_add_tab()"><img src="./img/close.png"
+                <div class="modal-content">
+                    <h2>THÊM MỚI SẢN PHẨM</h2>
+                    <button class="productForm_edit_close" onclick="close_add_tab()"><img src="./img/close.png"
                         style="width: 20px; height:20px;" alt="close">
-                </button>
-                <h1>THÊM SẢN PHẨM</h1>
-                <form id="productForm">
-                    <label>Loại Sản Phẩm Cần Thêm</label>
-                    <select name="choose_product" id="choose_product" class="choose_product"
-                        onchange=" set_id_product()">
-                        <option value="burger">BurGer</option>
-                        <option value="combo">ComBo</option>
-                        <option value="garan">Gà Rán</option>
-                        <option value="monankem">Món Ăn Kèm</option>
-                        <option value="thucuong">Thức Uống</option>
-                    </select>
-                    <label for="productId">ID:</label>
-                    <input type="text" id="productId" name="productId">
-                    <small id="productId_small"></small>
-
-                    <label for="productImage">Image URL:</label>
-                    <input type="file" id="productImage" name="productImage">
-                    <small id="productImage_small"></small>
-
-                    <label for="productTitle">Title:</label>
-                    <input type="text" id="productTitle" name="productTitle">
-                    <small id="productTitle_small"></small>
-
-                    <label for="productContent">Content:</label>
-                    <textarea id="productContent" name="productContent"></textarea>
-                    <small id="productContent_small"></small>
-
-                    <label for="productPrice">Price:</label>
-                    <input type="text" id="productPrice" name="productPrice">
-                    <small id="productPrice_small"></small>
-
-                    <button type="button" onclick="add_item()" class="productForm_add_button">Add Product</button>
-                </form>
+                    </button>
+                    <div class="form-container">
+                        <div class="image-upload">
+                            <div class="image-preview">
+                                <img src="./img/burger11.jpg" alt="Hình ảnh sản phẩm">
+                            </div>
+                            <div class="upload-container">
+                                <input type="file" id="productImage" name="productImage" class="hidden-file-input">
+                                <label for="productImage" class="custom-upload-btn">Chọn Ảnh</label>
+                            </div>                    
+                        </div>
+                        <div class="form-inputs">
+                            <label for="productId">Mã món ăn</label>
+                            <input type="text" id="productId" placeholder="Nhập mã món ăn">
+                            <small id="productId_small"></small>
+        
+                            <label for="productTitle">Tên món ăn</label>
+                            <input type="text" id="productTitle" placeholder="Nhập tên món ăn">
+                            <small id="productTitle_small"></small>
+                            
+                            <label for="choose_product">Chọn món</label>
+                            <div class="choose_product">
+                                <select id="choose_product">
+                                    <option value="burger">Burger</option>
+                                    <option value="garan">Gà rán</option>
+                                    <option value="combo">Combo</option>
+                                    <option value="monankem">Món ăn kèm</option>
+                                    <option value="thucuong">Thức uống</option>
+                                </select>
+                                <button class="recipe-btn">📜 Công thức</button>
+                            </div>                    
+        
+                            <label for="productPrice">Giá bán</label>
+                            <input type="text" id="productPrice" placeholder="Nhập giá bán" name="productPrice">
+                            <small id="productPrice_small"></small>
+        
+                            <label for="productContent">Mô tả</label>
+                            <textarea id="productContent" placeholder="Nhập mô tả món ăn..." name="productPrice"></textarea>
+                            <small id="productPrice_small"></small>
+        
+                            <button class="add-btn">➕ THÊM MÓN</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="container-recipe" style="display: none;">
+                <!-- Danh sách nguyên liệu -->
+                <div class="list-modal">
+                    <h3>📜 Nguyên liệu</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Hình ảnh</th>
+                                <th>Tên nguyên liệu</th>
+                                <th>Số lượng</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><img src="./img/burger.jpg" alt="Nguyên liệu 20"></td>
+                                <td>Gà</td>
+                                <td>500g</td>
+                            </tr>
+                        </tbody>
+                    </table>        
+                </div>
+            
+                <!-- Giỏ hàng -->
+                <div class="recipe-modal">
+                    <div class="recipe-header">
+                        <h2>📜 Công thức</h2>
+                        <button class="close-recipe">✖</button>
+                    </div>
+            
+                    <div class="recipe-items">
+                        <div class="recipe-item">
+                            <div class="item-info">
+                                <p class="item-name">Đậu que</p>
+                            </div>
+                            <div class="recipe-actions">
+                                <button class="remove-btn">🗑️ Xóa</button>
+                                <div class="quantity">
+                                    <button class="qty-btn">-</button>
+                                    <span class="qty-number">1</span>
+                                    <button class="qty-btn">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="recipe-footer">
+                        <div class="recipe-buttons">
+                            <button class="confirm">Xác nhận</button>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div id="page_productForm_edit" style="display: none;">
                 <button class="productForm_edit_close" onclick="close_edit_tab()"><img src="./img/close.png"
@@ -421,6 +486,513 @@
 
 
                 </form>
+            </div>
+        </div>
+    </div>
+    <div class="page-nhaphang">
+        <div id="active_nhapkho" style="display: none;">
+            <div class="toolbar-kho">
+                <div class="searchitem">
+                    <input type="text" placeholder="Tìm theo tên or mã">
+                    <select>
+                        <option>Tất cả</option>
+                    </select>
+                    <button class="reset-button">Reset</button>
+                </div>
+                <div class="actions">
+                    <button id="add-button" onclick="nhap_kho_edit()">Thêm phiếu</button>
+                    <button id="view-button">Xem phiếu</button>
+                    <button id="delete-button">Hủy phiếu</button>
+                    <button id="export-button">Xuất</button>
+                </div>
+            </div>
+    
+            <div class="mainitem">
+                <div class="filters">
+                    <div class="filter-group">
+                        <label>Nhà cung cấp</label>
+                        <select>
+                            <option>Tất cả</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Từ ngày</label>
+                        <input type="date">
+                    </div>
+                    <div class="filter-group">
+                        <label>Đến ngày</label>
+                        <input type="date">
+                    </div>
+                    <div class="filter-group">
+                        <label>Từ số tiền (VND)</label>
+                        <input type="number" value="0">
+                    </div>
+                    <div class="filter-group">
+                        <label>Đến số tiền (VND)</label>
+                        <input type="number" value="1000000000">
+                    </div>
+                </div>
+        
+                <div class="table-container-kho">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Mã phiếu nhập</th>
+                                <th>Thời gian tạo</th>
+                                <th>Nhà cung cấp</th>
+                                <th>Tổng tiền</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>PN001</td>
+                                <td>2024-02-01 08:30</td>
+                                <td>Công ty A</td>
+                                <td>5,000,000 VND</td>
+                            </tr>
+                            <tr>
+                                <td>PN002</td>
+                                <td>2024-02-02 09:15</td>
+                                <td>Công ty B</td>
+                                <td>3,200,000 VND</td>
+                            </tr>
+                            <tr>
+                                <td>PN003</td>
+                                <td>2024-02-03 10:45</td>
+                                <td>Công ty C</td>
+                                <td>7,800,000 VND</td>
+                            </tr>
+                            <tr>
+                                <td>PN004</td>
+                                <td>2024-02-04 14:20</td>
+                                <td>Công ty D</td>
+                                <td>6,500,000 VND</td>
+                            </tr>
+                            <tr>
+                                <td>PN005</td>
+                                <td>2024-02-05 16:05</td>
+                                <td>Công ty E</td>
+                                <td>9,000,000 VND</td>
+                            </tr>
+                            <tr>
+                                <td>PN006</td>
+                                <td>2024-02-06 11:00</td>
+                                <td>Công ty F</td>
+                                <td>4,700,000 VND</td>
+                            </tr>
+                            <tr>
+                                <td>PN007</td>
+                                <td>2024-02-07 13:10</td>
+                                <td>Công ty G</td>
+                                <td>6,200,000 VND</td>
+                            </tr>
+                            <tr>
+                                <td>PN008</td>
+                                <td>2024-02-08 09:50</td>
+                                <td>Công ty H</td>
+                                <td>2,900,000 VND</td>
+                            </tr>
+                            <tr>
+                                <td>PN009</td>
+                                <td>2024-02-09 17:30</td>
+                                <td>Công ty I</td>
+                                <td>8,100,000 VND</td>
+                            </tr>
+                            <tr>
+                                <td>PN010</td>
+                                <td>2024-02-10 12:40</td>
+                                <td>Công ty J</td>
+                                <td>5,600,000 VND</td>
+                            </tr>
+                            <tr>
+                                <td>PN011</td>
+                                <td>2024-02-11 15:20</td>
+                                <td>Công ty K</td>
+                                <td>4,200,000 VND</td>
+                            </tr>
+                            <tr>
+                                <td>PN012</td>
+                                <td>2024-02-12 08:00</td>
+                                <td>Công ty L</td>
+                                <td>7,300,000 VND</td>
+                            </tr>
+                            <tr>
+                                <td>PN013</td>
+                                <td>2024-02-13 10:25</td>
+                                <td>Công ty M</td>
+                                <td>6,800,000 VND</td>
+                            </tr>
+                            <tr>
+                                <td>PN014</td>
+                                <td>2024-02-14 14:55</td>
+                                <td>Công ty N</td>
+                                <td>3,900,000 VND</td>
+                            </tr>
+                            <tr>
+                                <td>PN015</td>
+                                <td>2024-02-15 11:45</td>
+                                <td>Công ty O</td>
+                                <td>9,500,000 VND</td>
+                            </tr>
+                            <tr>
+                                <td>PN016</td>
+                                <td>2024-02-16 16:15</td>
+                                <td>Công ty P</td>
+                                <td>5,400,000 VND</td>
+                            </tr>
+                            <tr>
+                                <td>PN017</td>
+                                <td>2024-02-17 13:05</td>
+                                <td>Công ty Q</td>
+                                <td>6,000,000 VND</td>
+                            </tr>
+                            <tr>
+                                <td>PN018</td>
+                                <td>2024-02-18 09:30</td>
+                                <td>Công ty R</td>
+                                <td>7,700,000 VND</td>
+                            </tr>
+                            <tr>
+                                <td>PN019</td>
+                                <td>2024-02-19 18:00</td>
+                                <td>Công ty S</td>
+                                <td>8,500,000 VND</td>
+                            </tr>
+                            <tr>
+                                <td>PN020</td>
+                                <td>2024-02-20 14:10</td>
+                                <td>Công ty T</td>
+                                <td>3,600,000 VND</td>
+                            </tr>
+                        </tbody>                        
+                    </table>
+                </div>
+            </div>
+            
+        </div>
+        <div id="active_add_nhapkho" style="display: none;">
+            <button class="kho_Form_edit_close" onclick="nhap_kho_edit_close()"><img src="./img/close.png"
+                style="width: 20px; height:20px;" alt="close">
+            </button>
+            <div id="left-panel">
+                <div class="search-box">
+                    <input type="text" placeholder="Tìm theo tên or mã">
+                    <button class="search-button">Tìm cơ bản</button>
+                </div>
+                <div class="kho-list">
+                    <table class="kho-table">
+                        <thead>
+                            <tr>
+                                <th>Mã nguyên liệu</th>
+                                <th>Tên nguyên liệu</th>
+                                <th>Tổng số lượng</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tbody>
+                                <tr>
+                                    <td>NL001</td>
+                                    <td>Bột mì</td>
+                                    <td>500 kg</td>
+                                </tr>
+                                <tr>
+                                    <td>NL002</td>
+                                    <td>Đường trắng</td>
+                                    <td>300 kg</td>
+                                </tr>
+                                <tr>
+                                    <td>NL003</td>
+                                    <td>Muối</td>
+                                    <td>200 kg</td>
+                                </tr>
+                                <tr>
+                                    <td>NL004</td>
+                                    <td>Dầu ăn</td>
+                                    <td>400 lít</td>
+                                </tr>
+                                <tr>
+                                    <td>NL005</td>
+                                    <td>Sữa tươi</td>
+                                    <td>600 lít</td>
+                                </tr>
+                                <tr>
+                                    <td>NL006</td>
+                                    <td>Trứng gà</td>
+                                    <td>1,000 quả</td>
+                                </tr>
+                                <tr>
+                                    <td>NL007</td>
+                                    <td>Bột cacao</td>
+                                    <td>250 kg</td>
+                                </tr>
+                                <tr>
+                                    <td>NL008</td>
+                                    <td>Phô mai</td>
+                                    <td>150 kg</td>
+                                </tr>
+                                <tr>
+                                    <td>NL009</td>
+                                    <td>Sốt mayonnaise</td>
+                                    <td>180 lít</td>
+                                </tr>
+                                <tr>
+                                    <td>NL010</td>
+                                    <td>Hạt tiêu</td>
+                                    <td>75 kg</td>
+                                </tr>
+                                <tr>
+                                    <td>NL011</td>
+                                    <td>Bơ thực vật</td>
+                                    <td>120 kg</td>
+                                </tr>
+                                <tr>
+                                    <td>NL012</td>
+                                    <td>Bột nở</td>
+                                    <td>90 kg</td>
+                                </tr>
+                                <tr>
+                                    <td>NL013</td>
+                                    <td>Nước cốt dừa</td>
+                                    <td>350 lít</td>
+                                </tr>
+                                <tr>
+                                    <td>NL014</td>
+                                    <td>Thịt bò</td>
+                                    <td>800 kg</td>
+                                </tr>
+                                <tr>
+                                    <td>NL015</td>
+                                    <td>Thịt gà</td>
+                                    <td>900 kg</td>
+                                </tr>
+                                <tr>
+                                    <td>NL016</td>
+                                    <td>Rau xà lách</td>
+                                    <td>500 kg</td>
+                                </tr>
+                                <tr>
+                                    <td>NL017</td>
+                                    <td>Cà rốt</td>
+                                    <td>450 kg</td>
+                                </tr>
+                                <tr>
+                                    <td>NL018</td>
+                                    <td>Hành tây</td>
+                                    <td>300 kg</td>
+                                </tr>
+                                <tr>
+                                    <td>NL019</td>
+                                    <td>Ớt chuông</td>
+                                    <td>200 kg</td>
+                                </tr>
+                                <tr>
+                                    <td>NL020</td>
+                                    <td>Mì sợi</td>
+                                    <td>1,200 kg</td>
+                                </tr>
+                            </tbody>                            
+                        </tbody>
+                    </table>
+                    
+                </div>
+                <div class="button_actions">
+                    <button id="button-edit-kho">Sửa</button>
+                    <button id="button-delete-kho">Xóa</button>
+                </div>
+            </div>
+    
+            <div class="right-panel">
+                <div class="form-group">
+                    <label>Mã nguyên liệu đã chọn:</label>
+                    <input type="text">
+                </div>
+                <div class="form-group">
+                    <label>Tên nguyên liệu đã chọn:</label>
+                    <input type="text">
+                </div>
+                <div class="form-group">
+                    <label>Hiện có trong kho:</label>
+                    <input type="text">
+                </div>
+                <div class="form-group">
+                    <label>Nhập số lượng thêm:</label>
+                    <input type="text">
+                </div>
+                <div class="form-group">
+                    <label>Nhập đơn giá:</label>
+                    <input type="text">
+                </div>
+                <button class="add-button">Thêm</button>
+    
+                <div class="supplier-employee">
+                    <div class="form-group">
+                        <label>Chọn nhà cung cấp:</label>
+                        <select>
+                        </select>
+                    </div>
+                </div>
+    
+                <div class="total">
+                    <span>TỔNG TIỀN:</span>
+                </div>
+                <button class="import-button">NHẬP HÀNG</button>
+            </div>
+    
+            <div class="bottom-panel">
+                <h3>Thông tin nguyên liệu đã được chọn, để thêm vào phiếu nhập:</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Mã nguyên liêu</th>
+                            <th>Tên nguyên liệu</th>
+                            <th>Đơn giá nhập</th>
+                            <th>Số lượng nhập</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>NL001</td>
+                            <td>Bột mì</td>
+                            <td>15,000</td>
+                            <td>50</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>NL002</td>
+                            <td>Đường</td>
+                            <td>20,000</td>
+                            <td>30</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>NL003</td>
+                            <td>Muối</td>
+                            <td>10,000</td>
+                            <td>40</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>NL004</td>
+                            <td>Sữa tươi</td>
+                            <td>25,000</td>
+                            <td>20</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>NL005</td>
+                            <td>Bơ</td>
+                            <td>50,000</td>
+                            <td>15</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>NL006</td>
+                            <td>Trứng gà</td>
+                            <td>5,000</td>
+                            <td>100</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>NL007</td>
+                            <td>Bột nở</td>
+                            <td>18,000</td>
+                            <td>25</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>NL008</td>
+                            <td>Vanilla</td>
+                            <td>30,000</td>
+                            <td>10</td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>NL009</td>
+                            <td>Bột cacao</td>
+                            <td>45,000</td>
+                            <td>12</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>NL010</td>
+                            <td>Nước cốt dừa</td>
+                            <td>22,000</td>
+                            <td>18</td>
+                        </tr>
+                        <tr>
+                            <td>11</td>
+                            <td>NL011</td>
+                            <td>Mật ong</td>
+                            <td>35,000</td>
+                            <td>8</td>
+                        </tr>
+                        <tr>
+                            <td>12</td>
+                            <td>NL012</td>
+                            <td>Bột gạo</td>
+                            <td>12,000</td>
+                            <td>35</td>
+                        </tr>
+                        <tr>
+                            <td>13</td>
+                            <td>NL013</td>
+                            <td>Nước lọc</td>
+                            <td>1,000</td>
+                            <td>500</td>
+                        </tr>
+                        <tr>
+                            <td>14</td>
+                            <td>NL014</td>
+                            <td>Dầu ăn</td>
+                            <td>40,000</td>
+                            <td>25</td>
+                        </tr>
+                        <tr>
+                            <td>15</td>
+                            <td>NL015</td>
+                            <td>Hành tím</td>
+                            <td>15,000</td>
+                            <td>20</td>
+                        </tr>
+                        <tr>
+                            <td>16</td>
+                            <td>NL016</td>
+                            <td>Tỏi</td>
+                            <td>18,000</td>
+                            <td>22</td>
+                        </tr>
+                        <tr>
+                            <td>17</td>
+                            <td>NL017</td>
+                            <td>Ớt bột</td>
+                            <td>28,000</td>
+                            <td>15</td>
+                        </tr>
+                        <tr>
+                            <td>18</td>
+                            <td>NL018</td>
+                            <td>Tiêu</td>
+                            <td>35,000</td>
+                            <td>10</td>
+                        </tr>
+                        <tr>
+                            <td>19</td>
+                            <td>NL019</td>
+                            <td>Bột chiên xù</td>
+                            <td>22,000</td>
+                            <td>30</td>
+                        </tr>
+                        <tr>
+                            <td>20</td>
+                            <td>NL020</td>
+                            <td>Bột chiên giòn</td>
+                            <td>20,000</td>
+                            <td>25</td>
+                        </tr>
+                    </tbody>                    
+                </table>
             </div>
         </div>
     </div>
@@ -550,6 +1122,7 @@
             </table>
         </div>
     </div>
+
     <div class="box_bill" id="page_bill" style="display: none;">
         <div class="quan_ly_don_hang_sap_xep_tang" onclick="sap_xep_theo_ngay_tang()">
             <img src="./img/arrow-up-square-fill.svg" alt="add_item">

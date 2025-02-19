@@ -1365,60 +1365,368 @@ a {
 }
 
 #choose_product {
-    height: 30px;
+    height: 40px;
     margin-bottom: 10px;
 }
 
-
-
 #page_productForm {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    background: white;
+    width: 1000px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     padding: 20px;
-    border-radius: 5px;
-    backdrop-filter: blur(100px);
-    border: 2px solid #717171;
-    background: transparent;
-    background-color: white;
+    position: relative;
 }
 
-/* Form nhập liệu */
-#productForm {
+.modal-content h2 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.productForm_edit_close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: none;
+    background: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: gray;
+}
+
+.form-container {
     display: flex;
-    flex-direction: column;
-    max-width: 1000px;
-    margin: 0 auto;
-    border: solid 1px;
-    border-radius: 5px;
-    padding: 10px;
-    background-color: #bbb;
+    gap: 20px;
 }
 
-#page_productForm h1 {
+.image-upload {
+    width: 40%;
     text-align: center;
 }
 
-#productForm label {
-    margin-bottom: 5px;
-}
-
-#productForm input,
-#productForm textarea {
+.image-preview {
+    width: 100%;
+    height: 342px;
+    background: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
     margin-bottom: 10px;
-    padding: 5px;
-    border: none;
-    border-radius: 5px;
-    max-width: 980px;
-    min-width: 980px;
 }
 
-#productForm .productForm_add_button {
-    padding: 8px;
-    background-color: #ff9966;
+.image-preview img {
+    width: 100%;
+    height: 342px;
+}
+
+.hidden-file-input {
+    display: none; /* Ẩn input mặc định */
+}
+
+.custom-upload-btn {
+    background: #ff9966;
     color: white;
+    padding: 10px;
+    border: none;
+    width: 100%;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+}
+
+.custom-upload-btn:hover {
+    background: #b71c1c;
+}
+
+
+.form-inputs {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-inputs label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-inputs input,
+.form-inputs textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.form-inputs textarea {
+    resize: none;
+    height: 60px;
+}
+
+/* Nhóm select và nút "Công thức" */
+.choose_product {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Khoảng cách giữa select và nút */
+}
+
+/* Tuỳ chỉnh cho select */
+.form-inputs select {
+    width: 30px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #f8f8f8;
+    font-size: 14px;
+    min-width: 160px;
+    background: #f8f8f8;
+    cursor: pointer;
+    appearance: none; /* Ẩn kiểu mặc định */
+    padding-right: 30px; /* Chừa khoảng trống cho mũi tên */
+    position: relative;
+}
+
+/* Tạo mũi tên cho select */
+.form-inputs select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="%23666666"><path d="M7 10l5 5 5-5z"></path></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 18px;
+}
+
+/* Tùy chỉnh nút "Công thức" */
+.recipe-btn {
+    background: #e0e0e0;
+    color: #333;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+    margin-top: -10px;
+}
+
+.recipe-btn:hover {
+    background: #d6d6d6;
+}
+
+.add-btn {
+    background: #ff9966;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.add-btn:hover {
+    background: #b71c1c;
+}
+
+/* Container chính - Không có khoảng cách giữa 2 form */
+#container-recipe {
+    display: flex;
+    gap: 0; /* Xóa khoảng cách */
+}
+
+/* List-modal - Danh sách nguyên liệu */
+.list-modal {
+    width: 600px;
+    height: 600px;
+    background: white;
+    border-radius: 10px 0 0 10px; /* Bo góc bên trái */
+    box-shadow: none; /* Loại bỏ đổ bóng */
+    padding: 15px;
+    border-right: 1px solid #ddd; /* Viền giữa hai form */
+    overflow-y: auto;
+}
+
+/* Header danh sách nguyên liệu */
+.list-modal h3 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* Bảng nguyên liệu */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background: #ff9966;
+}
+
+td img {
+    width: 20px;
+    height: 50px;
     border-radius: 5px;
+}
+
+table tr:hover {
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
+
+/* recipe-modal - Công thức */
+.recipe-modal {
+    width: 400px;
+    background: white;
+    border-radius: 0 10px 10px 0; /* Bo góc bên phải */
+    box-shadow: none; /* Loại bỏ đổ bóng */
+    padding: 15px;
+    display: flex; /* Thêm display flex */
+    flex-direction: column; /* Sắp xếp theo chiều dọc */
+}
+
+/* Header */
+.recipe-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.close-recipe {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: gray;
+}
+
+/* Item */
+.recipe-items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 450px;
+    overflow-y: auto;
+}
+
+.recipe-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.item-name {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.item-note {
+    font-size: 12px;
+    color: gray;
+}
+
+/* xóa */
+.recipe-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd; 
+}
+
+.remove-btn {
+    background: #ff9966;
+    color: white;
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.quantity {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.qty-btn {
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    cursor: pointer;
+    background: none;
+    font-size: 14px;
+}
+
+.qty-number {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Footer */
+.recipe-footer {
+    margin-top: auto; /* Đẩy phần footer xuống dưới cùng */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Nút xác nhận */
+.recipe-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.add-more {
+    background: white;
+    border: 1px solid black;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.confirm {
+    background: #ff9966;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.remove-btn:hover,
+.confirm:hover {
+    background-color: #e53935;
+    transition: background-color 0.3s ease;
+}
+
+
+/* Đảm bảo hai form không bị tách nhau */
+.list-modal,
+.recipe-modal {
+    border: 1px solid #ddd;
+}
+
+#page_productForm, #container-recipe {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 /*form edit*/
@@ -1582,7 +1890,7 @@ a {
 
 .new-cart-list-ul .new-cart-img {
     display: block;
-    max-width: 50px;
+    width: 50px;
     padding: 5px;
 }
 
@@ -2055,4 +2363,290 @@ select {
 }
 #stats-totalProductsSold {
     width: 150px;
+}
+
+
+/*Nhập kho*/
+#active_nhapkho {
+    max-width: 1200px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    height: 800px;
+    overflow-y: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Thanh công cụ */
+.toolbar-kho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #ddd;
+}
+
+/* Ô tìm kiếm */
+.searchitem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.searchitem input, .searchitem select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.reset-button {
+    padding: 8px 12px;
+    border: none;
+    background: #ff9966;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.reset-button:hover {
+    background: #c82333;
+    color: #ff9966;
+}
+
+/* Các nút hành động */
+.actions {
+    display: flex;
+    gap: 10px;
+}
+
+.actions button {
+    width: 100px;
+    height: 40px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    background-color: #ff9966;
+}
+
+.actions button:hover {
+    opacity: 0.8;
+}
+
+/* Bộ lọc */
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 20px 0;
+    border-bottom: 2px solid #ddd;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.filter-group input, .filter-group select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Bảng */
+.table-container-kho {
+    margin-top: 20px;
+    overflow-x: auto;
+}
+
+.table-container-kho table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+.table-container-kho th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+.table-container-kho th {
+    background: #ff9966;
+    color: white;
+}
+
+.table-container-kho tbody tr:nth-child(even) {
+    background: #f2f2f2;
+}
+
+.table-container-kho tbody tr:hover {
+    background: #ddd;
+}
+/*====================================================================================================================================================*/
+/* Form them nguyen lieu */
+#active_add_nhapkho {
+    position: relative;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 20px;
+    padding: 20px;
+}
+.kho_Form_edit_close {
+    border: none;
+    background-color: white;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+#left-panel {
+    grid-column: 1; /* Nằm ở cột đầu tiên */
+    background-color: #eee;
+    padding: 10px;
+    position: relative;
+}
+
+#right-panel {
+    grid-column: 2; /* Nằm ở cột thứ hai */
+    background-color: #eee;
+    padding: 10px;
+}
+
+.bottom-panel {
+    grid-column: 1 / span 2; /* Kéo dài qua cả 2 cột */
+    background-color: #eee;
+    padding: 10px;
+}
+
+/* Thêm các quy tắc CSS cụ thể cho từng phần tử */
+.search-box {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.search-box input {
+    flex-grow: 1;
+    padding: 5px;
+}
+
+.search-button {
+    background-color: #ff9966;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.kho-list {
+    max-height: 300px; /* Hoặc điều chỉnh theo nhu cầu */
+    overflow-y: auto;
+    border: 1px solid #ccc; /* Tùy chọn để hiển thị khung bảng */
+}
+
+/* Đảm bảo bảng không mở rộng ra ngoài div */
+.kho-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.kho-table th, .kho-table td {
+    padding: 8px;
+    text-align: left;
+    white-space: nowrap; /* Ngăn chặn xuống dòng */
+}
+
+.kho-table th {
+    background-color: #ff9966;
+    font-weight: bold;
+}
+
+.kho-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.kho-table tr:hover {
+    background-color: #ddd;
+}
+
+.button_actions {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    left: 50%;
+    transform: translateX(-50%);
+    gap: 10px;
+    bottom: 10px;
+}
+
+.button_actions button {
+    padding: 5px 10px;
+    background-color: #ff9966;
+    width: 400px;
+    height: 50px;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 5px;
+}
+
+.supplier-employee {
+    margin-top: 20px;
+}
+
+.total {
+    margin-top: 20px;
+    font-weight: bold;
+    text-align: right;
+}
+
+.add-button, .import-button {
+    background-color: #ff9966;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+/* CSS cho bảng */
+.bottom-panel {
+    max-height: 300px; /* Điều chỉnh chiều cao theo nhu cầu */
+    overflow-y: auto; /* Thêm thanh cuộn dọc khi nội dung vượt quá chiều cao */
+    background-color: #eee;
+    padding: 10px;
+}
+
+.bottom-panel table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.bottom-panel th, .bottom-panel td {
+    padding: 8px;
+    text-align: left;
+    white-space: nowrap; /* Tránh xuống dòng trong ô */
+}
+
+.bottom-panel th {
+    background-color: #ff9966;
 }
