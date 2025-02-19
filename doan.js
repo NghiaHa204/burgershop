@@ -123,11 +123,11 @@ function showMenu() {
 function showMenu_admin() {
     var List = [
         '<li class="items" id="all" onclick="quan_ly_san_pham(`all`);sap_xep_product()"><a href="#"><img src="./img/list-stars.svg" class="thumnail"><p>Menu Chính</p></a></li>',
-        '<li class="items" id="burger" onclick="quan_ly_san_pham(`burger`);sap_xep_product()"><a href="#"><img src="./img/burger.jpg" class="thumnail"><p>Burger</p></a></li>',
-        '<li class="items" id="combo" onclick="quan_ly_san_pham(`combo`);sap_xep_product()"><a href="#"><img src="./img/combo.jpg" class="thumnail"><p>Combo</p></a></li>',
-        '<li class="items" id="garan" onclick="quan_ly_san_pham(`garan`);sap_xep_product()"><a href="#"><img src="./img/garan.jpg" class="thumnail"><p>Gà rán</p></a></li>',
-        '<li class="items" id="monankem" onclick="quan_ly_san_pham(`monankem`);sap_xep_product()"><a href="#"><img src="./img/monankem.jpg" class="thumnail" id="monankem"><p>Món ăn kèm</p></a></li>',
-        '<li class="items" id="thucuong"onclick="quan_ly_san_pham(`thucuong`);sap_xep_product()"><a href="#"><img src="./img/thucuong.jpg" class="thumnail" ><p>Thức uống</p></a></li>',
+        '<li class="items" id="burger" onclick="quan_ly_san_pham(`1`);sap_xep_product()"><a href="#"><img src="./img/burger.jpg" class="thumnail"><p>Burger</p></a></li>',
+        '<li class="items" id="combo" onclick="quan_ly_san_pham(`2`);sap_xep_product()"><a href="#"><img src="./img/combo.jpg" class="thumnail"><p>Combo</p></a></li>',
+        '<li class="items" id="garan" onclick="quan_ly_san_pham(`3`);sap_xep_product()"><a href="#"><img src="./img/garan.jpg" class="thumnail"><p>Gà rán</p></a></li>',
+        '<li class="items" id="monankem" onclick="quan_ly_san_pham(`4`);sap_xep_product()"><a href="#"><img src="./img/monankem.jpg" class="thumnail" id="monankem"><p>Món ăn kèm</p></a></li>',
+        '<li class="items" id="thucuong"onclick="quan_ly_san_pham(`5`);sap_xep_product()"><a href="#"><img src="./img/thucuong.jpg" class="thumnail" ><p>Thức uống</p></a></li>',
     ];
     var content = "";
     for (var i = 0; i < List.length; i++) {
@@ -1436,7 +1436,7 @@ async function quan_ly_san_pham(type) {
         if (type === 'all') {
             item = data;
         } else {
-            item = data.filter(product => product.type === type);
+            item = data.filter(product => product.maLoai == type);
         }
 
         // Lấy các sản phẩm của trang hiện tại
@@ -1449,13 +1449,10 @@ async function quan_ly_san_pham(type) {
             addcontent.classList.add("new-cart-list-table-tr");
             addcontent.innerHTML = `
                 <td class="new-cart-list-img">
-                    <img style="border-radius: 10px;" class="new-cart-img" src="${deal.image}" alt="">
+                    <img style="border-radius: 10px;" class="new-cart-img" src="${deal.hinhAnh}" alt="">
                 </td>
                 <td class="new-Bill-check">
-                    <p class="new-cart-title" id="${deal.type.toString() + deal.id.toString()}">${deal.title}</p>
-                </td>
-                <td class="cart-sum-money">
-                    <h4 class="new-cart-sum-money" id="new-cart-sum-money">${deal.price}</h4>
+                    <p class="new-cart-title" id="${deal.maSanPham}">${deal.tenSanPham}</p>
                 </td>
                 <td>
                     <button class="new-cart-update" onclick="edit_product(this)">
