@@ -701,41 +701,31 @@
                 </div>
             </div>
     
-            <div class="right-panel">
-                <div class="form-group">
+            <div id="right-panel">
+                <div  class="form-group">
                     <label>Mã nguyên liệu đã chọn:</label>
-                    <input type="text">
+                    <input id="rp-maNL" type="text" disabled>
                 </div>
-                <div class="form-group">
+                <div  class="form-group">
                     <label>Tên nguyên liệu đã chọn:</label>
-                    <input type="text">
-                </div>
-                <div class="form-group">
-                    <label>Hiện có trong kho:</label>
-                    <input type="text">
+                    <input id="rp-nameNL" type="text" disabled>
                 </div>
                 <div class="form-group">
                     <label>Nhập số lượng thêm:</label>
-                    <input type="text">
+                    <input id="rp-quantityNL" type="text">
                 </div>
                 <div class="form-group">
                     <label>Nhập đơn giá:</label>
-                    <input type="text">
+                    <input id="rp-priceNL" type="text">
                 </div>
-                <button class="add-button">Thêm</button>
-    
-                <div class="supplier-employee">
+                <!-- <div class="supplier-employee">
                     <div class="form-group">
                         <label>Chọn nhà cung cấp:</label>
                         <select>
                         </select>
                     </div>
-                </div>
-    
-                <div class="total">
-                    <span>TỔNG TIỀN:</span>
-                </div>
-                <button class="import-button">NHẬP HÀNG</button>
+                </div> -->
+                <button class="add-button" onclick="them_CTPN()">THÊM</button>
             </div>
     
             <div class="bottom-panel">
@@ -743,156 +733,23 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>STT</th>
                             <th>Mã nguyên liêu</th>
                             <th>Tên nguyên liệu</th>
                             <th>Đơn giá nhập</th>
                             <th>Số lượng nhập</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>NL001</td>
-                            <td>Bột mì</td>
-                            <td>15,000</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>NL002</td>
-                            <td>Đường</td>
-                            <td>20,000</td>
-                            <td>30</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>NL003</td>
-                            <td>Muối</td>
-                            <td>10,000</td>
-                            <td>40</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>NL004</td>
-                            <td>Sữa tươi</td>
-                            <td>25,000</td>
-                            <td>20</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>NL005</td>
-                            <td>Bơ</td>
-                            <td>50,000</td>
-                            <td>15</td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td>NL006</td>
-                            <td>Trứng gà</td>
-                            <td>5,000</td>
-                            <td>100</td>
-                        </tr>
-                        <tr>
-                            <td>7</td>
-                            <td>NL007</td>
-                            <td>Bột nở</td>
-                            <td>18,000</td>
-                            <td>25</td>
-                        </tr>
-                        <tr>
-                            <td>8</td>
-                            <td>NL008</td>
-                            <td>Vanilla</td>
-                            <td>30,000</td>
-                            <td>10</td>
-                        </tr>
-                        <tr>
-                            <td>9</td>
-                            <td>NL009</td>
-                            <td>Bột cacao</td>
-                            <td>45,000</td>
-                            <td>12</td>
-                        </tr>
-                        <tr>
-                            <td>10</td>
-                            <td>NL010</td>
-                            <td>Nước cốt dừa</td>
-                            <td>22,000</td>
-                            <td>18</td>
-                        </tr>
-                        <tr>
-                            <td>11</td>
-                            <td>NL011</td>
-                            <td>Mật ong</td>
-                            <td>35,000</td>
-                            <td>8</td>
-                        </tr>
-                        <tr>
-                            <td>12</td>
-                            <td>NL012</td>
-                            <td>Bột gạo</td>
-                            <td>12,000</td>
-                            <td>35</td>
-                        </tr>
-                        <tr>
-                            <td>13</td>
-                            <td>NL013</td>
-                            <td>Nước lọc</td>
-                            <td>1,000</td>
-                            <td>500</td>
-                        </tr>
-                        <tr>
-                            <td>14</td>
-                            <td>NL014</td>
-                            <td>Dầu ăn</td>
-                            <td>40,000</td>
-                            <td>25</td>
-                        </tr>
-                        <tr>
-                            <td>15</td>
-                            <td>NL015</td>
-                            <td>Hành tím</td>
-                            <td>15,000</td>
-                            <td>20</td>
-                        </tr>
-                        <tr>
-                            <td>16</td>
-                            <td>NL016</td>
-                            <td>Tỏi</td>
-                            <td>18,000</td>
-                            <td>22</td>
-                        </tr>
-                        <tr>
-                            <td>17</td>
-                            <td>NL017</td>
-                            <td>Ớt bột</td>
-                            <td>28,000</td>
-                            <td>15</td>
-                        </tr>
-                        <tr>
-                            <td>18</td>
-                            <td>NL018</td>
-                            <td>Tiêu</td>
-                            <td>35,000</td>
-                            <td>10</td>
-                        </tr>
-                        <tr>
-                            <td>19</td>
-                            <td>NL019</td>
-                            <td>Bột chiên xù</td>
-                            <td>22,000</td>
-                            <td>30</td>
-                        </tr>
-                        <tr>
-                            <td>20</td>
-                            <td>NL020</td>
-                            <td>Bột chiên giòn</td>
-                            <td>20,000</td>
-                            <td>25</td>
-                        </tr>
-                    </tbody>                    
-                </table>
+                    <tbody id="table-ctpn">
+                    </tbody>  
+                                    
+                </table> 
+            </div>
+            <div>
+                <label>Tổng tiền:</label>
+                <input id="bt-total" value="0" type="text" disabled>
+            </div>
+            <div">
+                <button>Nhập hàng</button>  
             </div>
         </div>
     </div>
