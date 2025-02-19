@@ -2778,7 +2778,7 @@ async function lay_nguyen_lieu_tu_api() {
 
 async function hien_kho_nguyen_lieu() {
   const listNL = document.getElementById("listNL");
-
+  listNL.innerHTML = "";
   try {
     // Lấy dữ liệu từ API (đảm bảo sử dụng await để lấy dữ liệu đồng bộ)
     const data = await lay_nguyen_lieu_tu_api();
