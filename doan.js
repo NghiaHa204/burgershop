@@ -2788,16 +2788,79 @@ async function hien_kho_nguyen_lieu() {
       console.error("Không có dữ liệu từ API");
       return;
     }
+
     item.forEach((nl) => {
-      listNL.innerHTML += `
-                        <tr>
-                            <td>${nl.maNguyenLieu}</td>
-                            <td>${nl.tenNguyenLieu}</td>
-                            <td>${nl.soLuong}</td>
-                        </tr>`;
+      const row = document.createElement("tr");
+      row.innerHTML += `
+        <td>${nl.maNguyenLieu}</td>
+        <td>${nl.tenNguyenLieu}</td>
+        <td>${nl.soLuong}</td>`;
+
+      // Thêm thuộc tính dữ liệu để lưu thông tin nguyên liệu
+      row.dataset.maNguyenLieu = nl.maNguyenLieu;
+      row.dataset.tenNguyenLieu = nl.tenNguyenLieu;
+      row.dataset.soLuong = nl.soLuong;
+
+      // Thêm sự kiện click cho mỗi hàng
+      row.addEventListener("click", function (event) {
+        const clickedRow = event.currentTarget;
+        const maNguyenLieu = clickedRow.dataset.maNguyenLieu;
+        const tenNguyenLieu = clickedRow.dataset.tenNguyenLieu;
+        const soLuong = clickedRow.dataset.soLuong;
+
+        // Đây là nơi bạn có thể thực hiện hành động với dữ liệu của hàng được bấm vào
+        console.log(
+          `Bạn đã bấm vào nguyên liệu với mã: ${maNguyenLieu}, tên: ${tenNguyenLieu}, số lượng: ${soLuong}`
+        );
+        const nameSelected = document.getElementById("rp-nameNL");
+        const maSelected = document.getElementById("rp-maNL");
+        nameSelected.value = tenNguyenLieu;
+        maSelected.value = maNguyenLieu;
+      });
+
+      listNL.appendChild(row);
     });
     console.log(item);
-  } catch {
+  } catch (error) {
     console.error("Lỗi khi đọc dữ liệu từ API:", error);
   }
 }
+
+function them_CTPN() {
+  let maNL = document.getElementById("rp-maNL").value;
+  let nameNL = document.getElementById("rp-nameNL").value;
+  let quantity = document.getElementById("rp-quantityNL").value;
+  let price = document.getElementById("rp-priceNL").value;
+
+  const table_ctpn = document.getElementById("table-ctpn");
+
+  if (!maNL || !nameNL || !quantity || !price) {
+    console.error("Thiếu dữ liệu");
+    return;
+  } else {
+    // Thêm ô vào hàng
+    table_ctpn.innerHTML += `
+      <tr>
+        <td>${maNL}</td>
+        <td>${nameNL}</td>
+        <td>${quantity}</td>
+        <td>${price}</td>
+      </tr>
+    `;
+    let bt_total = document.getElementById("bt-total");
+    let total = parseInt(quantity) * parseInt(price);
+    bt_total.value = parseInt(bt_total.value) + total;
+
+    // Xóa dữ liệu nhập sau khi thêm
+    them_CTPN_clear();
+  }
+}
+
+function them_CTPN_clear() {
+  document.getElementById("rp-maNL").value = "";
+  document.getElementById("rp-nameNL").value = "";
+  document.getElementById("rp-quantityNL").value = "";
+  document.getElementById("rp-priceNL").value = "";
+}
+
+function tinh_tien_nhap() {}

@@ -171,6 +171,7 @@ app.post("/api/save-cart", (req, res) => {
 
   res.json({ success: true, message: "Giỏ hàng đã được lưu vào MySQL" });
 });
+
 // API thêm sản phẩm
 app.post("/api/add-product", async (req, res) => {
   const { type, id, image, title, content, price } = req.body;
