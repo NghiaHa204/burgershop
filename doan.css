@@ -2641,5 +2641,68 @@ td {
 }
 #listNLSelected th:first-child,
 #listNLSelected td:first-child {
-    display: none; /* Ẩn cột ID nếu không cần hiển thị */
+  display: none; /* Ẩn cột ID nếu không cần hiển thị */
+}
+
+.selected-row {
+  background-color: #6e6c6c5f !important;
+}
+
+#popup-PN {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgb(173, 163, 163);
+  width: 1200px;
+  height: 500px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  overflow: auto;
+}
+
+/* Chia hàng ngang cho label và button */
+#popup-PN .header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+/* Căn các label cách đều nhau */
+#popup-PN .info {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-right: 20px;
+}
+
+/* Nút đóng sát phải */
+#popup-PN button {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 4px;
+}
+
+#popup-PN button:hover {
+  background-color: darkred;
+}
+
+/* Căn chỉnh bảng */
+#modal-PN {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+#modal-PN th,
+#modal-PN td {
+  text-align: center;
+  padding: 10px;
+  border: 1px solid #000;
 }

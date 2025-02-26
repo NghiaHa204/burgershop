@@ -121,21 +121,19 @@ function showMenu() {
   document.getElementById("menuBar").innerHTML = content;
 } //menu phân loại món trên giao diện admin tận dụng tài nguyên
 function showMenu_admin() {
-
-    var List = [
-        '<li class="items" id="all" onclick="quan_ly_san_pham(`all`);sap_xep_product()"><a href="#"><img src="./img/list-stars.svg" class="thumnail"><p>Menu Chính</p></a></li>',
-        '<li class="items" id="burger" onclick="quan_ly_san_pham(`1`);sap_xep_product()"><a href="#"><img src="./img/burger.jpg" class="thumnail"><p>Burger</p></a></li>',
-        '<li class="items" id="combo" onclick="quan_ly_san_pham(`2`);sap_xep_product()"><a href="#"><img src="./img/combo.jpg" class="thumnail"><p>Combo</p></a></li>',
-        '<li class="items" id="garan" onclick="quan_ly_san_pham(`3`);sap_xep_product()"><a href="#"><img src="./img/garan.jpg" class="thumnail"><p>Gà rán</p></a></li>',
-        '<li class="items" id="monankem" onclick="quan_ly_san_pham(`4`);sap_xep_product()"><a href="#"><img src="./img/monankem.jpg" class="thumnail" id="monankem"><p>Món ăn kèm</p></a></li>',
-        '<li class="items" id="thucuong"onclick="quan_ly_san_pham(`5`);sap_xep_product()"><a href="#"><img src="./img/thucuong.jpg" class="thumnail" ><p>Thức uống</p></a></li>',
-    ];
-    var content = "";
-    for (var i = 0; i < List.length; i++) {
-        content += List[i];
-    }
-    document.getElementById("menuBar_admin").innerHTML = content;
-
+  var List = [
+    '<li class="items" id="all" onclick="quan_ly_san_pham(`all`);sap_xep_product()"><a href="#"><img src="./img/list-stars.svg" class="thumnail"><p>Menu Chính</p></a></li>',
+    '<li class="items" id="burger" onclick="quan_ly_san_pham(`1`);sap_xep_product()"><a href="#"><img src="./img/burger.jpg" class="thumnail"><p>Burger</p></a></li>',
+    '<li class="items" id="combo" onclick="quan_ly_san_pham(`2`);sap_xep_product()"><a href="#"><img src="./img/combo.jpg" class="thumnail"><p>Combo</p></a></li>',
+    '<li class="items" id="garan" onclick="quan_ly_san_pham(`3`);sap_xep_product()"><a href="#"><img src="./img/garan.jpg" class="thumnail"><p>Gà rán</p></a></li>',
+    '<li class="items" id="monankem" onclick="quan_ly_san_pham(`4`);sap_xep_product()"><a href="#"><img src="./img/monankem.jpg" class="thumnail" id="monankem"><p>Món ăn kèm</p></a></li>',
+    '<li class="items" id="thucuong"onclick="quan_ly_san_pham(`5`);sap_xep_product()"><a href="#"><img src="./img/thucuong.jpg" class="thumnail" ><p>Thức uống</p></a></li>',
+  ];
+  var content = "";
+  for (var i = 0; i < List.length; i++) {
+    content += List[i];
+  }
+  document.getElementById("menuBar_admin").innerHTML = content;
 }
 const el = document.getElementById("login");
 if (el) {
@@ -1491,14 +1489,12 @@ async function quan_ly_san_pham(type) {
 
     let item = [];
 
-
-        // Nếu là loại "all" thì lấy toàn bộ dữ liệu, nếu không lọc theo type
-        if (type === 'all') {
-            item = data;
-        } else {
-            item = data.filter(product => product.maLoai == type);
-        }
-
+    // Nếu là loại "all" thì lấy toàn bộ dữ liệu, nếu không lọc theo type
+    if (type === "all") {
+      item = data;
+    } else {
+      item = data.filter((product) => product.maLoai == type);
+    }
 
     // Lấy các sản phẩm của trang hiện tại
     const itemsOnCurrentPage = item.slice(startIndex, endIndex);
@@ -1608,7 +1604,6 @@ function changePage(pageNumber) {
 }
 //đóng tab thêm sản phẩm
 
-
 //hàm gọi chức năng thêm sản phẩm
 function open_add_item() {
   close_edit_tab();
@@ -1623,76 +1618,82 @@ function open_add_item() {
 //thêm sản phẩm
 async function add_item() {
   var type = document.querySelector("#choose_product").value.toString();
-  const productId = document.getElementById('productId').value;
-  const productTitle = document.getElementById('productTitle').value.toUpperCase();
-  const productContent = document.getElementById('productContent').value;
-  const productPrice = document.getElementById('productPrice').value;
-  const productImage = document.getElementById('productImage').value;
+  const productId = document.getElementById("productId").value;
+  const productTitle = document
+    .getElementById("productTitle")
+    .value.toUpperCase();
+  const productContent = document.getElementById("productContent").value;
+  const productPrice = document.getElementById("productPrice").value;
+  const productImage = document.getElementById("productImage").value;
 
   // Kiểm tra thông tin sản phẩm
   if (!productImage || productImage.trim() === "") {
-      document.getElementById("productImage_small").innerText = "Tên ảnh không được để trống";
-      document.getElementById("productImage").focus();
-      return;
+    document.getElementById("productImage_small").innerText =
+      "Tên ảnh không được để trống";
+    document.getElementById("productImage").focus();
+    return;
   }
   if (!productTitle) {
-      document.getElementById("productTitle_small").innerText = "Tiêu đề không hợp lệ (tiêu đề không được để trống)";
-      document.getElementById("productTitle").focus();
-      return;
+    document.getElementById("productTitle_small").innerText =
+      "Tiêu đề không hợp lệ (tiêu đề không được để trống)";
+    document.getElementById("productTitle").focus();
+    return;
   }
   if (!productContent) {
-      document.getElementById("productContent_small").innerText = "Mô tả không hợp lệ (mô tả không được để trống)";
-      document.getElementById("productContent").focus();
-      return;
+    document.getElementById("productContent_small").innerText =
+      "Mô tả không hợp lệ (mô tả không được để trống)";
+    document.getElementById("productContent").focus();
+    return;
   }
   if (isNaN(productPrice) || parseFloat(productPrice) <= 0 || !productPrice) {
-      document.getElementById("productPrice_small").innerText = "Giá bán không hợp lệ (giá bán phải là số dương)";
-      document.getElementById("productPrice").focus();
-      return;
+    document.getElementById("productPrice_small").innerText =
+      "Giá bán không hợp lệ (giá bán phải là số dương)";
+    document.getElementById("productPrice").focus();
+    return;
   }
 
   const product = {
-      type: type,
-      id: parseInt(productId),
-      image: `./img/${productImage.trim().split('\\').pop()}`, // Chỉ lưu tên file ảnh
-      title: productTitle,
-      content: productContent,
-      price: parseFloat(productPrice).toLocaleString() + " VND"
+    type: type,
+    id: parseInt(productId),
+    image: `./img/${productImage.trim().split("\\").pop()}`, // Chỉ lưu tên file ảnh
+    title: productTitle,
+    content: productContent,
+    price: parseFloat(productPrice).toLocaleString() + " VND",
   };
 
   try {
-      console.log("Thêm sản phẩm:", product);
+    console.log("Thêm sản phẩm:", product);
 
-      // Gửi yêu cầu thêm sản phẩm tới API
-      const response = await fetch('http://localhost:3000/api/add-product', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(product)
-      });
+    // Gửi yêu cầu thêm sản phẩm tới API
+    const response = await fetch("http://localhost:3000/api/add-product", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(product),
+    });
 
-      const result = await response.json();
-      console.log("Phản hồi từ server:", result);
+    const result = await response.json();
+    console.log("Phản hồi từ server:", result);
 
-      if (result.success) {
-          // ** Cập nhật dữ liệu toàn cục (thêm sản phẩm vào cuối danh sách) **
-          if (!window.productData) window.productData = [];
-          window.productData.push(product); // Thêm sản phẩm mới vào cuối danh sách
+    if (result.success) {
+      // ** Cập nhật dữ liệu toàn cục (thêm sản phẩm vào cuối danh sách) **
+      if (!window.productData) window.productData = [];
+      window.productData.push(product); // Thêm sản phẩm mới vào cuối danh sách
 
-          // ** Thêm trực tiếp sản phẩm vào giao diện (admin) ở cuối danh sách, kiểm tra giới hạn 6 sản phẩm/trang **
-          add_product_to_UI(product, 'admin');
+      // ** Thêm trực tiếp sản phẩm vào giao diện (admin) ở cuối danh sách, kiểm tra giới hạn 6 sản phẩm/trang **
+      add_product_to_UI(product, "admin");
 
-          // ** Cập nhật lại số lượng sản phẩm và phân trang nếu cần **
-          number_of_item_admin = window.productData.length;  // Cập nhật lại tổng số sản phẩm
-          update_pagination(number_of_item_admin);  // Cập nhật phân trang
+      // ** Cập nhật lại số lượng sản phẩm và phân trang nếu cần **
+      number_of_item_admin = window.productData.length; // Cập nhật lại tổng số sản phẩm
+      update_pagination(number_of_item_admin); // Cập nhật phân trang
 
-          alert("Thêm sản phẩm thành công!");
-          close_add_tab();  // Đóng tab thêm sản phẩm
-      } else {
-          alert(`Lỗi khi thêm sản phẩm: ${result.message}`);
-      }
+      alert("Thêm sản phẩm thành công!");
+      close_add_tab(); // Đóng tab thêm sản phẩm
+    } else {
+      alert(`Lỗi khi thêm sản phẩm: ${result.message}`);
+    }
   } catch (error) {
-      console.error("Lỗi khi gửi yêu cầu:", error);
-      alert("Có lỗi khi thêm sản phẩm. Vui lòng thử lại.");
+    console.error("Lỗi khi gửi yêu cầu:", error);
+    alert("Có lỗi khi thêm sản phẩm. Vui lòng thử lại.");
   }
 }
 function add_product_to_UI(product) {
@@ -2599,6 +2600,7 @@ function nhap_kho_open() {
   quan_ly_san_pham_close();
   quan_ly_user_close();
   thong_ke_close();
+  loadPhieuNhap();
   document.getElementById("active_nhapkho").style.display = "block";
 }
 
@@ -2831,8 +2833,8 @@ function them_CTPN() {
       <tr>
         <td>${maNL}</td>
         <td>${nameNL}</td>
-        <td>${quantity}</td>
         <td>${price}</td>
+        <td>${quantity}</td>
       </tr>
     `;
     let bt_total = document.getElementById("bt-total");
@@ -2852,87 +2854,132 @@ function them_CTPN_clear() {
 }
 
 function tinh_tien_nhap() {}
+
 async function nhap_hang() {
-    let total = parseInt(document.getElementById("bt-total").value);
-    
-    if (isNaN(total) || total <= 0) {
-        alert("Vui lòng nhập tổng giá hợp lệ!");
-        return;
-    }
+  let tongTien = document.getElementById("bt-total");
+  let total = tongTien.value.trim();
+  if (!total || isNaN(total) || Number(total) <= 0) {
+    alert("Vui lòng nhập tổng giá hợp lệ!");
+    return;
+  }
+  total = Number(total);
 
-    let ngayNhap = new Date().toLocaleDateString("sv"); // YYYY-MM-DD
-    parseNgaynhap = ngayNhap.toString();
-    try {
-        let response = await fetch('/api/add-Phieunhap', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ ngayNhap: parseNgaynhap, tongGia: total })
-        });
+  let rows = document.querySelectorAll("#table-ctpn tr");
+  let chiTiet = Array.from(rows)
+    .map((row) => {
+      let cells = row.getElementsByTagName("td");
+      if (cells.length >= 4) {
+        let maNguyenLieu = parseInt(cells[0].textContent.trim());
+        let donGia = parseInt(cells[2].textContent.trim());
+        let soLuong = parseInt(cells[3].textContent.trim());
 
-        let text = await response.text(); // Lấy dữ liệu dạng text trước
-        console.log("Phản hồi từ server:", text);
-
-        let data = text ? JSON.parse(text) : {}; // Chỉ parse nếu có nội dung
-
-        if (!response.ok) {
-            throw new Error(data.message || `Lỗi HTTP: ${response.status}`);
+        if (!isNaN(maNguyenLieu) && !isNaN(soLuong) && !isNaN(donGia)) {
+          return { maNguyenLieu, soLuong, donGia };
         }
+      }
+      return null;
+    })
+    .filter((item) => item !== null);
 
-        alert('Nhập hàng thành công!');
-    } catch (error) {
-        console.error('Lỗi:', error);
-        alert('Có lỗi xảy ra: ' + error.message);
+  const now = new Date();
+  const ngayNhap = new Date(now.getTime() + 7 * 60 * 60 * 1000) // Giờ Việt Nam
+    .toISOString()
+    .replace("T", " ")
+    .substring(0, 19);
+
+  try {
+    // 1️⃣ Gửi yêu cầu thêm `phieunhap`
+    let response1 = await fetch("http://localhost:3000/api/add-Phieunhap", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ tongGia: total, ngayNhap }),
+    });
+
+    let data1 = await response1.json();
+    if (!response1.ok) {
+      throw new Error(data1.message || "Lỗi thêm phiếu nhập");
     }
+
+    let maPhieuNhap = data1.maPhieuNhap; // Nhận ID vừa tạo
+    console.log("Mã phiếu nhập:", maPhieuNhap);
+
+    // 2️⃣ Gửi yêu cầu thêm `chitietphieunhap`
+    let response2 = await fetch(
+      "http://localhost:3000/api/add-ChiTietPhieuNhap",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ maPhieuNhap, chiTiet }),
+      }
+    );
+
+    let data2 = await response2.json();
+    if (!response2.ok) {
+      throw new Error(data2.message || "Lỗi thêm chi tiết phiếu nhập");
+    }
+
+    let table = document.getElementById("table-ctpn");
+    table.innerHTML = "";
+
+    tongTien.value = 0;
+
+    alert("Nhập hàng thành công!");
+  } catch (error) {
+    console.error("Lỗi:", error);
+    alert("Có lỗi xảy ra: " + error.message);
+  }
 }
+
 // Mảng lưu dữ liệu chi tiết công thức
 // Mảng lưu dữ liệu chi tiết công thức
 let recipeDetails = [];
 let selectedRow = null;
 document.addEventListener("DOMContentLoaded", function () {
-    // Xử lý tăng giảm số lượng
-    const qtyMinus = document.querySelector(".qty-btn:nth-child(1)");
-    const qtyPlus = document.querySelector(".qty-btn:nth-child(3)");
-    const qtyNumber = document.querySelector(".qty-number");
-    let quantity = parseInt(qtyNumber.textContent);
-   
+  // Xử lý tăng giảm số lượng
+  const qtyMinus = document.querySelector(".qty-btn:nth-child(1)");
+  const qtyPlus = document.querySelector(".qty-btn:nth-child(3)");
+  const qtyNumber = document.querySelector(".qty-number");
+  let quantity = parseInt(qtyNumber.textContent);
 
-    qtyMinus.addEventListener("click", function () {
-        if (quantity > 1) {
-            quantity--;
-            qtyNumber.textContent = quantity;
-        }
-    });
+  qtyMinus.addEventListener("click", function () {
+    if (quantity > 1) {
+      quantity--;
+      qtyNumber.textContent = quantity;
+    }
+  });
 
-    qtyPlus.addEventListener("click", function () {
-        quantity++;
-        qtyNumber.textContent = quantity;
-    });
+  qtyPlus.addEventListener("click", function () {
+    quantity++;
+    qtyNumber.textContent = quantity;
+  });
 
-    // Xử lý nút "+ Thêm"
-    const addBtn = document.getElementById("add-btnNLS");
-    const itemName = document.getElementById("item-name");
-    const listNLSelected = document.getElementById("listNLSelected");
+  // Xử lý nút "+ Thêm"
+  const addBtn = document.getElementById("add-btnNLS");
+  const itemName = document.getElementById("item-name");
+  const listNLSelected = document.getElementById("listNLSelected");
 
-    addBtn.addEventListener("click", function () {
+  addBtn.addEventListener("click", function () {
     const tenNguyenLieu = itemName.value;
     if (!tenNguyenLieu) {
-        alert("Vui lòng chọn nguyên liệu trước khi thêm!");
-        return;
+      alert("Vui lòng chọn nguyên liệu trước khi thêm!");
+      return;
     }
 
     const listNLR = document.getElementById("listNLRecipe");
     if (!listNLR) {
-        alert("Không tìm thấy danh sách nguyên liệu!");
-        return;
+      alert("Không tìm thấy danh sách nguyên liệu!");
+      return;
     }
     console.log("Độ dài chuỗi (input):", tenNguyenLieu.length);
 
-    const selectedRowInList = listNLR.querySelector(`tr[data-ten-nguyen-lieu="${tenNguyenLieu}"]`);
-    console.log(listNLR)
-    console.log(selectedRowInList)
+    const selectedRowInList = listNLR.querySelector(
+      `tr[data-ten-nguyen-lieu="${tenNguyenLieu}"]`
+    );
+    console.log(listNLR);
+    console.log(selectedRowInList);
     if (!selectedRowInList) {
-        alert("Không tìm thấy nguyên liệu trong danh sách!");
-        return;
+      alert("Không tìm thấy nguyên liệu trong danh sách!");
+      return;
     }
 
     const maNguyenLieu = selectedRowInList.dataset.maNguyenLieu;
@@ -2951,147 +2998,144 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Thêm sự kiện click để chọn hàng
     newRow.addEventListener("click", function () {
-        if (selectedRow) {
-            selectedRow.style.backgroundColor = "";
-        }
-        selectedRow = newRow;
-        selectedRow.style.backgroundColor = "#e0e0e0";
+      if (selectedRow) {
+        selectedRow.style.backgroundColor = "";
+      }
+      selectedRow = newRow;
+      selectedRow.style.backgroundColor = "#e0e0e0";
     });
 
     listNLSelected.appendChild(newRow);
 
     // Lưu dữ liệu chi tiết công thức
     recipeDetails.push({
-        maNguyenLieu: maNguyenLieu,
-        soLuong: quantity
+      maNguyenLieu: maNguyenLieu,
+      soLuong: quantity,
     });
 
     // Reset
     itemName.value = "";
     quantity = 1;
     qtyNumber.textContent = quantity;
-});
-        const maNguyenLieu = selectedRowInList.dataset.maNguyenLieu;
+  });
+  const maNguyenLieu = selectedRowInList.dataset.maNguyenLieu;
 
-        // Thêm hàng mới vào bảng
-        const newRow = document.createElement("tr");
-        newRow.innerHTML = `
+  // Thêm hàng mới vào bảng
+  const newRow = document.createElement("tr");
+  newRow.innerHTML = `
             <td>${maNguyenLieu}</td> <!-- Cột ID (maNguyenLieu) -->
             <td>${tenNguyenLieu}</td>
             <td>${quantity}</td>
         `;
 
-        // Lưu maNguyenLieu và soLuong vào dataset
-        newRow.dataset.maNguyenLieu = maNguyenLieu;
-        newRow.dataset.soLuong = quantity;
+  // Lưu maNguyenLieu và soLuong vào dataset
+  newRow.dataset.maNguyenLieu = maNguyenLieu;
+  newRow.dataset.soLuong = quantity;
 
-        // Thêm sự kiện click để chọn hàng
-        newRow.addEventListener("click", function () {
-            if (selectedRow) {
-                selectedRow.style.backgroundColor = "";
-            }
-            selectedRow = newRow;
-            selectedRow.style.backgroundColor = "#e0e0e0";
-        });
-
-        listNLSelected.appendChild(newRow);
-
-        // Lưu dữ liệu chi tiết công thức (chưa có maCongThuc, sẽ thêm sau)
-        recipeDetails.push({
-            maNguyenLieu: maNguyenLieu,
-            soLuong: quantity
-        });
-
-        // Làm trống ô input và reset số lượng về 1
-        itemName.value = "";
-        quantity = 1;
-        qtyNumber.textContent = quantity;
-    });
-
-    // Xử lý nút "Xóa" (xóa hàng được chọn)
-    const removeBtn = document.querySelector(".remove-btn");
-    removeBtn.addEventListener("click", function () {
-        if (selectedRow) {
-            const maNguyenLieu = selectedRow.dataset.maNguyenLieu;
-            console.log("Xóa nguyên liệu có mã:", maNguyenLieu);
-            selectedRow.remove();
-            selectedRow = null;
-
-            // Xóa dữ liệu tương ứng trong recipeDetails
-            recipeDetails = recipeDetails.filter(item => item.maNguyenLieu !== maNguyenLieu);
-        } else {
-            alert("Vui lòng chọn một nguyên liệu trong danh sách để xóa!");
-        }
-    });
-
-    // Xử lý nút "X" (đóng form và xóa #listNLSelected)
-    const closeBtn = document.getElementById("close-recipe");
-    closeBtn.addEventListener("click", function () {
-        listNLSelected.innerHTML = ""; // Xóa toàn bộ #listNLSelected
-        recipeDetails = []; // Xóa dữ liệu chi tiết công thức
-        closeRecipeForm(); // Đóng form
-    });
-
-    
-    function confirmRecipeForm() {
-      if (recipeDetails.length === 0) {
-        alert("Vui lòng thêm ít nhất một nguyên liệu trước khi xác nhận!");
-        return;
+  // Thêm sự kiện click để chọn hàng
+  newRow.addEventListener("click", function () {
+    if (selectedRow) {
+      selectedRow.style.backgroundColor = "";
     }
+    selectedRow = newRow;
+    selectedRow.style.backgroundColor = "#e0e0e0";
+  });
 
-    // Không gửi lên server ngay, chỉ lưu trong mảng và ẩn form
-    console.log("Dữ liệu chi tiết công thức:", recipeDetails);
-    closeRecipeForm(); // Ẩn form chi tiết công thức
-    
-    }
+  listNLSelected.appendChild(newRow);
 
+  // Lưu dữ liệu chi tiết công thức (chưa có maCongThuc, sẽ thêm sau)
+  recipeDetails.push({
+    maNguyenLieu: maNguyenLieu,
+    soLuong: quantity,
+  });
 
+  // Làm trống ô input và reset số lượng về 1
+  itemName.value = "";
+  quantity = 1;
+  qtyNumber.textContent = quantity;
+});
 
+// Xử lý nút "Xóa" (xóa hàng được chọn)
+const removeBtn = document.querySelector(".remove-btn");
+removeBtn.addEventListener("click", function () {
+  if (selectedRow) {
+    const maNguyenLieu = selectedRow.dataset.maNguyenLieu;
+    console.log("Xóa nguyên liệu có mã:", maNguyenLieu);
+    selectedRow.remove();
+    selectedRow = null;
+
+    // Xóa dữ liệu tương ứng trong recipeDetails
+    recipeDetails = recipeDetails.filter(
+      (item) => item.maNguyenLieu !== maNguyenLieu
+    );
+  } else {
+    alert("Vui lòng chọn một nguyên liệu trong danh sách để xóa!");
+  }
+});
+
+// Xử lý nút "X" (đóng form và xóa #listNLSelected)
+const closeBtn = document.getElementById("close-recipe");
+closeBtn.addEventListener("click", function () {
+  listNLSelected.innerHTML = ""; // Xóa toàn bộ #listNLSelected
+  recipeDetails = []; // Xóa dữ liệu chi tiết công thức
+  closeRecipeForm(); // Đóng form
+});
+
+function confirmRecipeForm() {
+  if (recipeDetails.length === 0) {
+    alert("Vui lòng thêm ít nhất một nguyên liệu trước khi xác nhận!");
+    return;
+  }
+
+  // Không gửi lên server ngay, chỉ lưu trong mảng và ẩn form
+  console.log("Dữ liệu chi tiết công thức:", recipeDetails);
+  closeRecipeForm(); // Ẩn form chi tiết công thức
+}
 
 // Hàm load danh sách nguyên liệu từ API
 async function loadListNL() {
   const listNLR = document.getElementById("listNLRecipe");
   listNLR.innerHTML = "";
   try {
-     const data = await lay_nguyen_lieu_tu_api();
-     let item = [];
+    const data = await lay_nguyen_lieu_tu_api();
+    let item = [];
     item = data;
-      if (!data || data.error) {
-          console.error("Không có dữ liệu từ API hoặc có lỗi:", data?.error);
-          return;
-      }
+    if (!data || data.error) {
+      console.error("Không có dữ liệu từ API hoặc có lỗi:", data?.error);
+      return;
+    }
 
-      item.forEach((nl) => {
-          const row = document.createElement("tr");
-          row.innerHTML = `
+    item.forEach((nl) => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
               <td>${nl.maNguyenLieu}</td>
               <td>${nl.tenNguyenLieu}</td>`;
-          
-          row.dataset.maNguyenLieu = nl.maNguyenLieu;
-          row.dataset.tenNguyenLieu = nl.tenNguyenLieu;
 
-          row.addEventListener("click", function () {
-              const tenNguyenLieu = row.dataset.tenNguyenLieu;
-              document.getElementById("item-name").value = tenNguyenLieu;
-          });
+      row.dataset.maNguyenLieu = nl.maNguyenLieu;
+      row.dataset.tenNguyenLieu = nl.tenNguyenLieu;
 
-          listNLR.appendChild(row);
+      row.addEventListener("click", function () {
+        const tenNguyenLieu = row.dataset.tenNguyenLieu;
+        document.getElementById("item-name").value = tenNguyenLieu;
       });
+
+      listNLR.appendChild(row);
+    });
   } catch (error) {
-      console.error("Lỗi khi đọc dữ liệu từ API:", error);
+    console.error("Lỗi khi đọc dữ liệu từ API:", error);
   }
 }
 
 // Hàm đóng form chi tiết công thức
 function closeRecipeForm() {
-    document.getElementById("container-recipe").style.display = "none";
-    document.getElementById("page_productForm").style.display = "block";
+  document.getElementById("container-recipe").style.display = "none";
+  document.getElementById("page_productForm").style.display = "block";
 }
 
 // Hàm mở form chi tiết công thức
 function openRecipeForm() {
-    document.getElementById("container-recipe").style.display = "block";
-    loadListNL(); // Tải danh sách nguyên liệu
+  document.getElementById("container-recipe").style.display = "block";
+  loadListNL(); // Tải danh sách nguyên liệu
 }
 function close_add_tab() {
   document.getElementById("productForm_edit").reset();
@@ -3102,116 +3146,228 @@ function close_add_tab() {
   recipeDetails = [];
   if (listNLSelected) {
     listNLSelected.innerHTML = ""; // Xóa nội dung của #listNLSelected
-}
+  }
 }
 // ... (giữ nguyên các hàm khác như addProduct, close_add_tab)
 async function createRecipe(productTitle) {
   try {
-      if (!productTitle) {
-          throw new Error("Tên sản phẩm không được để trống!");
-      }
+    if (!productTitle) {
+      throw new Error("Tên sản phẩm không được để trống!");
+    }
 
-      // Chuẩn bị dữ liệu công thức, sử dụng tên sản phẩm làm tenCongThuc
-      const congThucData = {
-          tenCongThuc: `CongThuc_${productTitle.trim()}` // Loại bỏ khoảng trắng thừa và thêm tiền tố "CongThuc_"
-      };
+    // Chuẩn bị dữ liệu công thức, sử dụng tên sản phẩm làm tenCongThuc
+    const congThucData = {
+      tenCongThuc: `CongThuc_${productTitle.trim()}`, // Loại bỏ khoảng trắng thừa và thêm tiền tố "CongThuc_"
+    };
 
-      // Gửi yêu cầu POST tới API /api/congthuc trong server.js
-      const response = await fetch('http://localhost:3000/api/congthuc', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(congThucData)
-      });
+    // Gửi yêu cầu POST tới API /api/congthuc trong server.js
+    const response = await fetch("http://localhost:3000/api/congthuc", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(congThucData),
+    });
 
-      if (!response.ok) {
-          throw new Error(await response.text() || 'Lỗi tạo công thức');
-      }
+    if (!response.ok) {
+      throw new Error((await response.text()) || "Lỗi tạo công thức");
+    }
 
-      const result = await response.json();
-      return result.maCongThuc; // Trả về maCongThuc vừa tạo (tự động từ AUTO_INCREMENT trong MySQL)
+    const result = await response.json();
+    return result.maCongThuc; // Trả về maCongThuc vừa tạo (tự động từ AUTO_INCREMENT trong MySQL)
   } catch (error) {
-      console.error("Lỗi khi tạo công thức:", error);
-      alert("Có lỗi xảy ra khi tạo công thức: " + error.message);
-      throw error; // Ném lỗi để hàm gọi có thể xử lý
+    console.error("Lỗi khi tạo công thức:", error);
+    alert("Có lỗi xảy ra khi tạo công thức: " + error.message);
+    throw error; // Ném lỗi để hàm gọi có thể xử lý
   }
 }
 async function addProductToDB() {
   try {
-      // Lấy thông tin từ form thêm sản phẩm (page_productForm)
-      const productTitle = document.getElementById("productTitle").value;
-      const productType = document.getElementById("choose_product").value;
-      const productContent = document.getElementById("productContent").value;
+    // Lấy thông tin từ form thêm sản phẩm (page_productForm)
+    const productTitle = document.getElementById("productTitle").value;
+    const productType = document.getElementById("choose_product").value;
+    const productContent = document.getElementById("productContent").value;
 
-      // Kiểm tra dữ liệu đầu vào (bỏ qua productImage vì chưa xử lý)
-      if (!productTitle || !productType || !productContent || recipeDetails.length === 0) {
-          throw new Error("Vui lòng nhập đầy đủ thông tin sản phẩm và thêm ít nhất một nguyên liệu!");
+    // Kiểm tra dữ liệu đầu vào (bỏ qua productImage vì chưa xử lý)
+    if (
+      !productTitle ||
+      !productType ||
+      !productContent ||
+      recipeDetails.length === 0
+    ) {
+      throw new Error(
+        "Vui lòng nhập đầy đủ thông tin sản phẩm và thêm ít nhất một nguyên liệu!"
+      );
+    }
+
+    // Ánh xạ loại sản phẩm sang maLoai
+    const maLoaiMap = {
+      burger: 1,
+      garan: 2,
+      combo: 3,
+      monankem: 4,
+      thucuong: 5,
+    };
+    const maLoai = maLoaiMap[productType];
+
+    // Bước 1: Tạo công thức mới trong bảng congthuc
+    const maCongThuc = await createRecipe(productTitle);
+    console.log("Mã công thức mới được tạo:", maCongThuc);
+
+    // Bước 2: Cập nhật recipeDetails với maCongThuc
+    const updatedRecipeDetails = recipeDetails.map((detail) => ({
+      maCongThuc: maCongThuc,
+      maNguyenLieu: detail.maNguyenLieu,
+      soLuong: detail.soLuong,
+    }));
+
+    // Bước 3: Thêm chi tiết công thức vào bảng chitietcongthuc
+    const chiTietResponse = await fetch(
+      "http://localhost:3000/api/chitietcongthuc",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(updatedRecipeDetails),
       }
+    );
+    if (!chiTietResponse.ok) {
+      throw new Error(
+        (await chiTietResponse.text()) || "Lỗi thêm chi tiết công thức"
+      );
+    }
+    const chiTietResult = await chiTietResponse.json();
 
-      // Ánh xạ loại sản phẩm sang maLoai
-      const maLoaiMap = {
-          "burger": 1,
-          "garan": 2,
-          "combo": 3,
-          "monankem": 4,
-          "thucuong": 5
-      };
-      const maLoai = maLoaiMap[productType];
+    // Bước 4: Thêm sản phẩm vào bảng sanpham (hinhAnh là chuỗi rỗng)
+    const productData = {
+      tenSanPham: productTitle,
+      hinhAnh: "", // Tạm thời lưu chuỗi rỗng cho hinhAnh
+      moTa: productContent,
+      maLoai: maLoai,
+      maCongThuc: maCongThuc,
+    };
+    const sanPhamResponse = await fetch("http://localhost:3000/api/sanpham", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(productData),
+    });
+    if (!sanPhamResponse.ok) {
+      throw new Error((await sanPhamResponse.text()) || "Lỗi thêm sản phẩm");
+    }
+    const sanPhamResult = await sanPhamResponse.json();
 
-      // Bước 1: Tạo công thức mới trong bảng congthuc
-      const maCongThuc = await createRecipe(productTitle);
-      console.log("Mã công thức mới được tạo:", maCongThuc);
+    // Thành công, reset form và thông báo
+    alert("Thêm sản phẩm, công thức và chi tiết công thức thành công!");
+    document.getElementById("page_productForm").style.display = "none";
+    document.getElementById("productTitle").value = "";
+    document.getElementById("productContent").value = "";
+    const listNLSelected = document.getElementById("listNLSelected");
+    if (listNLSelected) {
+      listNLSelected.innerHTML = ""; // Xóa danh sách nguyên liệu đã chọn
+    }
+    recipeDetails = []; // Reset mảng chi tiết công thức
 
-      // Bước 2: Cập nhật recipeDetails với maCongThuc
-      const updatedRecipeDetails = recipeDetails.map(detail => ({
-          maCongThuc: maCongThuc,
-          maNguyenLieu: detail.maNguyenLieu,
-          soLuong: detail.soLuong
-      }));
-
-      // Bước 3: Thêm chi tiết công thức vào bảng chitietcongthuc
-      const chiTietResponse = await fetch('http://localhost:3000/api/chitietcongthuc', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(updatedRecipeDetails)
-      });
-      if (!chiTietResponse.ok) {
-          throw new Error(await chiTietResponse.text() || 'Lỗi thêm chi tiết công thức');
-      }
-      const chiTietResult = await chiTietResponse.json();
-
-      // Bước 4: Thêm sản phẩm vào bảng sanpham (hinhAnh là chuỗi rỗng)
-      const productData = {
-          tenSanPham: productTitle,
-          hinhAnh: "", // Tạm thời lưu chuỗi rỗng cho hinhAnh
-          moTa: productContent,
-          maLoai: maLoai,
-          maCongThuc: maCongThuc
-      };
-      const sanPhamResponse = await fetch('http://localhost:3000/api/sanpham', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(productData)
-      });
-      if (!sanPhamResponse.ok) {
-          throw new Error(await sanPhamResponse.text() || 'Lỗi thêm sản phẩm');
-      }
-      const sanPhamResult = await sanPhamResponse.json();
-
-      // Thành công, reset form và thông báo
-      alert("Thêm sản phẩm, công thức và chi tiết công thức thành công!");
-      document.getElementById("page_productForm").style.display = "none";
-      document.getElementById("productTitle").value = "";
-      document.getElementById("productContent").value = "";
-      const listNLSelected = document.getElementById("listNLSelected");
-      if (listNLSelected) {
-          listNLSelected.innerHTML = ""; // Xóa danh sách nguyên liệu đã chọn
-      }
-      recipeDetails = []; // Reset mảng chi tiết công thức
-
-      return { success: true, message: "Sản phẩm đã được lưu thành công", data: sanPhamResult };
+    return {
+      success: true,
+      message: "Sản phẩm đã được lưu thành công",
+      data: sanPhamResult,
+    };
   } catch (error) {
-      console.error("Lỗi khi thêm sản phẩm vào DB:", error);
-      alert("Có lỗi xảy ra khi thêm sản phẩm: " + error.message);
-      return { success: false, message: error.message };
+    console.error("Lỗi khi thêm sản phẩm vào DB:", error);
+    alert("Có lỗi xảy ra khi thêm sản phẩm: " + error.message);
+    return { success: false, message: error.message };
   }
+}
+
+// Load phiếu nhập
+async function loadPhieuNhap() {
+  try {
+    let response = await fetch("http://localhost:3000/api/hien-phieu-nhap");
+    if (!response.ok) throw new Error("Lỗi khi tải dữ liệu phiếu nhập");
+
+    let data = await response.json();
+    let tableBody = document.getElementById("table-PN");
+    tableBody.innerHTML = ""; // Xóa bảng cũ
+
+    data.forEach((item) => {
+      let row = document.createElement("tr");
+
+      row.innerHTML = `
+        <td>${item.maPhieuNhap}</td>
+        <td>${formatDateTime(item.ngayNhap)}</td>
+        <td>${formatCurrency(item.tongGia)}</td>
+      `;
+
+      // Thêm sự kiện click để highlight hàng
+      row.addEventListener("click", function () {
+        // Xóa lớp 'selected-row' khỏi tất cả các hàng
+        document
+          .querySelectorAll("#table-PN tr")
+          .forEach((tr) => tr.classList.remove("selected-row"));
+        // Thêm lớp 'selected-row' vào hàng được click
+        row.classList.add("selected-row");
+      });
+
+      tableBody.appendChild(row);
+    });
+  } catch (error) {
+    console.error("Lỗi:", error);
+  }
+}
+
+// Xem chi tiết phiếu xuất
+function modal_PN_close() {
+  document.getElementById("popup-PN").style.display = "none";
+}
+
+async function modal_PN_open() {
+  let selectedRow = document.querySelector(".selected-row");
+  if (!selectedRow) {
+    alert("Vui lòng chọn một dòng trước khi xem!");
+    return;
+  }
+
+  let maPhieuNhap = selectedRow.children[0].textContent; // Lấy mã phiếu nhập
+
+  // Hiển thị thông tin phiếu nhập
+  document.getElementById("ma-phieu-nhap").textContent =
+    "Mã phiếu nhập: " + maPhieuNhap;
+  document.getElementById("thoi-gian-tao").textContent =
+    "Thời gian tạo: " + selectedRow.children[1].textContent;
+  document.getElementById("tong-tien").textContent =
+    "Tổng tiền: " + selectedRow.children[2].textContent;
+
+  try {
+    let response = await fetch(
+      `http://localhost:3000/api/chitiet-phieunhap?maPhieuNhap=${maPhieuNhap}`
+    );
+    if (!response.ok) throw new Error("Lỗi tải dữ liệu chi tiết");
+
+    let data = await response.json();
+    let tableBody = document.querySelector("#modal-PN tbody");
+    tableBody.innerHTML = ""; // Xóa dữ liệu cũ
+
+    data.forEach((item) => {
+      let row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${item.tenNguyenLieu}</td>
+        <td>${item.soLuong}</td>
+        <td>${formatCurrency(item.donGia)}</td>
+      `;
+      tableBody.appendChild(row);
+    });
+
+    // Hiển thị popup
+    document.getElementById("popup-PN").style.display = "block";
+  } catch (error) {
+    console.error("Lỗi:", error);
+  }
+}
+
+// Hàm định dạng thời gian yyyy:mm:dd HH:MM:ss
+function formatDateTime(dateTime) {
+  let date = new Date(dateTime);
+  return date.toISOString().replace("T", " ").substring(0, 19);
+}
+
+// Hàm định dạng tiền tệ Việt Nam
+function formatCurrency(value) {
+  return new Intl.NumberFormat("vi-VN").format(value) + " VND";
 }
