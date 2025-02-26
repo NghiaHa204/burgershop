@@ -2630,3 +2630,16 @@ td {
 .bottom-panel th {
   background-color: #ff9966;
 }
+#add-btnNLS {
+  background: #ff9966;
+  color: white;
+  border: none;
+  padding: 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+#listNLSelected th:first-child,
+#listNLSelected td:first-child {
+    display: none; /* Ẩn cột ID nếu không cần hiển thị */
+}
