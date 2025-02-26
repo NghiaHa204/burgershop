@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
--- Máy chủ:                      127.0.0.1
--- Phiên bản máy chủ:            10.4.32-MariaDB - mariadb.org binary distribution
--- HĐH máy chủ:                  Win64
--- HeidiSQL Phiên bản:           12.10.0.7000
+-- Host:                         127.0.0.1
+-- Server version:               10.4.32-MariaDB - mariadb.org binary distribution
+-- Server OS:                    Win64
+-- HeidiSQL Version:             12.6.0.6765
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -19,7 +19,7 @@
 CREATE DATABASE IF NOT EXISTS `burgershop2` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
 USE `burgershop2`;
 
--- Dumping structure for bảng burgershop2.bills
+-- Dumping structure for table burgershop2.bills
 CREATE TABLE IF NOT EXISTS `bills` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
@@ -36,9 +36,9 @@ CREATE TABLE IF NOT EXISTS `bills` (
   CONSTRAINT `bills_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `khachhang` (`maKhachHang`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Đang đổ dữ liệu cho bảng burgershop2.bills: ~0 rows (xấp xỉ)
+-- Dumping data for table burgershop2.bills: ~0 rows (approximately)
 
--- Dumping structure for bảng burgershop2.bill_items
+-- Dumping structure for table burgershop2.bill_items
 CREATE TABLE IF NOT EXISTS `bill_items` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `bill_timeid` varchar(255) DEFAULT NULL,
@@ -50,20 +50,16 @@ CREATE TABLE IF NOT EXISTS `bill_items` (
   CONSTRAINT `bill_items_ibfk_1` FOREIGN KEY (`bill_timeid`) REFERENCES `bills` (`timeid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Đang đổ dữ liệu cho bảng burgershop2.bill_items: ~0 rows (xấp xỉ)
+-- Dumping data for table burgershop2.bill_items: ~0 rows (approximately)
 
--- Dumping structure for bảng burgershop2.chitietcongthuc
+-- Dumping structure for table burgershop2.chitietcongthuc
 CREATE TABLE IF NOT EXISTS `chitietcongthuc` (
   `maCongThuc` int(11) NOT NULL,
   `maNguyenLieu` int(11) NOT NULL,
-  `soLuong` int(11) DEFAULT NULL,
-  PRIMARY KEY (`maCongThuc`,`maNguyenLieu`),
-  KEY `maNguyenLieu` (`maNguyenLieu`),
-  CONSTRAINT `chitietcongthuc_ibfk_1` FOREIGN KEY (`maCongThuc`) REFERENCES `congthuc` (`maCongThuc`),
-  CONSTRAINT `chitietcongthuc_ibfk_2` FOREIGN KEY (`maNguyenLieu`) REFERENCES `nguyenlieu` (`maNguyenLieu`)
+  `soLuong` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Đang đổ dữ liệu cho bảng burgershop2.chitietcongthuc: ~176 rows (xấp xỉ)
+-- Dumping data for table burgershop2.chitietcongthuc: ~177 rows (approximately)
 INSERT INTO `chitietcongthuc` (`maCongThuc`, `maNguyenLieu`, `soLuong`) VALUES
 	(1, 4, 1),
 	(2, 4, 3),
@@ -240,9 +236,23 @@ INSERT INTO `chitietcongthuc` (`maCongThuc`, `maNguyenLieu`, `soLuong`) VALUES
 	(72, 9, 1),
 	(72, 13, 1),
 	(72, 17, 1),
-	(72, 18, 1);
+	(72, 18, 1),
+	(75, 3, 1),
+	(76, 3, 1),
+	(76, 5, 1),
+	(76, 7, 1),
+	(76, 3, 1),
+	(76, 5, 1),
+	(76, 7, 1),
+	(77, 3, 1),
+	(77, 8, 1),
+	(77, 5, 1),
+	(77, 3, 1),
+	(77, 8, 1),
+	(77, 5, 1),
+	(78, 4, 1);
 
--- Dumping structure for bảng burgershop2.chitietphieunhap
+-- Dumping structure for table burgershop2.chitietphieunhap
 CREATE TABLE IF NOT EXISTS `chitietphieunhap` (
   `maPhieuNhap` int(11) NOT NULL,
   `maNguyenLieu` int(11) NOT NULL,
@@ -254,16 +264,16 @@ CREATE TABLE IF NOT EXISTS `chitietphieunhap` (
   CONSTRAINT `chitietphieunhap_ibfk_2` FOREIGN KEY (`maNguyenLieu`) REFERENCES `nguyenlieu` (`maNguyenLieu`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Đang đổ dữ liệu cho bảng burgershop2.chitietphieunhap: ~0 rows (xấp xỉ)
+-- Dumping data for table burgershop2.chitietphieunhap: ~0 rows (approximately)
 
--- Dumping structure for bảng burgershop2.congthuc
+-- Dumping structure for table burgershop2.congthuc
 CREATE TABLE IF NOT EXISTS `congthuc` (
   `maCongThuc` int(11) NOT NULL AUTO_INCREMENT,
   `tenCongThuc` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`maCongThuc`)
-) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Đang đổ dữ liệu cho bảng burgershop2.congthuc: ~58 rows (xấp xỉ)
+-- Dumping data for table burgershop2.congthuc: ~62 rows (approximately)
 INSERT INTO `congthuc` (`maCongThuc`, `tenCongThuc`) VALUES
 	(1, 'ga1'),
 	(2, 'ga2'),
@@ -318,13 +328,19 @@ INSERT INTO `congthuc` (`maCongThuc`, `tenCongThuc`) VALUES
 	(65, 'thucuong6'),
 	(66, 'thucuong7'),
 	(67, 'thucuong8'),
-	(68, 'combo11'),
-	(69, 'combo12'),
-	(70, 'combo13'),
-	(71, 'combo14'),
-	(72, 'combo15');
+	(68, 'CongThuc_test'),
+	(69, 'CongThuc_test'),
+	(70, 'CongThuc_test'),
+	(71, 'CongThuc_test'),
+	(72, 'CongThuc_test'),
+	(73, 'CongThuc_test'),
+	(74, 'CongThuc_test'),
+	(75, 'CongThuc_test'),
+	(76, 'CongThuc_test2'),
+	(77, 'CongThuc_test3'),
+	(78, 'CongThuc_test4');
 
--- Dumping structure for thủ tục burgershop2.InsertGa
+-- Dumping structure for procedure burgershop2.InsertGa
 DELIMITER //
 CREATE PROCEDURE `InsertGa`()
 BEGIN
@@ -336,7 +352,7 @@ BEGIN
 END//
 DELIMITER ;
 
--- Dumping structure for bảng burgershop2.khachhang
+-- Dumping structure for table burgershop2.khachhang
 CREATE TABLE IF NOT EXISTS `khachhang` (
   `maKhachHang` int(11) NOT NULL AUTO_INCREMENT,
   `tenKhachHang` varchar(255) DEFAULT NULL,
@@ -349,9 +365,9 @@ CREATE TABLE IF NOT EXISTS `khachhang` (
   UNIQUE KEY `tenDangNhap` (`tenDangNhap`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Đang đổ dữ liệu cho bảng burgershop2.khachhang: ~0 rows (xấp xỉ)
+-- Dumping data for table burgershop2.khachhang: ~0 rows (approximately)
 
--- Dumping structure for bảng burgershop2.kho
+-- Dumping structure for table burgershop2.kho
 CREATE TABLE IF NOT EXISTS `kho` (
   `maNguyenLieu` int(11) NOT NULL,
   `tenNguyenLieu` varchar(255) DEFAULT NULL,
@@ -360,9 +376,26 @@ CREATE TABLE IF NOT EXISTS `kho` (
   CONSTRAINT `kho_ibfk_1` FOREIGN KEY (`maNguyenLieu`) REFERENCES `nguyenlieu` (`maNguyenLieu`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Đang đổ dữ liệu cho bảng burgershop2.kho: ~0 rows (xấp xỉ)
+-- Dumping data for table burgershop2.kho: ~16 rows (approximately)
+INSERT INTO `kho` (`maNguyenLieu`, `tenNguyenLieu`, `soLuong`) VALUES
+	(1, 'bánh mì', 100),
+	(2, 'thịt bò', 100),
+	(3, 'cá', 100),
+	(4, 'thịt gà', 100),
+	(5, 'thịt heo', 100),
+	(6, 'phô mai', 100),
+	(7, 'cánh gà', 199),
+	(8, 'rong biển', 100),
+	(9, 'khoai tây', 100),
+	(10, 'nước cam', 100),
+	(11, 'nước suối', 100),
+	(12, 'trà chanh', 100),
+	(13, 'coca', 100),
+	(14, 'fanta', 100),
+	(15, 'sprite', 100),
+	(16, 'coca light', 100);
 
--- Dumping structure for bảng burgershop2.lo
+-- Dumping structure for table burgershop2.lo
 CREATE TABLE IF NOT EXISTS `lo` (
   `maLo` int(11) NOT NULL AUTO_INCREMENT,
   `maPhieuNhap` int(11) DEFAULT NULL,
@@ -373,16 +406,16 @@ CREATE TABLE IF NOT EXISTS `lo` (
   CONSTRAINT `lo_ibfk_1` FOREIGN KEY (`maPhieuNhap`) REFERENCES `phieunhap` (`maPhieuNhap`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Đang đổ dữ liệu cho bảng burgershop2.lo: ~0 rows (xấp xỉ)
+-- Dumping data for table burgershop2.lo: ~0 rows (approximately)
 
--- Dumping structure for bảng burgershop2.loai
+-- Dumping structure for table burgershop2.loai
 CREATE TABLE IF NOT EXISTS `loai` (
   `maLoai` int(11) NOT NULL AUTO_INCREMENT,
   `tenLoai` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`maLoai`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Đang đổ dữ liệu cho bảng burgershop2.loai: ~5 rows (xấp xỉ)
+-- Dumping data for table burgershop2.loai: ~5 rows (approximately)
 INSERT INTO `loai` (`maLoai`, `tenLoai`) VALUES
 	(1, 'burger'),
 	(2, 'combo'),
@@ -390,67 +423,17 @@ INSERT INTO `loai` (`maLoai`, `tenLoai`) VALUES
 	(4, 'monankem'),
 	(5, 'thucuong');
 
--- Dumping structure for bảng burgershop2.nguyenlieu
-CREATE TABLE IF NOT EXISTS `nguyenlieu` (
-  `maNguyenLieu` int(11) NOT NULL AUTO_INCREMENT,
-  `tenNguyenLieu` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`maNguyenLieu`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- Đang đổ dữ liệu cho bảng burgershop2.nguyenlieu: ~20 rows (xấp xỉ)
-INSERT INTO `nguyenlieu` (`maNguyenLieu`, `tenNguyenLieu`) VALUES
-	(1, 'bánh mì'),
-	(2, 'thịt bò'),
-	(3, 'cá'),
-	(4, 'thịt gà'),
-	(5, 'thịt heo'),
-	(6, 'phô mai'),
-	(7, 'cánh gà'),
-	(8, 'rong biển'),
-	(9, 'khoai tây'),
-	(10, 'nước cam'),
-	(11, 'nước suối'),
-	(12, 'trà chanh'),
-	(13, 'coca'),
-	(14, 'fanta'),
-	(15, 'sprite'),
-	(16, 'coca light'),
-	(17, 'xa lách'),
-	(18, 'hành'),
-	(19, 'ớt'),
-	(20, 'BBQ');
-
--- Dumping structure for bảng burgershop2.nhacungcap
-CREATE TABLE IF NOT EXISTS `nhacungcap` (
-  `maNCC` int(11) NOT NULL AUTO_INCREMENT,
-  `tenNCC` varchar(255) DEFAULT NULL,
-  `diaChi` varchar(255) DEFAULT NULL,
-  `soDienThoai` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`maNCC`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- Đang đổ dữ liệu cho bảng burgershop2.nhacungcap: ~5 rows (xấp xỉ)
-INSERT INTO `nhacungcap` (`maNCC`, `tenNCC`, `diaChi`, `soDienThoai`) VALUES
-	(1, 'Nhà phân phối thực phẩm jollibee', '653, đường Hương Lộ 3, Bình Hưng Hoà, Bình Tân, Hồ Chí Minh, Việt Nam', '02873059240'),
-	(2, 'Công ty TNHH Thực phẩm Hoàng Đông', '94 P. Trần Quý Cáp, phường Văn Chương, quận Đống Đa, Hà Nội', '02422171661'),
-	(3, 'Công Ty Hanoifood', '84 Quán Thánh, quận Ba Đình, Hà Nội', '02437150321'),
-	(4, 'Công ty Cổ phần Zin Food Việt Nam', 'TT10-39, KĐT Mới Văn Phú, phường Phú La, quận Hà Đông, Hà Nội', '02466585358'),
-	(5, 'Công ty TNHH SX Thực Phẩm Xanh Đồng Nai', '2778 QL1A, xã Xuân Hiệp, huyện Xuân Lộc, Đồng Nai', '0913 704 749');
-
--- Dumping structure for bảng burgershop2.phieunhap
+-- Dumping structure for table burgershop2.phieunhap
 CREATE TABLE IF NOT EXISTS `phieunhap` (
   `maPhieuNhap` int(11) NOT NULL AUTO_INCREMENT,
-  `maNCC` int(11) DEFAULT NULL,
-  `ngayNhap` date DEFAULT NULL,
-  `tongGia` float DEFAULT NULL,
-  PRIMARY KEY (`maPhieuNhap`),
-  KEY `maNCC` (`maNCC`),
-  CONSTRAINT `phieunhap_ibfk_1` FOREIGN KEY (`maNCC`) REFERENCES `nhacungcap` (`maNCC`)
+  `ngayNhap` varchar(50) DEFAULT NULL,
+  `tongGia` int(11) DEFAULT NULL,
+  PRIMARY KEY (`maPhieuNhap`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Đang đổ dữ liệu cho bảng burgershop2.phieunhap: ~0 rows (xấp xỉ)
+-- Dumping data for table burgershop2.phieunhap: ~0 rows (approximately)
 
--- Dumping structure for bảng burgershop2.sanpham
+-- Dumping structure for table burgershop2.sanpham
 CREATE TABLE IF NOT EXISTS `sanpham` (
   `maSanPham` int(11) NOT NULL AUTO_INCREMENT,
   `tenSanPham` varchar(255) DEFAULT NULL,
@@ -463,9 +446,9 @@ CREATE TABLE IF NOT EXISTS `sanpham` (
   KEY `maCongThuc` (`maCongThuc`),
   CONSTRAINT `sanpham_ibfk_1` FOREIGN KEY (`maLoai`) REFERENCES `loai` (`maLoai`),
   CONSTRAINT `sanpham_ibfk_2` FOREIGN KEY (`maCongThuc`) REFERENCES `congthuc` (`maCongThuc`)
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Đang đổ dữ liệu cho bảng burgershop2.sanpham: ~56 rows (xấp xỉ)
+-- Dumping data for table burgershop2.sanpham: ~57 rows (approximately)
 INSERT INTO `sanpham` (`maSanPham`, `tenSanPham`, `hinhAnh`, `moTa`, `maLoai`, `maCongThuc`) VALUES
 	(1, 'BURGER BÒ TEMPURA JR', './img/burger1.png', '+Burger Bò Tempura Jr (size vừa): bò nướng lửa hồng cùng tempura rau củ', 1, 26),
 	(2, 'BURGER BÒ TEMPURA', './img/burger2.png', 'Burger Bò Tempura (size lớn): bò nướng lửa hồng và tempura rau củ', 1, 27),
@@ -522,9 +505,13 @@ INSERT INTO `sanpham` (`maSanPham`, `tenSanPham`, `hinhAnh`, `moTa`, `maLoai`, `
 	(53, 'COCA', './img/water5.jpg', 'COCA', 5, 64),
 	(54, 'FANTA', './img/water6.jpg', 'FANTA', 5, 65),
 	(55, 'SPRITE', './img/water7.jpg', 'SPRITE', 5, 66),
-	(56, 'COCA LIGHT', './img/water8.jpg', 'COCA LIGHT', 5, 67);
+	(56, 'COCA LIGHT', './img/water8.jpg', 'COCA LIGHT', 5, 67),
+	(57, 'test', '', 'dsd', 1, 75),
+	(58, 'test2', '', '323', 1, 76),
+	(59, 'test3', '', 'kdasndj', 1, 77),
+	(60, 'test4', '', '223', 1, 78);
 
--- Dumping structure for bảng burgershop2.taikhoan
+-- Dumping structure for table burgershop2.taikhoan
 CREATE TABLE IF NOT EXISTS `taikhoan` (
   `maTaiKhoan` int(11) NOT NULL AUTO_INCREMENT,
   `tenDangNhap` varchar(255) DEFAULT NULL,
@@ -533,7 +520,7 @@ CREATE TABLE IF NOT EXISTS `taikhoan` (
   UNIQUE KEY `tenDangNhap` (`tenDangNhap`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Đang đổ dữ liệu cho bảng burgershop2.taikhoan: ~0 rows (xấp xỉ)
+-- Dumping data for table burgershop2.taikhoan: ~0 rows (approximately)
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
